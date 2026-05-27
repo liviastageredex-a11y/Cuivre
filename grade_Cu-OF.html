@@ -1,0 +1,534 @@
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REDEX — Grade Cu-OF</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cu:#C87941;--cu-dark:#8B4E1F;--cu-light:#F5E6D3;--cu-pale:#FDF6EF;
+  --navy:#0F1B2D;--muted:#718096;--border:rgba(200,121,65,0.15);--border-strong:rgba(200,121,65,0.35);
+  --bg:#FAFAF8;--card-bg:#FFFFFF;--text:#0F1B2D;--text-muted:#718096;
+  --props-row-bg:#FAFAF8;--stat-bg:#FAFAF8;--hero-bg:#0F1B2D;--footer-bg:#0F1B2D;
+  --radius:16px;--transition:background .3s,color .3s,border-color .3s;
+}
+[data-theme="dark"]{
+  --cu:#E09050;--cu-dark:#C87941;--cu-light:#2A1A0A;--cu-pale:#1E1208;
+  --navy:#E8EAF0;--muted:#8A95A8;--border:rgba(224,144,80,0.18);--border-strong:rgba(224,144,80,0.38);
+  --bg:#0D0D1A;--card-bg:#141426;--text:#E8EAF0;--text-muted:#8A95A8;
+  --props-row-bg:#1A1A2E;--stat-bg:#1A1A2E;--hero-bg:#08080F;--footer-bg:#08080F;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);transition:var(--transition);}
+
+/* HEADER */
+header{background:var(--hero-bg);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(200,121,65,0.25);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;letter-spacing:.05em;cursor:pointer;}
+.logo span{color:var(--cu);}
+.header-controls{display:flex;align-items:center;gap:8px;}
+.ctrl-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 12px;cursor:pointer;color:rgba(255,255,255,0.75);font-size:0.75rem;font-weight:500;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.ctrl-btn:hover{background:rgba(200,121,65,0.2);border-color:rgba(200,121,65,0.4);color:var(--cu);}
+.lang-btn{padding:4px;gap:0;}
+.lang-seg{padding:4px 10px;border-radius:14px;font-size:.72rem;font-weight:600;transition:all .2s;color:rgba(255,255,255,0.45);}
+.lang-seg.active{background:var(--cu);color:#fff;}
+.back-header-btn{display:flex;align-items:center;gap:6px;background:rgba(200,121,65,0.15);border:1px solid rgba(200,121,65,0.35);border-radius:20px;padding:6px 14px;cursor:pointer;color:var(--cu);font-size:0.75rem;font-weight:600;transition:all .2s;font-family:'DM Sans',sans-serif;text-decoration:none;}
+.back-header-btn:hover{background:var(--cu);color:#fff;}
+
+/* HERO */
+.hero{background:var(--hero-bg);padding:3rem 2.5rem 2.5rem;position:relative;overflow:hidden;}
+.hero::before{content:'Cu-OF';position:absolute;right:-1rem;top:-1rem;font-family:'Syne',sans-serif;font-size:9rem;font-weight:800;color:rgba(200,121,65,0.06);line-height:1;pointer-events:none;white-space:nowrap;}
+.hero-eyebrow{display:inline-block;background:rgba(200,121,65,0.15);color:var(--cu);font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid rgba(200,121,65,0.3);margin-bottom:1rem;}
+.hero-symbol{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;color:var(--cu);line-height:1;margin-bottom:.4rem;}
+.hero-fullname{font-size:1.1rem;color:rgba(255,255,255,0.65);margin-bottom:.4rem;}
+.hero-nfa{display:inline-block;font-size:.72rem;background:rgba(200,121,65,0.2);color:var(--cu);border-radius:4px;padding:3px 10px;margin-bottom:1.2rem;}
+.hero-desc{font-size:.88rem;color:rgba(255,255,255,0.55);line-height:1.75;max-width:700px;}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:1.2rem;}
+.hero-pill{font-size:.7rem;background:rgba(200,121,65,0.12);color:var(--cu);border:1px solid rgba(200,121,65,0.25);border-radius:20px;padding:4px 12px;}
+
+/* CONTENT */
+main{max-width:1100px;margin:0 auto;padding:2.5rem 2rem;}
+
+/* SECTION TITLES */
+.sec-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin:2rem 0 1rem;padding-bottom:.5rem;border-bottom:2px solid var(--border-strong);display:flex;align-items:center;gap:10px;}
+.sec-title::before{content:'';width:4px;height:18px;background:var(--cu);border-radius:2px;flex-shrink:0;}
+
+/* PROPS GRID */
+.props-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem;}
+.prop-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.1rem;}
+.prop-label{font-size:.63rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;}
+.prop-val{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);}
+.prop-sub{font-size:.68rem;color:var(--text-muted);margin-top:2px;}
+
+/* CARD */
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;margin-bottom:1.2rem;}
+.card-title{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cu);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem;}
+
+/* TABLES */
+.data-table{width:100%;border-collapse:collapse;font-size:.8rem;}
+.data-table th{background:var(--hero-bg);color:rgba(255,255,255,0.65);padding:8px 12px;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-align:center;}
+.data-table th:first-child{text-align:left;}
+.data-table td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text);text-align:center;}
+.data-table td:first-child{text-align:left;color:var(--text-muted);}
+.data-table tbody tr:hover td{background:var(--cu-pale);}
+
+.fab-table{width:100%;border-collapse:separate;border-spacing:0 6px;}
+.fab-table td{padding:8px 12px;font-size:.8rem;}
+.fab-table tr td:first-child{color:var(--text-muted);background:var(--props-row-bg);border-radius:8px 0 0 8px;width:55%;}
+.fab-table tr td:last-child{font-weight:500;color:var(--text);background:var(--props-row-bg);border-radius:0 8px 8px 0;}
+
+/* NOTE */
+.note{font-size:.72rem;color:var(--text-muted);line-height:1.6;padding:.8rem 1rem;background:var(--cu-pale);border-radius:8px;border:1px solid var(--border);margin-top:.8rem;}
+
+/* PROCESS STEPS */
+.steps-wrap{overflow-x:auto;padding-bottom:.5rem;}
+.steps{display:flex;align-items:flex-start;gap:0;min-width:max-content;}
+.step{display:flex;flex-direction:column;align-items:center;gap:8px;width:160px;}
+.step-num{width:34px;height:34px;border-radius:50%;background:var(--cu);color:#fff;font-family:'Syne',sans-serif;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-box{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center;width:100%;}
+.step-icon{font-size:1.5rem;margin-bottom:4px;}
+.step-name{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:3px;}
+.step-desc{font-size:.63rem;color:var(--text-muted);line-height:1.4;}
+.step-arrow{display:flex;align-items:center;padding-top:17px;color:var(--cu);font-size:1.3rem;flex-shrink:0;}
+
+/* METHOD */
+.method-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.2rem;}
+.method-header{background:var(--hero-bg);padding:1rem 1.4rem;border-bottom:2px solid var(--cu);}
+.method-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--cu);}
+.method-sub{font-size:.72rem;color:rgba(255,255,255,0.5);margin-top:2px;}
+.method-body{padding:1.4rem;}
+.method-desc{font-size:.82rem;color:var(--text);line-height:1.7;margin-bottom:1rem;}
+.method-tag{display:inline-block;font-size:.65rem;background:var(--cu-pale);color:var(--cu-dark);border:1px solid var(--border);border-radius:4px;padding:2px 8px;margin:2px;}
+
+/* MICRO images */
+.micro-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;}
+.micro-img-wrap{border-radius:10px;overflow:hidden;height:160px;background:var(--cu-light);border:1px solid var(--border);}
+.micro-img-wrap img{width:100%;height:100%;object-fit:cover;}
+.micro-label{font-size:.72rem;color:var(--text-muted);text-align:center;margin-top:6px;}
+
+/* PAGE LINK BUTTONS */
+.page-link-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--card-bg);border:1.5px solid var(--border-strong);
+  border-radius:var(--radius);padding:1.2rem 1.5rem;
+  text-decoration:none;color:var(--text);
+  margin:1.5rem 0 0;transition:all .25s;cursor:pointer;
+}
+.page-link-btn:hover{
+  border-color:var(--cu);
+  background:var(--cu-pale);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(200,121,65,0.15);
+}
+.plb-left{display:flex;align-items:center;gap:14px;}
+.plb-emoji{font-size:2rem;flex-shrink:0;width:52px;height:52px;background:var(--cu-light);border-radius:12px;display:flex;align-items:center;justify-content:center;}
+.plb-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text);}
+.plb-sub{font-size:.72rem;color:var(--text-muted);margin-top:3px;}
+.plb-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.plb-badge{background:var(--cu);color:#fff;font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;padding:5px 14px;border-radius:20px;letter-spacing:.05em;transition:all .25s;}
+.page-link-btn:hover .plb-badge{background:var(--cu-dark);}
+.plb-arrow{font-size:1.3rem;color:var(--cu);transition:transform .25s;}
+.page-link-btn:hover .plb-arrow{transform:translate(3px,-3px);}
+
+.accordion-btn{display:flex;align-items:center;justify-content:space-between;width:100%;background:var(--card-bg);border:1.5px solid var(--border-strong);border-radius:var(--radius);padding:1.1rem 1.4rem;cursor:pointer;font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin:1.5rem 0 0;transition:all .25s;text-align:left;}
+.accordion-btn:hover{background:var(--cu-pale);border-color:var(--cu);}
+.accordion-btn.open{background:var(--cu);color:#fff;border-color:var(--cu);border-radius:var(--radius) var(--radius) 0 0;margin-bottom:0;}
+.accordion-btn .acc-icon{font-size:1.2rem;transition:transform .3s;flex-shrink:0;}
+.accordion-btn.open .acc-icon{transform:rotate(180deg);}
+.accordion-btn .acc-left{display:flex;align-items:center;gap:12px;}
+.accordion-btn .acc-emoji{font-size:1.3rem;}
+.accordion-btn .acc-sub{font-size:.7rem;font-weight:400;opacity:.7;margin-top:2px;}
+.accordion-panel{background:var(--card-bg);border:1.5px solid var(--cu);border-top:none;border-radius:0 0 var(--radius) var(--radius);max-height:0;overflow:hidden;transition:max-height .5s ease,padding .3s ease;padding:0 1.4rem;}
+.accordion-panel.open{max-height:3000px;padding:1.4rem;}
+footer{background:var(--footer-bg);color:rgba(255,255,255,0.3);text-align:center;padding:1.2rem;font-size:.75rem;margin-top:3rem;border-top:1px solid rgba(200,121,65,0.2);}
+
+@media(max-width:800px){.two-col{grid-template-columns:1fr;}.props-grid{grid-template-columns:1fr 1fr;}.micro-grid{grid-template-columns:1fr;}}
+@media(max-width:500px){main{padding:1.5rem 1rem;}.hero{padding:2rem 1.2rem;}.props-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="goBack()">RE<span>DEX</span></div>
+  <div class="header-controls">
+    <a class="back-header-btn" onclick="goBack()" id="back-btn">← Retour</a>
+    <div class="ctrl-btn lang-btn" onclick="toggleLang()">
+      <span class="lang-seg active" id="seg-fr">FR</span>
+      <span class="lang-seg" id="seg-en">EN</span>
+    </div>
+    <button class="ctrl-btn" onclick="toggleTheme()">
+      <span id="theme-icon">🌙</span>
+      <span id="theme-label">Sombre</span>
+    </button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow" id="eyebrow">Grade de Cuivre</div>
+  <div class="hero-symbol">Cu-OF</div>
+  <div class="hero-fullname">Copper Oxygen-Free</div>
+  <div class="hero-nfa">Cu/c1 — NFA 51-050</div>
+  <div class="hero-desc" id="hero-desc">Le Cu-OF est le grade de cuivre le plus utilisé industriellement. Obtenu par affinage électrolytique, il présente une excellente conductivité électrique (100% IACS) et une haute pureté (≥99,90%). Il est sensible aux atmosphères réductrices à haute température en raison de la présence d'oxygène résiduel.</div>
+  <div class="hero-pills">
+    <span class="hero-pill">≥ 99,95% Cu</span>
+    <span class="hero-pill">102% IACS</span>
+    <span class="hero-pill">394 W/m·K</span>
+    <span class="hero-pill" id="pill-sensible">Sans oxygène</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- PHYSIQUES -->
+  <div class="sec-title" id="sec-phys">Propriétés physiques</div>
+  <div class="props-grid">
+    <div class="prop-card"><div class="prop-label" id="lbl-fusion">Point de fusion</div><div class="prop-val">1083 °C</div></div>
+    <div class="prop-card"><div class="prop-label" id="lbl-density">Densité</div><div class="prop-val">8,96 g/cm³</div></div>
+    <div class="prop-card"><div class="prop-label" id="lbl-elcond">Conductivité électrique</div><div class="prop-val">102% IACS</div><div class="prop-sub">≡ 59 MS/m</div></div>
+    <div class="prop-card"><div class="prop-label" id="lbl-thcond">Conductivité thermique</div><div class="prop-val">394 W/m·K</div></div>
+    <div class="prop-card"><div class="prop-label" id="lbl-module">Module de rigidité</div><div class="prop-val">120 GPa</div></div>
+    <div class="prop-card"><div class="prop-label" id="lbl-purity">Pureté Cu</div><div class="prop-val">≥ 99,95 %</div></div>
+  </div>
+
+  <!-- FAB + THERMAL -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" id="sec-fab">Propriétés de fabrication</div>
+      <table class="fab-table" id="fab-table">
+        <tr><td id="fab-weld">Soudage</td><td id="fab-weld-v">Bien</td></tr>
+        <tr><td id="fab-braze">Brasage</td><td>Excellent</td></tr>
+        <tr><td id="fab-cold">Déformation à froid</td><td>Excellent</td></tr>
+        <tr><td id="fab-hot">Déformation à chaud</td><td>Excellent</td></tr>
+        <tr><td id="fab-machine">Usinabilité (indice)</td><td>20</td></tr>
+        <tr><td id="fab-h2">Sensibilité H₂</td><td id="fab-h2-v" style="color:#2E7D32;font-weight:600;">Insensible ✅</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title" id="sec-thermal">Propriétés thermiques</div>
+      <table class="data-table" id="thermal-table">
+        <thead><tr><th id="th-treatment">Traitement</th><th>Min (°C)</th><th>Max (°C)</th></tr></thead>
+        <tbody>
+          <tr><td id="th-anneal">Recuit</td><td>370</td><td>650</td></tr>
+          <tr><td id="th-hot">Travail à chaud</td><td>760</td><td>870</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- COMPOSITION -->
+  <div class="sec-title" id="sec-chem">Composition chimique</div>
+  <div class="card">
+    <div class="card-title" id="chem-title">Éléments (% masse)</div>
+    <table class="data-table">
+      <thead><tr><th id="th-elem">Éléments</th><th>Min (%)</th><th>Max (%)</th></tr></thead>
+      <tbody>
+        <tr><td>Cu*</td><td>99,95</td><td>—</td></tr>
+        <tr><td>O</td><td>—</td><td>0,0010</td></tr>
+        
+      </tbody>
+    </table>
+    <div class="note" id="chem-note">* Observations : 1) L'oxygène et les éléments traces peuvent varier selon le procédé. 2) Ce cuivre est un cuivre haute conductivité qui possède, à l'état recuit, une conductivité minimale de 100% IACS. 3) La valeur Cu inclut Ag.</div>
+  </div>
+
+  <!-- MECANIQUE -->
+  <div class="sec-title" id="sec-mech">Propriétés mécaniques</div>
+  <div class="card" style="padding:1.4rem;overflow-x:auto;">
+    <div class="card-title" id="mech-title">Valeurs typiques à température ambiante</div>
+    <table class="data-table" id="mech-table">
+      <thead><tr>
+        <th id="th-form">Forme</th><th id="th-temper">Trempe</th><th id="th-code">Code</th>
+        <th id="th-uts">Résistance (MPa)</th><th id="th-ys">YS 0,5% (MPa)</th>
+        <th id="th-elong">Allongement (%)</th><th id="th-hrb">Dureté HRB</th><th id="th-cw">Déf. à froid (%)</th>
+      </tr></thead>
+      <tbody>
+        <tr><td id="rod-lbl" rowspan="5">Tige (Rod)</td><td id="ahr">As Hot Rolled</td><td>M20</td><td>221</td><td>—</td><td>55</td><td>—</td><td>—</td></tr>
+        <tr><td id="hard-lbl">Hard</td><td>H04</td><td>331</td><td>303</td><td>16</td><td>47</td><td>35</td></tr>
+        <tr><td>Hard</td><td>H04</td><td>310</td><td>276</td><td>20</td><td>45</td><td>16</td></tr>
+        <tr><td>Hard</td><td>H04</td><td>379</td><td>345</td><td>10</td><td>60</td><td>40</td></tr>
+        <tr><td id="ng-lbl">Nominal grain 0,050mm</td><td>OS050</td><td>221</td><td>69</td><td>55</td><td>—</td><td>—</td></tr>
+        <tr><td id="wire-lbl" rowspan="3">Fil (Wire)</td><td>Hard</td><td>H04</td><td>379</td><td>—</td><td>1,5</td><td>—</td><td>—</td></tr>
+        <tr><td>Nominal grain 0,050mm</td><td>OS050</td><td>241</td><td>—</td><td>35</td><td>—</td><td>—</td></tr>
+        <tr><td id="spring-lbl">Spring</td><td>H08</td><td>455</td><td>—</td><td>1,5</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- OBTENTION ACCORDION -->
+  <button class="accordion-btn" onclick="toggleAcc('acc-proc')" id="btn-proc">
+    <div class="acc-left">
+      <span class="acc-emoji">⚗️</span>
+      <div>
+        <div id="acc-proc-label">Procédé d'obtention</div>
+        <div class="acc-sub" id="acc-proc-sub">De la mine au fil machine Cu-OF</div>
+      </div>
+    </div>
+    <span class="acc-icon">▾</span>
+  </button>
+  <div class="accordion-panel" id="acc-proc">
+    <img src="Images/Schema_obtention_Cu-of.png" alt="Schéma obtention Cu-OF"
+      style="width:100%;border-radius:10px;border:1px solid var(--border);margin:0.5rem 0 0.3rem;object-fit:contain;background:var(--cu-pale);"
+      onerror="this.style.display='none'">
+    <p style="font-size:.7rem;color:var(--text-muted);text-align:center;margin-bottom:1rem;font-style:italic;" id="schema-cap">Schéma : Obtention du Cu-OF — de l'extraction à la refusion sous atmosphère contrôlée</p>
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div>
+          <div class="step-box"><div class="step-icon">⛏️</div><div class="step-name" id="s1-name">Extraction</div><div class="step-desc" id="s1-desc">Extraction et traitement du minerai de cuivre. Concassage, broyage, flottation → concentré Cu</div></div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step"><div class="step-num">2</div>
+          <div class="step-box"><div class="step-icon">🔥</div><div class="step-name" id="s2-name">Fusion & Coulée des anodes</div><div class="step-desc" id="s2-desc">Fusion et coulée des anodes de cuivre dans le four de réverbère</div></div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step"><div class="step-num">3</div>
+          <div class="step-box"><div class="step-icon">⚗️</div><div class="step-name" id="s3-name">Affinage électrolytique</div><div class="step-desc" id="s3-desc">Cuve électrolytique : dissolution de l'anode (Cu → Cu²⁺) et dépôt sur cathode (Cu²⁺ → Cu pur)</div></div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step"><div class="step-num">4</div>
+          <div class="step-box"><div class="step-icon">🧱</div><div class="step-name" id="s4-name">Cathode Cu-OF</div><div class="step-desc" id="s4-desc">Obtention de cathodes ≥99,95% Cu par affinage électrolytique</div></div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step"><div class="step-num">5</div>
+          <div class="step-box"><div class="step-icon">🔩</div><div class="step-name" id="s5-name">Refusion sous atmosphère</div><div class="step-desc" id="s5-desc">Refusion des cathodes sous vide ou gaz inerte → élimination totale de l'oxygène résiduel</div></div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step"><div class="step-num">6</div>
+          <div class="step-box"><div class="step-icon">📦</div><div class="step-name" id="s6-name">Upcast / Dip-Forming</div><div class="step-desc" id="s6-desc">Coulée vers le haut (Upcast) ou immersion (Dip-Forming) → fil machine Cu-OF sans oxygène</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROD METHODS ACCORDION -->
+  <button class="accordion-btn" onclick="toggleAcc('acc-rod')" id="btn-rod" style="margin-top:1rem;">
+    <div class="acc-left">
+      <span class="acc-emoji">🔩</span>
+      <div>
+        <div id="acc-rod-label">Obtention du fil machine</div>
+        <div class="acc-sub" id="acc-rod-sub">UPCAST &amp; Dip-Forming — Procédés Cu-OF</div>
+      </div>
+    </div>
+    <span class="acc-icon">▾</span>
+  </button>
+  <div class="accordion-panel" id="acc-rod">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;">
+
+      <!-- UPCAST -->
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+        <div style="background:var(--hero-bg);padding:.9rem 1.2rem;border-bottom:2px solid var(--cu);">
+          <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--cu);">UPCAST</div>
+          <div style="font-size:.68rem;color:rgba(255,255,255,0.45);margin-top:2px;" id="upcast-sub">Upward Continuous Casting</div>
+        </div>
+        <div style="padding:1.1rem;">
+          <div style="margin-bottom:.9rem;">
+            <img src="Images/Upcast.png" alt="Upcast"
+              style="width:100%;height:200px;object-fit:contain;border-radius:8px;border:1px solid var(--border);background:var(--cu-pale);"
+              onerror="this.style.display='none'">
+            <div style="font-size:.62rem;color:var(--text-muted);text-align:center;margin-top:4px;" id="cap-upcast">Procédé Upward Continuous Casting</div>
+          </div>
+          <div style="font-size:.79rem;color:var(--text);line-height:1.65;margin-bottom:.8rem;" id="upcast-desc">Procédé de coulée continue vers le haut créé en Finlande dans les années 1960. Le cuivre fondu est tiré vers le haut dans un moule en graphite refroidi par eau. Produit des grains allongés et orientés. Paramètre clé : hauteur du cœur liquide (L). Garantit une absence totale d'oxygène (≤ 5 t/h).</div>
+          <div>
+            <span class="method-tag">Cu-OF</span>
+            <span class="method-tag">Cu-OFE</span>
+            <span class="method-tag" id="ctag1">Grains allongés</span>
+            <span class="method-tag">≤ 5 t/h</span>
+            <span class="method-tag">Ø 8–30 mm</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIP-FORMING -->
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+        <div style="background:var(--hero-bg);padding:.9rem 1.2rem;border-bottom:2px solid var(--cu);">
+          <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--cu);">Dip-Forming</div>
+          <div style="font-size:.68rem;color:rgba(255,255,255,0.45);margin-top:2px;" id="dipforming-sub">Dip Coating Forming System</div>
+        </div>
+        <div style="padding:1.1rem;">
+          <div style="margin-bottom:.9rem;">
+            <img src="Images/Dipforming.png" alt="Dip-Forming"
+              style="width:100%;height:200px;object-fit:contain;border-radius:8px;border:1px solid var(--border);background:var(--cu-pale);"
+              onerror="this.style.display='none'">
+            <div style="font-size:.62rem;color:var(--text-muted);text-align:center;margin-top:4px;" id="cap-dipforming">Procédé Dip-Forming (Lacroix-Kress)</div>
+          </div>
+          <div style="font-size:.79rem;color:var(--text);line-height:1.65;margin-bottom:.8rem;" id="dipforming-desc">Procédé de formage par immersion d'un fil mère dans un bain de cuivre fondu oxygène-free, puis laminage à chaud (Lacroix-Kress). Étapes : préchauffage, fusion, maintien, immersion, raclage, laminoir. Produit des grains petits et équiaxiaux, excellente homogénéité microstructurale.</div>
+          <div>
+            <span class="method-tag">Cu-OF</span>
+            <span class="method-tag">Lacroix-Kress</span>
+            <span class="method-tag" id="ctag2">Grains équiaxiaux</span>
+            <span class="method-tag">Laminage à chaud</span>
+            <span class="method-tag">Haute homogénéité</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>© 2025 REDEX · Grade Cu-OF — Projet de stage Livia Viana Aguiar de Oliveira</footer>
+
+<script>
+let lang='fr', theme='light';
+
+const txt = {
+  fr:{
+    back:'← Retour', eyebrow:'Grade de Cuivre', themeD:'Sombre', themeL:'Clair',
+    heroDesc:"Le Cu-OF est un cuivre de haute pureté (≥99,95%), totalement exempt d'oxygène. Obtenu par refusion des cathodes électrolytiques sous atmosphère contrôlée (vide ou gaz inerte), il présente la conductivité électrique la plus élevée (102% IACS) et est totalement insensible aux atmosphères réductrices.",
+    pillSens:'Sans oxygène',
+    secPhys:'Propriétés physiques', lblFusion:'Point de fusion', lblDensity:'Densité', lblElcond:'Conductivité électrique', lblThcond:'Conductivité thermique', lblModule:'Module de rigidité', lblPurity:'Pureté Cu',
+    secFab:'Propriétés de fabrication', fabWeld:'Soudage', fabWeldV:'Bien', fabBraze:'Brasage', fabCold:'Déformation à froid', fabHot:'Déformation à chaud', fabMachine:"Usinabilité (indice)", fabH2:'Sensibilité H₂', fabH2V:'Insensible ✅',
+    secThermal:'Propriétés thermiques', thTreatment:'Traitement', thAnneal:'Recuit', thHot:'Travail à chaud',
+    secChem:'Composition chimique', chemTitle:'Éléments (% masse)', thElem:'Éléments',
+    chemNote:"* Observations : 1) Ce cuivre est sans oxygène, obtenu par refusion sous atmosphère contrôlée. 2) Ce cuivre possède, à l'état recuit, une conductivité minimale de 100% IACS. Pour Cu C10100, la conductivité minimale est de 101% IACS. 3) La valeur Cu inclut Ag.",
+    secMech:'Propriétés mécaniques', mechTitle:'Valeurs typiques à température ambiante',
+    thForm:'Forme', thTemper:'Trempe', thCode:'Code', thUts:'Résistance (MPa)', thYs:'YS 0,5% (MPa)', thElong:'Allongement (%)', thHrb:'Dureté HRB', thCw:'Déf. à froid (%)',
+    rodLbl:'Tige (Rod)', ahr:'As Hot Rolled', hardLbl:'Hard', ngLbl:'Nominal grain 0,050mm', wireLbl:'Fil (Wire)', springLbl:'Spring',
+    secProc:"Procédé d'obtention", procSub:'De la mine au fil machine Cu-OF', procTitle:'De la mine au fil machine',
+    s1n:'Extraction', s1d:'Extraction et traitement du minerai de cuivre. Concassage, broyage, flottation → concentré Cu',
+    s2n:'Fusion & Coulée des anodes', s2d:'Fusion et coulée des anodes de cuivre dans le four de réverbère',
+    s3n:'Affinage électrolytique (Cuve)', s3d:'Cuve électrolytique : dissolution de l\'anode (Cu → Cu²⁺) et dépôt sur cathode (Cu²⁺ → Cu pur)',
+    s4n:'Cathode Cu-OF', s4d:'Obtention de cathodes ≥99,95% Cu par affinage électrolytique haute pureté',
+    s5n:'Refusion sous atmosphère', s5d:'Refusion des cathodes sous vide ou gaz inerte → élimination totale de l\'oxygène résiduel → Cu-OF',
+    s6n:'Upcast / Dip-Forming', s6d:'Coulée continue vers le haut (Upcast) ou immersion (Dip-Forming) → fil machine Cu-OF sans oxygène',
+    secRod:'Obtention du fil machine', secRodSub:'UPCAST & Dip-Forming — Procédés Cu-OF',
+    methSub:'Continuous Casting Rolling — Procédé principal Cu-OF',
+    methDesc:"Procédé industriel majeur pour le Cu-OF. Le cuivre fondu est coulé en continu pour former un lingot qui est immédiatement laminé à chaud en série de passes successives pour produire un fil machine ou un méplat. Production en grande série : 40 à 360 000 t/an. Les systèmes CONTIROD™ permettent de produire des fils Ø 8 à 30 mm et des méplats de 18×6,5 à 101×6,5 mm.",
+    tagHot:'Laminage à chaud', tagCont:'Coulée continue',
+  },
+  en:{
+    back:'← Back', eyebrow:'Copper Grade', themeD:'Dark', themeL:'Light',
+    heroDesc:"Cu-OF is a high-purity copper (≥99.95%), completely oxygen-free. Obtained by remelting electrolytic cathodes under controlled atmosphere (vacuum or inert gas), it offers the highest electrical conductivity (102% IACS) and is fully insensitive to reducing atmospheres.",
+    pillSens:'Oxygen-Free',
+    secPhys:'Physical properties', lblFusion:'Melting point', lblDensity:'Density', lblElcond:'Electrical conductivity', lblThcond:'Thermal conductivity', lblModule:'Modulus of rigidity', lblPurity:'Cu purity',
+    secFab:'Fabrication properties', fabWeld:'Welding', fabWeldV:'Good', fabBraze:'Brazing', fabCold:'Cold working', fabHot:'Hot working', fabMachine:'Machinability (index)', fabH2:'H₂ sensitivity', fabH2V:'Insensitive ✅',
+    secThermal:'Thermal properties', thTreatment:'Treatment', thAnneal:'Annealing', thHot:'Hot working temperature',
+    secChem:'Chemical composition', chemTitle:'Elements (% weight)', thElem:'Elements',
+    chemNote:"* Observations: 1) This copper is oxygen-free, obtained by remelting under controlled atmosphere. 2) This copper has, in the annealed condition, a minimum conductivity of 100% IACS. For Cu C10100, minimum is 101% IACS. 3) Cu value includes Ag.",
+    secMech:'Mechanical properties', mechTitle:'Typical values at room temperature',
+    thForm:'Form', thTemper:'Temper', thCode:'Temper code', thUts:'Tensile strength (MPa)', thYs:'YS 0.5% Ext (MPa)', thElong:'Elongation (%)', thHrb:'Hardness HRB', thCw:'Cold work (%)',
+    rodLbl:'Rod', ahr:'As Hot Rolled', hardLbl:'Hard', ngLbl:'Nominal grain 0.050mm', wireLbl:'Wire', springLbl:'Spring',
+    secProc:'Production process', procSub:'From mine to Cu-OF wire rod', procTitle:'From mine to wire rod',
+    s1n:'Ore extraction', s1d:'Extraction and treatment of copper ore. Crushing, grinding, flotation → Cu concentrate',
+    s2n:'Melting & Anode casting', s2d:'Melting and casting of copper anodes in the reverberatory furnace',
+    s3n:'Electrolytic refining (Tank)', s3d:'Electrolytic tank: anode dissolution (Cu → Cu²⁺) and deposit on cathode (Cu²⁺ → pure Cu)',
+    s4n:'Cu-OF Cathode', s4d:'Obtaining high-purity cathodes ≥99.95% Cu by electrolytic refining',
+    s5n:'Controlled atm. remelting', s5d:'Cathode remelting under vacuum or inert gas → total elimination of residual oxygen → Cu-OF',
+    s6n:'Upcast / Dip-Forming', s6d:'Upward continuous casting (Upcast) or dip-forming → oxygen-free Cu-OF wire rod',
+    secRod:'Wire rod production', secRodSub:'UPCAST & Dip-Forming — Cu-OF processes',
+    methSub:'Continuous Casting Rolling — Main Cu-OF process',
+    methDesc:'Main industrial process for Cu-OF. Molten copper is continuously cast into a billet immediately hot-rolled through successive passes to produce wire rod or flat bar. Large-scale production: 40 to 360,000 t/year. CONTIROD™ systems produce wire Ø 8 to 30 mm and flats 18×6.5 to 101×6.5 mm.',
+    tagHot:'Hot rolling', tagCont:'Continuous casting',
+  }
+};
+
+function applyLang(){
+  const T=txt[lang];
+  document.getElementById('back-btn').textContent=T.back;
+  document.getElementById('eyebrow').textContent=T.eyebrow;
+  document.getElementById('hero-desc').textContent=T.heroDesc;
+  document.getElementById('pill-sensible').textContent=T.pillSens;
+  document.getElementById('sec-phys').childNodes[1].textContent=' '+T.secPhys;
+  document.getElementById('lbl-fusion').textContent=T.lblFusion;
+  document.getElementById('lbl-density').textContent=T.lblDensity;
+  document.getElementById('lbl-elcond').textContent=T.lblElcond;
+  document.getElementById('lbl-thcond').textContent=T.lblThcond;
+  document.getElementById('lbl-module').textContent=T.lblModule;
+  document.getElementById('lbl-purity').textContent=T.lblPurity;
+  document.getElementById('sec-fab').childNodes[0].textContent=T.secFab;
+  document.getElementById('fab-weld').textContent=T.fabWeld;
+  document.getElementById('fab-weld-v').textContent=T.fabWeldV;
+  document.getElementById('fab-braze').textContent=T.fabBraze;
+  document.getElementById('fab-cold').textContent=T.fabCold;
+  document.getElementById('fab-hot').textContent=T.fabHot;
+  document.getElementById('fab-machine').textContent=T.fabMachine;
+  document.getElementById('fab-h2').textContent=T.fabH2;
+  document.getElementById('fab-h2-v').innerHTML=T.fabH2V;
+  document.getElementById('sec-thermal').childNodes[0].textContent=T.secThermal;
+  document.getElementById('th-treatment').textContent=T.thTreatment;
+  document.getElementById('th-anneal').textContent=T.thAnneal;
+  document.getElementById('th-hot').textContent=T.thHot;
+  document.getElementById('sec-chem').childNodes[1].textContent=' '+T.secChem;
+  document.getElementById('chem-title').childNodes[0].textContent=T.chemTitle;
+  document.getElementById('th-elem').textContent=T.thElem;
+  document.getElementById('chem-note').textContent=T.chemNote;
+  document.getElementById('sec-mech').childNodes[1].textContent=' '+T.secMech;
+  document.getElementById('mech-title').childNodes[0].textContent=T.mechTitle;
+  document.getElementById('th-form').textContent=T.thForm;
+  document.getElementById('th-temper').textContent=T.thTemper;
+  document.getElementById('th-code').textContent=T.thCode;
+  document.getElementById('th-uts').textContent=T.thUts;
+  document.getElementById('th-ys').textContent=T.thYs;
+  document.getElementById('th-elong').textContent=T.thElong;
+  document.getElementById('th-hrb').textContent=T.thHrb;
+  document.getElementById('th-cw').textContent=T.thCw;
+  document.getElementById('rod-lbl').textContent=T.rodLbl;
+  document.getElementById('ahr').textContent=T.ahr;
+  document.getElementById('hard-lbl').textContent=T.hardLbl;
+  document.getElementById('ng-lbl').textContent=T.ngLbl;
+  document.getElementById('wire-lbl').textContent=T.wireLbl;
+  document.getElementById('spring-lbl').textContent=T.springLbl;
+  document.getElementById('acc-proc-label').textContent=T.secProc;
+  document.getElementById('acc-proc-sub').textContent=T.procSub;
+  document.getElementById('acc-rod-label').textContent=T.secRod;
+  document.getElementById('acc-rod-sub').textContent=T.secRodSub;
+  document.getElementById('plb-open1').textContent=lang==='fr'?'Ouvrir':'Open';
+  document.getElementById('plb-open2').textContent=lang==='fr'?'Ouvrir':'Open';
+  document.getElementById('s1-name').textContent=T.s1n; document.getElementById('s1-desc').textContent=T.s1d;
+  document.getElementById('s2-name').textContent=T.s2n; document.getElementById('s2-desc').textContent=T.s2d;
+  document.getElementById('s3-name').textContent=T.s3n; document.getElementById('s3-desc').textContent=T.s3d;
+  document.getElementById('s4-name').textContent=T.s4n; document.getElementById('s4-desc').textContent=T.s4d;
+  document.getElementById('s5-name').textContent=T.s5n; document.getElementById('s5-desc').textContent=T.s5d;
+  document.getElementById('s6-name').textContent=T.s6n; document.getElementById('s6-desc').textContent=T.s6d;
+  document.getElementById('meth-sub').textContent=T.methSub;
+  document.getElementById('meth-desc').textContent=T.methDesc;
+  document.getElementById('tag-hot').textContent=T.tagHot;
+  document.getElementById('tag-cont').textContent=T.tagCont;
+  document.getElementById('theme-label').textContent=theme==='dark'?T.themeL:T.themeD;
+  document.title='REDEX — Grade Cu-OF';
+}
+
+function toggleLang(){
+  lang=lang==='fr'?'en':'fr';
+  document.getElementById('seg-fr').classList.toggle('active',lang==='fr');
+  document.getElementById('seg-en').classList.toggle('active',lang==='en');
+  applyLang();
+}
+
+function toggleTheme(){
+  theme=theme==='light'?'dark':'light';
+  document.documentElement.setAttribute('data-theme',theme==='dark'?'dark':'');
+  document.getElementById('theme-icon').textContent=theme==='dark'?'☀️':'🌙';
+  document.getElementById('theme-label').textContent=theme==='dark'?txt[lang].themeL:txt[lang].themeD;
+}
+
+function toggleAcc(id){
+  const panel=document.getElementById(id);
+  const btn=panel.previousElementSibling;
+  const isOpen=panel.classList.contains('open');
+  panel.classList.toggle('open',!isOpen);
+  btn.classList.toggle('open',!isOpen);
+}
+// Fix section title nodes
+document.querySelectorAll('.sec-title').forEach(el=>{
+  const span=document.createElement('span');
+  span.textContent=el.textContent;
+  el.textContent='';
+  el.appendChild(span);
+});
+document.querySelectorAll('.card-title').forEach(el=>{
+  const span=document.createElement('span');
+  span.textContent=el.textContent;
+  el.textContent='';
+  el.appendChild(span);
+});
+
+function goBack() {
+  history.back();
+}
+</script>
+</body>
+</html>
