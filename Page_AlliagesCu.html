@@ -1,0 +1,903 @@
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REDEX — Alliages de Cuivre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cu:#F87A20;--cu-dark:#8B4E1F;--cu-light:#F5E6D3;--cu-pale:#FDF6EF;
+  --navy:#0F1B2D;--muted:#718096;--border:rgba(200,121,65,0.15);--border-strong:rgba(200,121,65,0.35);
+  --bg:#FAFAF8;--card-bg:#FFFFFF;--text:#0F1B2D;--text-muted:#3c3a3acf;
+  --props-row-bg:#FAFAF8;--stat-bg:#FAFAF8;--hero-bg:#0F1B2D;--footer-bg:#0F1B2D;
+  --radius:16px;--transition:background .3s,color .3s,border-color .3s;
+}
+[data-theme="dark"]{
+  --cu:#F87A20;--cu-dark:#C87941;--cu-light:#2A1A0A;--cu-pale:#1E1208;
+  --navy:#E8EAF0;--muted:#8A95A8;--border:rgba(224,144,80,0.18);--border-strong:rgba(224,144,80,0.38);
+  --bg:#0D0D1A;--card-bg:#141426;--text:#E8EAF0;--text-muted:#dee0e2;
+  --props-row-bg:#1A1A2E;--stat-bg:#1A1A2E;--hero-bg:#08080F;--footer-bg:#08080F;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);transition:var(--transition);}
+
+/* HEADER */
+header{background:var(--hero-bg);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(200,121,65,0.25);}
+.logo-img { height: 40px; /* ajuste conforme necessário */ width: auto;display: block;}
+.header-controls{display:flex;align-items:center;gap:8px;}
+.ctrl-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 12px;cursor:pointer;color:rgba(255,255,255,0.75);font-size:0.75rem;font-weight:500;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.ctrl-btn:hover{background:rgba(200,121,65,0.2);border-color:rgba(200,121,65,0.4);color:var(--cu);}
+.lang-btn{padding:4px;gap:0;}
+.lang-seg{padding:4px 10px;border-radius:14px;font-size:.72rem;font-weight:600;transition:all .2s;color:rgba(255,255,255,0.45);}
+.lang-seg.active{background:var(--cu);color:#fff;}
+.back-header-btn{display:flex;align-items:center;gap:6px;background:rgba(200,121,65,0.15);border:1px solid rgba(200,121,65,0.35);border-radius:20px;padding:6px 14px;cursor:pointer;color:var(--cu);font-size:0.75rem;font-weight:600;transition:all .2s;font-family:'DM Sans',sans-serif;text-decoration:none;}
+.back-header-btn:hover{background:var(--cu);color:#fff;}
+
+/* HERO */
+.hero{background:var(--hero-bg);padding:3rem 2.5rem 2.5rem;position:relative;overflow:hidden;}
+.hero::before{content:'Copper Alloys';position:absolute;right:-1rem;top:-1rem;font-family:'Syne',sans-serif;font-size:5rem;font-weight:800;color:rgba(200,121,65,0.06);line-height:1;pointer-events:none;white-space:nowrap;}
+.hero-eyebrow{display:inline-block;background:rgba(200,121,65,0.15);color:var(--cu);font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid rgba(200,121,65,0.3);margin-bottom:1rem;}
+.hero-symbol{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;color:var(--cu);line-height:1;margin-bottom:.4rem;}
+.hero-fullname{font-size:1.1rem;color:rgba(255,255,255,0.65);margin-bottom:.4rem;}
+.hero-nfa{display:inline-block;font-size:.72rem;background:rgba(200,121,65,0.2);color:var(--cu);border-radius:4px;padding:3px 10px;margin-bottom:1.2rem;}
+.hero-desc{font-size:.88rem;color:rgba(255,255,255,0.55);line-height:1.75;max-width:700px;}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:1.2rem;}
+.hero-pill{font-size:.7rem;background:rgba(200,121,65,0.12);color:var(--cu);border:1px solid rgba(200,121,65,0.25);border-radius:20px;padding:4px 12px;}
+.hero h1 {font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;color:var(--cu);line-height:1;margin-bottom:.4rem;}
+
+/* CONTENT */
+main{max-width:1100px;margin:0 auto;padding:2.5rem 2rem;}
+
+/* SECTION TITLES */
+.sec-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin:2rem 0 1rem;padding-bottom:.5rem;border-bottom:2px solid var(--border-strong);display:flex;align-items:center;gap:10px;}
+.sec-title::before{content:'';width:4px;height:18px;background:var(--cu);border-radius:2px;flex-shrink:0;}
+
+/* PROPS GRID */
+.props-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem;}
+.prop-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.1rem;}
+.prop-label{ font-family:'Syne',sans-serif; font-size:.62rem;font-weight:700; color:var(--cu); text-transform:uppercase; letter-spacing:.12em; margin-bottom:.5rem;}
+.prop-val{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);}
+.prop-sub{font-size:.75rem; color:var(--text-muted); line-height:1.5;}
+
+/* CARD */
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;margin-bottom:1.2rem;}
+.card-title{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cu);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem;}
+
+/* TABLES */
+.data-table{width:100%;border-collapse:collapse;font-size:.8rem;}
+.data-table th{background:var(--hero-bg);color:rgba(240, 192, 147, 0.671);padding:8px 12px;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-align:center;}
+.data-table th:first-child{text-align:left;}
+.data-table td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text);text-align:center;}
+.data-table td:first-child{text-align:left;color:var(--text-muted);}
+.data-table tbody tr:hover td{background:var(--cu-pale);}
+
+.fab-table{width:100%;border-collapse:separate;border-spacing:0 6px;}
+.fab-table td{padding:8px 12px;font-size:.8rem;}
+.fab-table tr td:first-child{color:var(--text-muted);background:var(--props-row-bg);border-radius:8px 0 0 8px;width:55%;}
+.fab-table tr td:last-child{font-weight:500;color:var(--text);background:var(--props-row-bg);border-radius:0 8px 8px 0;}
+
+/* NOTE */
+.note{font-size:.72rem;color:var(--text-muted);line-height:1.6;padding:.8rem 1rem;background:var(--cu-pale);border-radius:8px;border:1px solid var(--border);margin-top:.8rem;}
+
+/* PROCESS STEPS 
+.steps-wrap{overflow-x:auto;padding-bottom:.5rem;}
+.steps{display:flex;align-items:flex-start;gap:0;min-width:max-content;}
+.step{display:flex;flex-direction:column;align-items:center;gap:8px;width:160px;}
+.step-num{width:34px;height:34px;border-radius:50%;background:var(--cu);color:#fff;font-family:'Syne',sans-serif;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-box{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center;width:100%;}
+.step-icon{font-size:1.5rem;margin-bottom:4px;}
+.step-name{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:3px;}
+.step-desc{font-size:.63rem;color:var(--text-muted);line-height:1.4;}
+.step-arrow{display:flex;align-items:center;padding-top:17px;color:var(--cu);font-size:1.3rem;flex-shrink:0;}*/
+
+/* METHOD */
+.method-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.2rem;}
+.method-header{background:var(--hero-bg);padding:1rem 1.4rem;border-bottom:2px solid var(--cu);}
+.method-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--cu);}
+.method-sub{font-size:.72rem;color:rgba(255,255,255,0.5);margin-top:2px;}
+.method-body{padding:1.4rem;}
+.method-desc{font-size:.82rem;color:var(--text);line-height:1.7;margin-bottom:1rem;}
+.method-tag{display:inline-block;font-size:.65rem;background:var(--cu-pale);color:var(--cu-dark);border:1px solid var(--border);border-radius:4px;padding:2px 8px;margin:2px;}
+
+/* MICRO images */
+.micro-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;}
+.micro-img-wrap{border-radius:10px;overflow:hidden;height:160px;background:var(--cu-light);border:1px solid var(--border);}
+.micro-img-wrap img{width:100%;height:100%;object-fit:cover;}
+.micro-label{font-size:.72rem;color:var(--text-muted);text-align:center;margin-top:6px;}
+
+/* PAGE LINK BUTTONS */
+.page-link-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--card-bg);border:1.5px solid var(--border-strong);
+  border-radius:var(--radius);padding:1.2rem 1.5rem;
+  text-decoration:none;color:var(--text);
+  margin:1.5rem 0 0;transition:all .25s;cursor:pointer;
+}
+.page-link-btn:hover{border-color:var(--cu); background:var(--cu-pale);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,121,65,0.15);}
+
+.alloy-card{ cursor:pointer; transition:.25s;}
+.alloy-card:hover{border-color:var(--cu);transform:translateY(-2px);}
+
+.intro-text{ font-size:.8rem; line-height:1.8; color:var(--text-muted);text-align: justify;}
+
+.plb-left{display:flex;align-items:center;gap:14px;}
+.plb-emoji{font-size:2rem;flex-shrink:0;width:52px;height:52px;background:var(--cu-light);border-radius:12px;display:flex;align-items:center;justify-content:center;}
+.plb-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text);}
+.plb-sub{font-size:.72rem;color:var(--text-muted);margin-top:3px;}
+.plb-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.plb-badge{background:var(--cu);color:#fff;font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;padding:5px 14px;border-radius:20px;letter-spacing:.05em;transition:all .25s;}
+.page-link-btn:hover .plb-badge{background:var(--cu-dark);}
+.plb-arrow{font-size:1.3rem;color:var(--cu);transition:transform .25s;}
+.page-link-btn:hover .plb-arrow{transform:translate(3px,-3px);}
+
+.accordion-btn{display:flex;align-items:center;justify-content:flex-start; gap:12px; width:100%;background:var(--card-bg);border:1.5px solid var(--border-strong);border-radius:var(--radius);padding:1.1rem 1.4rem;cursor:pointer;font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin:1.5rem 0 0;transition:all .25s;text-align:left;}
+.accordion-btn:hover{background:var(--cu-pale);border-color:var(--cu);}
+.accordion-btn.open{background:var(--cu);color:#fff;border-color:var(--cu);border-radius:var(--radius) var(--radius) 0 0;margin-bottom:0;}
+.accordion-btn .acc-icon{font-size:1.2rem;transition:transform .3s;flex-shrink:0;}
+.accordion-btn.open .acc-icon{transform:rotate(180deg);}
+.accordion-btn .acc-left{display:flex;align-items:center;gap:12px;}
+.accordion-btn .acc-emoji{font-size:1.3rem;}
+.accordion-btn .acc-sub{font-size:.7rem;font-weight:400;opacity:.7;margin-top:2px;}
+.accordion-panel{background:var(--card-bg);border:1.5px solid var(--cu);border-top:none;border-radius:0 0 var(--radius) var(--radius);max-height:0;overflow:hidden;transition:max-height .5s ease,padding .3s ease;padding:0 1.4rem;}
+.accordion-panel.open{max-height:3000px;padding:1.4rem;}
+footer{background:var(--footer-bg);color:rgba(255,255,255,0.3);text-align:center;padding:1.2rem;font-size:.75rem;margin-top:3rem;border-top:1px solid rgba(200,121,65,0.2);}
+
+.alloy-modal{position:fixed;inset:0;background:rgba(0,0,0,.65); display:none; align-items:center;justify-content:center; z-index:9999;}
+.alloy-modal.active{display:flex;}
+.alloy-modal-content{width:min(900px,90vw); max-height:85vh; overflow:auto; background:var(--card-bg); border:1px solid var(--border);border-radius:24px; padding:2rem;position:relative;}
+.alloy-close{position:absolute;top:15px;right:15px; border:none;background:none;font-size:1.8rem;cursor:pointer; color:var(--text);}
+.alloy-chip{background:var(--cu-pale); border:1px solid var(--border-strong); color:var(--cu-dark); padding:.45rem .9rem; border-radius:999px; cursor:pointer; margin:2px; font-size:.75rem; font-weight:600;}
+.alloy-chip:hover{border-color:var(--cu);color:var(--cu);}
+
+.modal {position: fixed;inset: 0;background: rgba(0,0,0,0.6); display: none;align-items: center;justify-content: center;z-index: 9999;}
+
+.modal-content {background: #fff; width: min(800px, 90%); max-height: 90vh; overflow: auto; border-radius: 16px; position: relative;}
+
+/* Container das imagens */
+.product-images {
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+}
+
+/* Item individual */
+.img-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Container que evita quebrar o layout no zoom */
+.img-container {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* Imagem */
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.35s ease,
+                box-shadow 0.35s ease;
+}
+
+/* Efeito ao passar o mouse */
+.img-container:hover img {
+    transform: scale(1.35);
+}
+
+/* Texto */
+.img-item span {
+    margin-top: 8px;
+    font-size: 10px;
+    color: #ee6001;
+}
+
+
+@media(max-width:800px){.two-col{grid-template-columns:1fr;}.props-grid{grid-template-columns:1fr 1fr;}.micro-grid{grid-template-columns:1fr;}}
+@media(max-width:500px){main{padding:1.5rem 1rem;}.hero{padding:2rem 1.2rem;}.props-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="goBack()"><img src="images/redex_logo.png" alt="REDEX" class="logo-img"></div>
+  <div class="header-controls">
+    <a class="back-header-btn" onclick="goBack()" id="back-btn">← Retour</a>
+    <div class="ctrl-btn lang-btn" onclick="toggleLang()">
+      <span class="lang-seg active" id="seg-fr">FR</span>
+      <span class="lang-seg" id="seg-en">EN</span>
+    </div>
+    <button class="ctrl-btn" onclick="toggleTheme()">
+      <span id="theme-icon">🌙</span>
+      <span id="theme-label">Sombre</span>
+    </button>
+  </div>
+</header>
+
+<div class="hero">
+  <h1 id="hero-title">Alliages de Cuivre</h1>
+  <p class="hero-desc" id="hero-desc">Les alliages de cuivre possèdent une excellente combinaison de conductivité électrique, résistance mécanique et durabilité. Ces alliages ont des performances fiables même dans des environnements exigeants soumis aux vibrations, aux hautes températures et à la corrosion.</p>
+  <!--<<div class="hero-symbol"  id="herosymbol">Alliages de Cuivre</br></div>
+  div class="hero-fullname">Copper Alloys</div>
+    <div class="hero-nfa">Bronze - Laiton </div> 
+  <div class="hero-desc" id="hero-desc">Les alliages de cuivre possèdent une excellente combinaison de conductivité électrique, résistance mécanique et durabilité. Ces alliages ont des performances fiables même dans des environnements exigeants soumis aux vibrations, aux hautes températures et à la corrosion.</div>-->
+  <div class="hero-pills">
+    <span class="hero-pill" id="pill-rm">Haute résistance mécanique</span>
+    <span class="hero-pill" id="pill-appli">Adaptés aux applications industrielles</span>
+    <span class="hero-pill" id="pill-appli2">Idéal pour l'automobile et l'e-mobilité</span>
+    <span class="hero-pill" id="pill-stabilite">Stabilité à haute température</span>
+  </div>
+</div>
+
+<main>
+
+  
+  <!-- VUE D'ENSEMBLE -->
+        <div class="card">
+              <div class="card-title" id="titre-card"> Vue d'ensemble  </div>
+              <p class="intro-text" id = "text-card1">
+                  Le cuivre pur offre une excellente conductivité électrique et thermique, mais présente une résistance mécanique limitée. Afin d'améliorer ses performances pour des applications exigeantes, de faibles quantités d'éléments d'alliage sont ajoutées au cuivre. Ces additions permettent d'augmenter la résistance mécanique, la tenue à la fatigue ou la stabilité à haute température tout en conservant une bonne conductivité.
+              </p>
+          </div>
+
+
+        <div class="sec-title" id="famille-alliages"> Principales familles d'alliages </div>
+          <div class="props-grid">
+
+              <div class="prop-card alloy-card">
+                  <div class="prop-label" id="card-bronze">  Bronze </div>
+                  <div class="prop-sub">Cu + Sn </div>
+                </div>
+
+                <div class="prop-card alloy-card">
+                  <div class="prop-label" id="card-laiton">  Laiton </div>
+                  <div class="prop-sub">Cu + Zn </div>
+                </div>
+
+                <div class="prop-card alloy-card">
+                  <div class="prop-label" id="card-cube">  Cuivre-Béryllium </div>
+                  <div class="prop-sub">Cu + Be  </div>
+                </div>
+
+                <div class="prop-card alloy-card">
+                  <div class="prop-label" id="card-cucrzr">  Cuivre-Chrome-Zircone </div>
+                  <div class="prop-sub">Cu + Cr + Zr </div>
+                </div>        
+         </div>
+
+  <!-- Explorer par application -->
+
+    <div class="sec-title" id="card-applications"> Applications </div>
+   
+      <button class="accordion-btn" onclick="toggleAcc('app-electrique')">
+        ⚡ <span id="acc-electronic">Électrique / Électronique</span>
+      </button>
+
+          <div id="app-electrique" class="accordion-panel">
+            <table class="fab-table">
+              <td id="lbl-rec-alloys">Alliages recommandés</td>
+                <td>
+                    <button class="alloy-chip" onclick="showAlloy('cuag','alloy-details-electrique')"> CuAg </button>
+                    <button class="alloy-chip" onclick="showAlloy('cucrzr', 'alloy-details-automobile')">CuCrZr</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td id="lbl-products">Produits typiques</td>
+                <td>
+                    <div class="product-images">
+                        <div class="img-item">
+                            <div class="img-container">
+                                <img src="images/leadframe.png" alt="Lead Frames">
+                            </div>
+                            <span id="prod-leadframes">Lead Frames</span>
+                        </div>
+
+                        <div class="img-item">
+                            <div class="img-container">
+                                <img src="images/connecteurs.png" alt="Connecteurs">
+                            </div>
+                            <span id="prod-connectors">Connecteurs</span>
+                        </div>
+
+                        <div class="img-item">
+                            <div class="img-container">
+                                <img src="images/terminal.jpg" alt="Terminals">
+                            </div>
+                            <span id="prod-terminals">Terminals</span>
+                        </div>
+
+                        <div class="img-item">
+                            <div class="img-container">
+                                <img src="images/relays.jpg" alt="Relays">
+                            </div>
+                            <span id="prod-relays">Relays</span>
+                        </div>
+                    </div>
+                </td>
+              </tr>
+
+                <tr>
+                  <td id="lbl-properties">Propriétés clés</td>
+                  <td id="prop-electronic"> 
+                        > Haute conductivité <br>
+                  <br>  > Résistance aux vibrations<br>
+                  <br>  > Tenue thermique
+                  </td>
+                </tr>
+          </table>
+              
+          <div id="alloy-details-electrique"></div>
+          
+      </div>
+
+      <button class="accordion-btn" onclick="toggleAcc('app-automobile')">
+          🚗 <span id="acc-auto">Automobile & E-Mobilité</span>
+      </button>
+
+          <div id="app-automobile" class="accordion-panel">
+              <table class="fab-table"><tr>
+                    <td id="lbl-rec-alloys2">Alliages recommandés</td>
+                    <td>
+                      <button class="alloy-chip" onclick="showAlloy('cucrzr', 'alloy-details-automobile')">CuCrZr</button>
+                      <button class="alloy-chip" onclick="showAlloy('cunisi', 'alloy-details-automobile')">CuNiSi</button>
+                      <button class="alloy-chip" onclick="showAlloy('cuag', 'alloy-details-automobile')">CuAg</button>
+                    </td>
+                    </tr>
+
+                    <td id="lbl-products2">Produits typiques</td>
+                    <td>
+                      <div class="product-images">
+                          <div class="img-item">
+                              <div class="img-container">
+                                  <img src="images/busbar_batterieEV.png" alt="Busbars">
+                              </div>
+                            <span id="prod-busbars">Bus bars</span>
+                          </div>
+
+                          <div class="img-item">
+                              <div class="img-container">
+                                  <img src="images/connecteurs.png" alt="Connecteurs">
+                              </div>
+                              <span id="prod-connectors">Connecteurs</span>
+                          </div>
+
+                          <div class="img-item">
+                              <div class="img-container">
+                                  <img src="images/batteries.webp" alt="Batteries">
+                              </div>
+                              <span id="prod-batteries">Batteries</span>
+                          </div>
+
+                          <div class="img-item">
+                              <div class="img-container">
+                                  <img src="images/motorCC.jpg" alt="Moteurs électriques">
+                              </div>
+                              <span id="moteur-electrique">Moteurs électriques</span>
+                          </div>
+
+                      </div>
+                    </td>
+                  
+                  </tr>
+                    
+                    <tr> <td id="lbl-properties2">Propriétés clés</td>
+                    <td id="prop-automobile">
+                        > Haute conductivité <br>
+                    <br>> Résistance aux vibrations<br>
+                    <br>> Tenue thermique
+                    </td></tr>
+                    
+                    </table>
+                      <div id="alloy-details-automobile"></div>
+                </div>
+
+          <button class="accordion-btn" onclick="toggleAcc('app-industrial')">
+              🏭 <span id="acc-industrial">Industriel & Senseurs</span>
+          </button>
+
+                <div id="app-industrial"
+                class="accordion-panel">
+
+                  <table class="fab-table"><tr>
+                    <td id="lbl-rec-alloys3">Alliages recommandés</td>
+                    <td>
+                    <button class="alloy-chip" onclick="showAlloy('cube', 'alloy-details-industrial')">CuBe</button>
+                    <button class="alloy-chip" onclick="showAlloy('cunisi', 'alloy-details-industrial')">CuNiSi</button>
+                    <button class="alloy-chip" onclick="showAlloy('cucrzr', 'alloy-details-industrial')">CuCrZr</button>
+                  </td> </tr>
+
+                    <tr>
+                    <td id="lbl-products3">Produits typiques</td>
+                    <td>
+                      <div class="product-images">
+
+                          <div class="img-item">
+                              <div class="img-container">
+                                  <img src="images/capteur.jpg" alt="Capteurs">
+                              </div>
+                              <span id="prod-capteurs">Capteurs</span>
+                          </div>
+
+                          <div class="img-item">
+                              <div class="img-container">
+                                  <img src="images/connecteurs2.jpg" alt="Connecteurs">
+                              </div>
+                              <span id="prod-conec-prec">Connecteurs de précision</span>
+                          </div>
+
+                          <div class="img-item">
+                              <div class="img-container">
+                                  <img src="images/ressortsconducteurs.webp" alt="Ressorts conducteurs">
+                              </div>
+                              <span id="prod-ressort-conduc">Ressorts conducteurs</span>
+                          </div>
+
+                          <div class="img-item">
+                              <div class="img-container">
+                                  <img src="images/automatisation.webp" alt="Automatisation">
+                              </div>
+                              <span id="prod-automatisation">Automatisation</span>
+                          </div>
+                      </div>
+                  </td>
+                  </tr>
+
+                    <tr>
+                    <td id="lbl-properties3">Propriétés clés</td>
+                    <td id="prop-industriel">
+                        > Résistance à la fatigue<br>
+                   <br> > Résistance à l'usure <br>
+                   <br> > Stabilité dimensionnelle 
+                    </td>
+                    </tr>
+
+            </table>
+                    <div id="alloy-details-industrial"></div>
+                </div>
+        </div>
+  </main>
+
+
+<footer>© 2026 REDEX · Alliages de Cuivre — Projet de stage Livia Viana Aguiar de Oliveira</footer>
+
+<script>
+
+let lang='fr', theme='light';
+const txt = {
+  fr:{
+    back:'← Retour', themeD:'Sombre', themeL:'Clair',
+    //heroDesc:"Le Cu-OF est un cuivre de haute pureté (≥99,95%), totalement exempt d'oxygène. Obtenu par refusion des cathodes électrolytiques sous atmosphère contrôlée (vide ou gaz inerte), il présente la conductivité électrique la plus élevée (102% IACS) et est totalement insensible aux atmosphères réductrices.",
+    //herosymbol: "Alliages de Cuivre",
+
+    heroTitle: 'Alliages de Cuivre',
+    heroDesc: 'Les alliages de cuivre possèdent une excellente combinaison de conductivité électrique, résistance mécanique et durabilité. Ces alliages ont des performances fiables même dans des environnements exigeants soumis aux vibrations, aux hautes températures et à la corrosion.',
+    pillrm: 'Haute résistance mécanique',
+    pillappli: 'Adaptés aux applications industrielles',
+    pillappli2: 'Idéal pour l\'automobile et l\'e-mobilité',
+    pillstabilite: 'Stabilité à haute température',
+
+    //Card principal
+    titreCardp: "Vue d'ensemble",
+    textCardp: "Le cuivre pur offre une excellente conductivité électrique et thermique, mais présente une résistance mécanique limitée. Afin d'améliorer ses performances pour des applications exigeantes, de faibles quantités d'éléments d'alliage sont ajoutées au cuivre. Ces additions permettent d'augmenter la résistance mécanique, la tenue à la fatigue ou la stabilité à haute température tout en conservant une bonne conductivité.",
+   
+    //Famille d'alliages
+    sectionFamAlliages: "Principales familles d'alliages",
+    cardBronze: "Bronze",
+    cardLaiton: "Laiton",
+    cardCuBe: "Cuivre-Béryllium",
+    cardCuCrZr: "Cuivre-Chrome-Zircone",
+
+    //Titres sections et tables
+    accElectronic: "Électrique / Électronique",
+    accAuto: "Automobile & E-Mobilité",
+    accIndustrial: "Industriel & Senseurs",
+    secApplications: "Applications",
+
+    lblRecAlloys: "Alliages recommandés",
+    lblProducts: "Produits typiques",
+    lblProperties: "Propriétés clés",
+    lblRecAlloys2: "Alliages recommandés",
+    lblProducts2: "Produits typiques",
+    lblProperties2: "Propriétés clés",
+    lblRecAlloys3: "Alliages recommandés",
+    lblProducts3: "Produits typiques",
+    lblProperties3: "Propriétés clés",
+
+    //Produits
+    prodLeadFrames: "Lead Frames",
+    prodConnectors: "Connecteurs",
+    prodTerminals: "Termainals",
+    prodRelays: "Relais",
+    prodBusbars: "Bus bars",
+    prodBatteries: "Batteries",
+    prodMoteursElectriques: "Moteurs Electriques",
+    prodCapteurs: "Capteurs",
+    prodConecPrec: "Connecteurs de précision",
+    prodRessorts: "Ressorts conducteurs",
+    prodAutoma: "Automatisation",
+
+    //Propriétés
+    propElectronic: `
+      > Haute conductivité<br><br>
+      > Résistance aux vibrations<br><br>
+      > Tenue thermique`,
+
+    propAutomobile: `
+      > Haute conductivité <br><br>
+      > Résistance aux vibrations<br><br>
+      > Tenue thermique`,
+
+    propIndustrie: `
+      > Résistance à la fatigue <br><br>
+      > Résistance à l'usure <br><br>
+      > Stabilité dimensionelle`,
+        
+  },
+  en:{
+    back:'← Back', eyebrow:'Copper Grade', themeD:'Dark', themeL:'Light',
+   
+    //herosymbol: "Copper Alloys",
+    pillSens:'Oxygen-Free',
+    heroTitle: 'Copper Alloys',
+    heroDesc: 'Copper alloys have an excellent combination of electrical conductivity, mechanical strength, and durability. These alloys deliver reliable performance even in demanding environments exposed to vibration, high temperatures and corrosion.',
+    pillrm: 'High mechanical strength',
+    pillappli: 'Addapted for the industrial applications',
+    pillappli2: 'Ideal for e-mobility',
+    pillstabilite: 'High-temperature stability',
+
+    //Main card
+    titreCardp: "Overview",
+    textCardp: "Pure copper offers excellent electrical and thermal conductivity but has limited mechanical strength. To enhance its performance for demanding applications, small amounts of alloying elements are added to copper. These additions improve mechanical strength, fatigue resistance, and high-temperature stability while maintaining good electrical conductivity.",
+    
+    //Copper alloys card
+    sectionFamAlliages: "Main copper alloys",
+    cardBronze: "Bronze",
+    cardLaiton: "Brass",
+    cardCuBe: "Copper-Beryllium",
+    cardCuCrZr: "Cuivre-Chromium-Zirconium",
+
+    //Sections and tables titles
+    accElectronic: "Electrical / Electronics",
+    accAuto: "Automotive & E-Mobility",
+    accIndustrial: "Industrial & Sensors",
+    secApplications: "Applications",
+
+    lblRecAlloys: "Recommended alloys",
+    lblProducts: "Typical products",
+    lblProperties: "Key properties",
+    lblRecAlloys2: "Recommended alloys",
+    lblProducts2: "Typical products",
+    lblProperties2: "Key properties",
+    lblRecAlloys3: "Recommended alloys",
+    lblProducts3: "Typical products",
+    lblProperties3: "Key properties",
+
+    //Products
+    prodLeadFrames: "Lead Frames",
+    prodConnectors: "Connectors",
+    prodTerminals: "Terminals",
+    prodRelays: "Relays",
+    prodBusbars: "Bus bars",
+    prodBatteries: "Batteries",
+    prodMoteursElectriques: "Electric motors",
+    prodCapteurs: "Sensors",
+    prodConecPrec: "Precision Connectors",
+    prodRessorts: "Conductive springs",
+    prodAutoma: "Automation",
+
+    //Properties
+    propElectronic: `
+      > High conductivity <br><br>
+      > Vibration resistance <br><br>
+      > Thermal stability`,
+
+    propAutomobile: `
+      > High conductivity <br><br>
+      > Vibration resistance <br><br>
+      > Thermal stability`,
+
+    propIndustrie: `
+      > Fatigue resistance<br><br>
+      > Wear resistance<br><br>
+      > Dimensional stability`,
+
+  }
+};
+function applyLang(){
+  const T = txt[lang];
+
+  const heroTitle = document.getElementById('hero-title');
+  const heroDesc = document.getElementById('hero-desc');
+  const pillSens = document.getElementById('pill-sensible');
+  const pillrm = document.getElementById('pill-pillrm');
+  const pillappli = document.getElementById('pill-pillappli');
+  const pillappli2= document.getElementById('pill-pillappli2');
+  const pillstabilite= document.getElementById('pill-pillstabilite');
+  const themeLabel = document.getElementById('theme-label');
+  const backBtn = document.getElementById('back-btn');
+  document.getElementById('pill-rm').textContent=T.pillrm;
+  document.getElementById('pill-appli').textContent=T.pillappli;
+  document.getElementById('pill-appli2').textContent=T.pillappli2;
+  document.getElementById('pill-stabilite').textContent=T.pillstabilite;
+
+  //t
+  document.getElementById("titre-card").textContent = T.titreCardp;
+  document.getElementById("text-card1").textContent = T.textCardp;
+  document.getElementById("famille-alliages").textContent = T.sectionFamAlliages;
+  document.getElementById("card-bronze").textContent = T.cardBronze;
+  document.getElementById("card-laiton").textContent = T.cardLaiton;
+  document.getElementById("card-cube").textContent = T.cardCuBe;
+  document.getElementById("card-cucrzr").textContent = T.cardCuCrZr;
+
+  document.getElementById("card-applications").textContent = T.secApplications;
+
+  document.getElementById("acc-electronic").textContent = T.accElectronic;
+  document.getElementById("acc-auto").textContent = T.accAuto;
+  document.getElementById("acc-industrial").textContent = T.accIndustrial;
+
+  document.getElementById("lbl-rec-alloys").textContent = T.lblRecAlloys;
+  document.getElementById("lbl-products").textContent = T.lblProducts;
+  document.getElementById("lbl-properties").textContent = T.lblProperties;
+  document.getElementById("lbl-rec-alloys2").textContent = T.lblRecAlloys2;
+  document.getElementById("lbl-products2").textContent = T.lblProducts2;
+  document.getElementById("lbl-properties2").textContent = T.lblProperties2;
+  document.getElementById("lbl-rec-alloys3").textContent = T.lblRecAlloys3;
+  document.getElementById("lbl-products3").textContent = T.lblProducts3;
+  document.getElementById("lbl-properties3").textContent = T.lblProperties3;
+
+  //Produits
+  document.getElementById("prod-leadframes").textContent = T.prodLeadFrames;
+  document.getElementById("prod-connectors").textContent = T.prodConnectors;
+  document.getElementById("prod-terminals").textContent = T.prodTerminals;
+  document.getElementById("prod-relays").textContent = T.prodRelays;
+  document.getElementById("prod-busbars").textContent = T.prodBusbars;
+  document.getElementById("prod-batteries").textContent = T.prodBatteries;
+  document.getElementById("prod-capteurs").textContent = T.prodCapteurs;
+  document.getElementById("prod-conec-prec").textContent = T.prodConecPrec;
+  document.getElementById("prod-ressort-conduc").textContent = T.prodRessorts;
+  document.getElementById("prod-automatisation").textContent = T.prodAutoma;
+ 
+  //Properties
+  document.getElementById("prop-electronic").innerHTML = T.propElectronic;
+  document.getElementById("prop-automobile").innerHTML = T.propAutomobile;
+  document.getElementById("prop-industriel").innerHTML = T.propIndustrie;
+
+  if(heroTitle) heroTitle.textContent = T.heroTitle;
+  if(heroDesc) heroDesc.textContent = T.heroDesc;
+  if(pillSens) pillSens.textContent = T.pillSens;
+  if(backBtn) backBtn.textContent = T.back;
+
+  if(themeLabel)
+    themeLabel.textContent = theme === 'dark' ? T.themeL : T.themeD;
+
+  document.title = 'REDEX — ' + T.heroTitle;
+}
+function toggleLang(){
+  lang=lang==='fr'?'en':'fr';
+  document.getElementById('seg-fr').classList.toggle('active',lang==='fr');
+  document.getElementById('seg-en').classList.toggle('active',lang==='en');
+  applyLang();
+}
+function toggleTheme(){
+  theme=theme==='light'?'dark':'light';
+  if(theme==='dark'){
+    document.documentElement.setAttribute('data-theme','dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  document.getElementById('theme-icon').textContent=theme==='dark'?'☀️':'🌙';
+  document.getElementById('theme-label').textContent=theme==='dark'?txt[lang].themeL:txt[lang].themeD;
+}
+function toggleAcc(id){
+  const panel=document.getElementById(id);
+  const btn=panel.previousElementSibling;
+  const isOpen=panel.classList.contains('open');
+  panel.classList.toggle('open',!isOpen);
+  btn.classList.toggle('open',!isOpen);
+}
+document.querySelectorAll('.sec-title').forEach(el=>{
+  const span=document.createElement('span');
+  span.textContent=el.textContent.trim();
+  el.textContent='';
+  el.appendChild(span);
+});
+document.querySelectorAll('.card-title').forEach(el=>{
+  const span=document.createElement('span');
+  span.textContent=el.textContent.trim();
+  el.textContent='';
+  el.appendChild(span);
+});
+function goBack() {
+  history.back();
+}
+const alloys = {
+  cuag: {
+    title: "CuAg",
+    subtitle: "Cuivre-Argent",
+    icon: "⚡",
+    process: "Alliage cuivre-argent pour applications electriques haute performance.",
+    description: "Tres haute conductivite electrique avec une meilleure resistance mecanique que le cuivre pur. Convient aux composants conducteurs soumis a des contraintes thermiques et mecaniques.",
+    points: [
+      "Excellente conductivite electrique",
+      "Bonne tenue mecanique",
+      "Bon comportement a temperature elevee",
+      "Adapte aux connecteurs et busbars"
+    ],
+    applications: [
+      "Connecteurs",
+      "Busbars",
+      "Bornes",
+      "Contacts electriques"
+    ]
+  },
+  cucrzr: {
+    title: "CuCrZr",
+    subtitle: "Cuivre-Chrome-Zirconium",
+    icon: "🔩",
+    process: "Alliage cuivreux combinant conductivite et haute resistance mecanique.",
+    description: "Excellente combinaison entre conductivite electrique, resistance mecanique et tenue thermique. Tres utilise dans l'automobile, l'e-mobilite et les composants de puissance.",
+    points: [
+      "Tres bon compromis conductivite / resistance",
+      "Bonne resistance au fluage",
+      "Bonne tenue a la fatigue",
+      "Adapte aux environnements severes"
+    ],
+    applications: [
+      "Busbars",
+      "Connecteurs HV",
+      "Batteries",
+      "E-Mobilite"
+    ]
+  },
+  cunisi: {
+    title: "CuNiSi",
+    subtitle: "Cuivre-Nickel-Silicium",
+    icon: "🚗",
+    process: "Alliage a durcissement structural pour connectique et systemes embarques.",
+    description: "Bonne resistance mecanique avec une conductivite correcte. Souvent choisi pour les connecteurs, ressorts conducteurs et applications automobiles.",
+    points: [
+      "Bonne resistance mecanique",
+      "Bonne resistance a la fatigue",
+      "Bonne stabilite dimensionnelle",
+      "Utilise pour connecteurs de precision"
+    ],
+    applications: [
+      "Connecteurs automobiles",
+      "Ressorts conducteurs",
+      "Composants de precision",
+      "E-Mobilite"
+    ]
+  },
+  cube: {
+    title: "CuBe",
+    subtitle: "Cuivre-Beryllium",
+    icon: "🏭",
+    process: "Alliage haute performance pour ressorts, contacts et pieces de precision.",
+    description: "Tres haute resistance mecanique et excellente resistance a la fatigue et a l'usure. Particulierement adapte aux capteurs, ressorts conducteurs et outillage de precision.",
+    points: [
+      "Tres haute resistance mecanique",
+      "Excellente resistance a la fatigue",
+      "Bonne resistance a l'usure",
+      "Ideal pour capteurs et ressorts"
+    ],
+    applications: [
+      "Capteurs",
+      "Connecteurs de precision",
+      "Ressorts conducteurs",
+      "Automatisation"
+    ]
+  }
+};
+function showAlloy(key, targetId){
+  const alloy = alloys[key];
+  if(!alloy) return;
+  const modal = document.getElementById('alloy-modal');
+if (modal) {
+  modal.addEventListener('click', function(e){
+    if(e.target.id === 'alloy-modal'){
+      closeAlloyModal();
+    }
+  });
+}
+  const body = document.getElementById('alloy-modal-body');
+  body.innerHTML = `
+    <div class="method-header" style="border-radius:16px 16px 0 0;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:52px;height:52px;border-radius:12px;background:rgba(200,121,65,0.15);display:flex;align-items:center;justify-content:center;font-size:1.6rem;">
+          ${alloy.icon}
+        </div>
+        <div>
+          <div class="method-title">${alloy.title}</div>
+          <div class="method-sub">${alloy.subtitle}</div>
+        </div>
+      </div>
+    </div>
+    <div class="method-body">
+      <p class="method-desc">
+        ${alloy.description}
+      </p>
+      <div class="card-title">
+        <span>Points cles</span>
+      </div>
+      <div style="display:grid;gap:10px;margin-bottom:1.2rem;">
+        ${alloy.points.map((point, index) => `
+          <div style="display:flex;align-items:center;gap:12px;background:var(--cu-pale);border:1px solid var(--border-strong);border-radius:12px;padding:14px 16px;">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--cu);color:#fff;font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              ${index + 1}
+            </div>
+            <div style="font-size:.9rem;color:var(--text);">
+              ${point}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card-title">
+        <span>Applications typiques</span>
+      </div>
+      <div style="margin-top:1rem;">
+        ${alloy.applications.map(app => `
+          <span class="method-tag">${app}</span>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  modal.style.display = 'flex';
+}
+function closeAlloyModal(){
+  const modal = document.getElementById('alloy-modal');
+  modal.style.display = 'none';
+}
+document.getElementById('alloy-modal').addEventListener('click', function(e){
+  if(e.target.id === 'alloy-modal'){
+    closeAlloyModal();
+  }
+});
+
+
+window.showAlloy = showAlloy;
+window.closeAlloyModal = closeAlloyModal;
+
+applyLang();
+</script>
+
+<div id="alloy-modal" class="modal">
+  <div id="alloy-modal" class="modal">
+  <div class="modal-content">
+    <div id="alloy-modal-body"></div>
+  </div>
+</div>
+
+<script>
+function closeAlloyModal() {
+    const modal = document.getElementById('alloy-modal');
+    modal.style.display = 'none';
+}
+
+const modal = document.getElementById('alloy-modal');
+
+if (modal) {
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeAlloyModal();
+        }
+    });
+}
+</script>
+</body>
+</html>
