@@ -9,7 +9,7 @@
 <style>
   /* ── LIGHT THEME (default) ── */
   :root {
-    --cu: #C87941;
+    --cu: #F87A20;
     --cu-dark: #8B4E1F;
     --cu-light: #F5E6D3;
     --cu-pale: #FDF6EF;
@@ -39,7 +39,7 @@
 
   /* ── DARK THEME ── */
   [data-theme="dark"] {
-    --cu: #E09050;
+    --cu: #F87A20;
     --cu-dark: #C87941;
     --cu-light: #2A1A0A;
     --cu-pale: #1E1208;
@@ -76,6 +76,7 @@
     transition: var(--transition);
   }
   .header-left { display: flex; flex-direction: column; gap: 2px; }
+  .logo-img { height: 40px; /* ajuste conforme necessário */ width: auto;display: block;}
   .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: #FFFFFF; letter-spacing: 0.05em; }
   .logo span { color: var(--cu); }
   .header-subtitle { font-size: 0.7rem; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; text-transform: uppercase; }
@@ -116,7 +117,7 @@
   }
   .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; color: #FFFFFF; line-height: 1.15; max-width: 600px; margin-bottom: 1rem; }
   .hero h1 em { font-style: normal; color: var(--cu); }
-  .hero-desc { color: rgba(255,255,255,0.5); font-size: 0.95rem; max-width: 480px; line-height: 1.7; margin-bottom: 2rem; }
+  .hero-desc { color: rgba(255,255,255,0.5); font-size: 1.25rem; max-width: 480px; line-height: 1.7; margin-bottom: 2rem; }
   .hero-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
   .hero-stat-num { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--cu); }
   .hero-stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; }
@@ -187,6 +188,17 @@
   .detail-img-caption { padding: 1rem 1.2rem; border-top: 1px solid var(--border); }
   .detail-img-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
   .detail-img-semi { font-size: 0.78rem; color: var(--text-muted); }
+  .product-section-title{margin-top:14px;margin-bottom:6px; color:var(--cu); font-size:0.68rem;font-weight:600;  text-transform:uppercase; letter-spacing:0.08em;}
+  .product-description{font-size:0.76rem; color:var(--text-muted); line-height:1.45; margin-bottom:14px;}
+  .product-properties ul{ list-style: none; padding-left: 0; margin: 4px 0 0 0;}
+  .product-properties li{position: relative; padding-left: 12px; margin-bottom: 4px; font-size: 0.76rem; color: var(--text-muted);}
+  .product-properties li::before{ content: "–"; position: absolute; left: 0; color: var(--cu);}
+  .product-formeFil ul{ list-style: none; padding-left: 0; margin: 4px 0 0 0;}
+  .product-formeFil li{position: relative; padding-left: 12px; margin-bottom: 4px; font-size: 0.76rem; color: var(--text-muted);}
+  .product-formeFil li::before{ content: "–"; position: absolute; left: 0; color: var(--cu);}
+  .product-gradesPossibles ul{ list-style: none; padding-left: 0; margin: 4px 0 0 0;}
+  .product-gradesPossibles li{position: relative; padding-left: 12px; margin-bottom: 4px; font-size: 0.76rem; color: var(--text-muted);}
+  .product-gradesPossibles li::before{ content: "–"; position: absolute; left: 0; color: var(--cu);}  
   .detail-cards-col { display: flex; flex-direction: column; gap: 1rem; }
   .detail-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
   .detail-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; transition: var(--transition); }
@@ -204,7 +216,7 @@
   .gauge-label { font-size: 0.72rem; color: var(--text-muted); width: 115px; flex-shrink: 0; }
   .gauge-track { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
   .gauge-fill { height: 100%; background: linear-gradient(90deg, var(--cu-dark), var(--cu)); border-radius: 3px; }
-  .gauge-val { font-size: 0.67rem; font-weight: 500; color: var(--text); width: 68px; text-align: right; flex-shrink: 0; }
+  .gauge-val { font-size: 0.67rem; font-weight: 500; color: var(--text); width: 68px; text-align: right; flex-shrink: 0; } 
 
   /* Props table */
   .props-table { width: 100%; border-collapse: separate; border-spacing: 0 7px; }
@@ -212,17 +224,24 @@
   .props-table tr td:first-child { color: var(--text-muted); width: 45%; background: var(--props-row-bg); border-radius: 8px 0 0 8px; }
   .props-table tr td:last-child { font-weight: 500; color: var(--text); background: var(--props-row-bg); border-radius: 0 8px 8px 0; }
 
+
   /* Machine */
   .machine-top { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: var(--cu-pale); border-radius: 10px; border: 1px solid var(--border); margin-bottom: 1rem; }
   .machine-icon-big { width: 46px; height: 46px; border-radius: 10px; background: var(--cu); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
   .machine-name { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--text); }
   .machine-sub { font-size: 0.7rem; color: var(--text-muted); margin: 2px 0 5px; }
   .machine-desc { font-size: 0.77rem; color: var(--text); line-height: 1.6; }
-  .machine-img-wrap { width: 100%; height: 185px; border-radius: 10px; overflow: hidden; background: var(--cu-light); border: 1px solid var(--border); margin-bottom: 1rem; }
+  .machine-img-wrap { width: 100%; height: 320px; border-radius: 10px; overflow: hidden; background: var(--cu-light); border: 1px solid rgba(235, 124, 45, 0.45); margin-bottom: 1rem; }
   .machine-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
   .machine-img-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: linear-gradient(135deg, var(--cu-light), var(--cu-pale)); }
   .machine-img-placeholder-label { font-size: 0.7rem; color: var(--text-muted); text-align: center; padding: 0 1rem; line-height: 1.5; }
   .machine-img-path { font-size: 0.62rem; color: var(--text-muted); opacity: 0.6; font-family: monospace; }
+
+  .machine-images{display:grid;grid-template-columns:1fr 1fr; gap:12px; margin-top:1rem;}
+  .machine-img-wrap{ height:320px; border-radius:12px; overflow:hidden; border:2px solid rgba(235, 124, 45, 0.45); background:var(--hero-bg);transition:.25s;}
+
+  .machine-name{ display:block; text-decoration:none;}
+  .machine-name:hover{text-decoration:underline;}
 
   /* Process */
   .process-flow { display: flex; align-items: center; flex-wrap: wrap; margin: 0.5rem 0; }
@@ -273,13 +292,13 @@
   /* Images section — framed cards */
   .modal-imgs{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:1.4rem 1.8rem 0;}
   .modal-img-cell{border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--cu-pale);box-shadow:0 4px 16px rgba(0,0,0,0.08);}
-  .modal-img-cell img{width:100%;height:185px;object-fit:cover;display:block;transition:transform .4s;}
+  .modal-img-cell img{width:100%;height:185px;object-fit:contain;display:block;transition:transform .4s;}
   .modal-img-cell:hover img{transform:scale(1.04);}
   .modal-img-caption{background:var(--bg);padding:7px 12px;font-size:.65rem;color:var(--text-muted);text-align:center;font-weight:500;border-top:1px solid var(--border);}
 
   /* Single image */
   .modal-img-single-wrap{padding:1.4rem 1.8rem 0;}
-  .modal-img-single{width:100%;height:200px;object-fit:cover;display:block;border-radius:14px;border:1px solid var(--border);box-shadow:0 4px 16px rgba(0,0,0,0.08);}
+  .modal-img-single{width:100%;height:200px;object-fit:contain;display:block;border-radius:14px;border:1px solid var(--border);box-shadow:0 4px 16px rgba(0,0,0,0.08);}
 
   /* Content */
   .modal-content{padding:1.3rem 1.8rem 1.8rem;}
@@ -312,7 +331,7 @@
 
 <header>
   <div class="header-left">
-    <div class="logo">RE<span>DEX</span></div>
+    <div class="logo" onclick="goBack()"><img src="images/redex_logo.png" alt="REDEX" class="logo-img"></div>
     <div class="header-subtitle" id="hdr-sub">Fils &amp; Méplats de Cuivre</div>
   </div>
   <div class="header-controls">
@@ -332,11 +351,11 @@
 <div class="hero">
   <div class="hero-tag" id="hero-tag">Base de données interactive</div>
   <h1 id="hero-title">Obtention de <em>fils</em> et<br>méplats de <em>cuivre</em></h1>
-  <p class="hero-desc" id="hero-desc">Explorez les secteurs d'application, les grades de cuivre et les machines REDEX selon vos besoins industriels.</p>
+  <p class="hero-desc" id="hero-desc">Explorez les secteurs d'application, les grades de cuivre et ses procédés de transformation.</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-num">5</div><div class="hero-stat-label" data-i18n="sectors">Secteurs</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label" data-i18n="sectors">Secteurs</div></div>
     <div class="hero-stat"><div class="hero-stat-num">22+</div><div class="hero-stat-label" data-i18n="applications">Applications</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label" data-i18n="grades">Grades Cu</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">2</div><div class="hero-stat-label" data-i18n="grades">Grades de Cuivre</div></div>
     <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label" data-i18n="machines">Machines REDEX</div></div>
   </div>
 </div>
@@ -348,7 +367,7 @@
 <main>
   <div class="view active" id="view-sectors">
     <div class="section-header">
-      <div class="section-label" data-i18n="sectorActivity">Secteurs d'activité</div>
+      <div class="section-label" data-i18n="sectorActivity">Secteurs d'application pour le cuivre pur</div>
       <div class="section-title" data-i18n="selectSector">Sélectionnez un secteur</div>
     </div>
     <div class="sectors-grid" id="sectors-grid"></div>
@@ -371,16 +390,67 @@
     </div>
     <div id="detail-content"></div>
   </div>
+
+<section style="margin-top:40px; padding:10px 0; text-align:left;">
+
+  <div class="section-header">
+      <div class="section-label" data-i18n="ExplorerSecteurs">Explorer aussi</div>
+  </div>
+
+  <div style="margin-top:8px;">
+    <a href="Page_AlliagesCu.html"
+      data-i18n="alloysCopper"
+      style="
+        color:var(--cu);
+        text-decoration:none;
+        font-weight:600;
+        font-size:0.95rem;
+        display:inline-flex;
+        align-items:center;
+        gap:2px;
+      "
+      onmouseover="this.style.textDecoration='underline'"
+      onmouseout="this.style.textDecoration='none'"
+    >
+      → Alliages de Cuivre
+    </a>
+  </div>
+
+  <div style="margin-top:8px;">
+    <a href="Page_Bimetallics.html" 
+    data-i18n="bimetallics"
+    style=" 
+      color:var(--cu);
+      text-decoration:none;
+      font-weight:600;
+      font-size:0.95rem;
+      display:inline-flex;
+      align-items:center;
+      gap:2px;
+    "
+    onmouseover="this.style.textDecoration='underline'"
+    onmouseout="this.style.textDecoration='none'"
+    >
+      → Bimétalliques CCA et CCS
+    </a>
+  </div>
+
+</section>
+
+
 </main>
 
-<footer id="footer-text">© 2025 REDEX · Projet de stage — Livia Viana Aguiar de Oliveira</footer>
+<footer id="footer-text">© 2026 REDEX · Projet de stage — Livia Viana Aguiar de Oliveira</footer>
 
 <script>
 // ── I18N ─────────────────────────────────────────────────────────
 const i18n = {
   fr: {
     allSectors: 'Tous les secteurs',
-    sectorActivity: "Secteurs d'activité",
+    sectorActivity: "Secteurs d'application",
+    ExplorerSecteurs: "Explorer aussi",
+    alloysCopper: "→ Alliages de Cuivre",
+    bimetallics: "→ Bimétalliques CCA et CCS",
     selectSector: 'Sélectionnez un secteur',
     applications: 'Applications',
     sectors: 'Secteurs',
@@ -390,7 +460,7 @@ const i18n = {
     backProducts: '← Retour aux applications',
     heroTag: 'Base de données interactive',
     heroTitle: 'Obtention de <em>fils</em> et<br>méplats de <em>cuivre</em>',
-    heroDesc: "Explorez les secteurs d'application, les grades de cuivre et les machines REDEX selon vos besoins industriels.",
+    heroDesc: "Explorez les secteurs d'application, les grades de cuivre et ses procédes de transformation.",
     headerSub: 'Fils &amp; Méplats de Cuivre',
     themeLight: 'Clair', themeDark: 'Sombre',
     availableApps: 'Applications disponibles',
@@ -398,17 +468,25 @@ const i18n = {
     transformFlow: 'Flux de transformation',
     cuGrade: 'Grade de cuivre',
     cuProps: 'Propriétés — ',
-    machineRedex: 'Machine REDEX — ',
+    machineRedex: 'Machine — ',
     input: 'Entrée', machine: 'Machine', output: 'Sortie',
-    purity: 'Pureté', nfa: 'Équiv. NFA 51-050', sensitivity: 'Sensibilité H₂',
+    purity: 'Pureté', nfa: 'Équivalence NFA 51-050', sensitivity: 'Sensibilité H₂',
     matInput: 'Matière entrée', matOutput: 'Produit sortie',
     description: 'Description', similarApps: 'Applications similaires',
-    elCond: 'Conductivité él.', thCond: 'Conductivité th.', weldability: 'Soudabilité',
+    elCond: 'Conductivité électrique', thCond: 'Conductivité thermique', weldability: 'Soudabilité',
     appCount: (n) => `${n} application${n>1?'s':''}`,
+    description: "Description",
+    requiredProperties: "Propriétés requises du cuivre",
+    copperForm: "Forme du cuivre",
+    possibleGrades: "Grades de cuivre possibles",
+  
   },
   en: {
     allSectors: 'All sectors',
     sectorActivity: 'Activity sectors',
+    ExplorerSecteurs: "Explore more",
+    alloysCopper: "→ Copper Alloys",
+    bimetallics: "→ CCA and CCS Bimetallics",
     selectSector: 'Select a sector',
     applications: 'Applications',
     sectors: 'Sectors',
@@ -417,8 +495,8 @@ const i18n = {
     backSectors: '← Back to sectors',
     backProducts: '← Back to applications',
     heroTag: 'Interactive database',
-    heroTitle: 'Production of copper <em>wires</em><br>and <em>flat bars</em>',
-    heroDesc: 'Explore application sectors, copper grades and REDEX machines for your industrial needs.',
+    heroTitle: 'Production of copper <em>round </em> and <em>flat wires</em>',
+    heroDesc: 'Explore application sectors, copper grades and its transformations.',
     headerSub: 'Copper Wires &amp; Flat Bars',
     themeLight: 'Light', themeDark: 'Dark',
     availableApps: 'Available applications',
@@ -426,13 +504,17 @@ const i18n = {
     transformFlow: 'Transformation flow',
     cuGrade: 'Copper grade',
     cuProps: 'Properties — ',
-    machineRedex: 'REDEX Machine — ',
+    machineRedex: 'Machine — ',
     input: 'Input', machine: 'Machine', output: 'Output',
-    purity: 'Purity', nfa: 'Equiv. NFA 51-050', sensitivity: 'H₂ sensitivity',
+    purity: 'Purity', nfa: 'Equivaleny NFA 51-050', sensitivity: 'H₂ sensitivity',
     matInput: 'Input material', matOutput: 'Output product',
     description: 'Description', similarApps: 'Similar applications',
-    elCond: 'El. conductivity', thCond: 'Th. conductivity', weldability: 'Weldability',
+    elCond: 'Electrical conductivity', thCond: 'Thermal conductivity', weldability: 'Weldability',
     appCount: (n) => `${n} application${n>1?'s':''}`,
+    description: "Product description",
+    requiredProperties: "Required copper properties",
+    copperForm: "Copper form",
+    possibleGrades: "Possible copper grades",
   }
 };
 
@@ -529,30 +611,54 @@ const gradeData = {
 // ── MACHINE DATA ─────────────────────────────────────────────────
 const machineData = {
   'RM': {
-    icon: '⚙️', img: 'images/machines/RM_machine.jpg',
+    icon: '⚙️', 
+    name:{fr:'Laminoir RM',en:'RM'},
+    img:'images/machines/RM_machine.jpg', 
+    img2: 'images/machines/RM_machine2.png',
     full: { fr: 'Reduction Rolling Mills', en: 'Reduction Rolling Mills' },
     sub: { fr: 'Laminoir de réduction à fils', en: 'Wire reduction rolling mill' },
     desc: {
       fr: 'Transforme un fil machine rond (copper rod) en fil rond de diamètre réduit précis. Machine haute vitesse, multi-passes, pour fils électriques, magnet wires et câbles.',
       en: 'Transforms round copper rod into a precisely reduced round wire. High-speed, multi-pass machine for electrical wires, magnet wires and cables.'
-    }
+    },
+    url: "https://www.redex-group.com/fr/prm/rm/"
   },
   'RMW': {
-    icon: '🔩', img: 'images/machines/RMW_machine.jpg',
+    icon: '🔩', 
+    name:{fr:'Laminoir RMW',en:'RMW'},
+    img: 'images/machines/RMW_machine.jpg',
+    img2:'images/machines/RMW_machine2.png',
     full: { fr: 'Rectangular Magnet Wire Rolling Mill', en: 'Rectangular Magnet Wire Rolling Mill' },
     sub: { fr: 'Laminoir à fil magnétique rectangulaire', en: 'Rectangular magnet wire rolling mill' },
     desc: {
       fr: "Convertit un fil rond en fil plat (méplat) rectangulaire. La Shaping Unit garantit les tolérances dimensionnelles strictes requises pour les magnet wires et busbars.",
       en: "Converts round wire into rectangular flat wire. The Shaping Unit ensures strict dimensional tolerances required for magnet wires and busbars."
-    }
+    },
+     url: "https://www.redex-group.com/fr/prm/rmw/"
   },
   'FRM': {
-    icon: '🏭', img: 'images/machines/FRM_machine.jpg',
+    icon: '🏭', 
+     name:{fr:'Laminoir FRM',en:'FRM'},
+    img: 'images/machines/FRM_machine.png',
+    img2: 'images/machines/FRM_machine2.jpg.png',
     full: { fr: 'Flat Rolling Mills', en: 'Flat Rolling Mills' },
     sub: { fr: 'Laminoir de bandes', en: 'Strip rolling mill' },
     desc: {
       fr: "Lamine des barres ou blocs coulés pour produire des bandes larges et méplats. Configuration 2-Hi ou 4-Hi selon l'épaisseur et la précision requises.",
       en: "Rolls bars or cast billets to produce wide strips and flat bars. 2-Hi or 4-Hi configuration depending on required thickness and precision."
+    },
+    url: "https://www.redex-group.com/fr/prm/frm/"
+  },
+  'Trefiloir': {
+    icon: '〰', 
+    name:{fr:'Trefiloir', en:'Wire Drawer'},
+    img: 'images/Schema_filiere_trefilage.png',
+    img2: 'images/trefilage_machine.webp',
+    full: { fr: 'Tréfiloir', en: 'Wire Drawer' },
+    //sub: { fr: 'Laminoir de bandes', en: 'Strip rolling mill' },
+    desc: {
+      fr: "Le tréfilage est un procédé de mise en forme qui consiste à étirer à froid un fil à travers d’une ouverture conique appelée filière.",
+      en: "Wire drawing is a forming process that consists of cold-drawing a wire through a conical opening called a die."
     }
   }
 };
@@ -560,33 +666,34 @@ const machineData = {
 // ── SECTOR DATA ──────────────────────────────────────────────────
 // ── NEXT STEPS popup data ────────────────────────────────────────
 const nextStepsData = {
-  trefilage: {
-    icon:'🔄',
-    isMiseEnForme: true,
-    name:{fr:'Tréfilage',en:'Wire Drawing'},
-    desc:{fr:"Le tréfilage est un procédé de mise en forme à froid qui consiste à étirer un fil à travers d\'une ouverture conique appelée filière (en diamant polycristallin ou carbure de tungstène). À chaque passage il y a une réduction progressive du diamètre. Le fil machine (copper rod) est ainsi transformé en fil de faible diamètre avec les propriétés mécaniques et dimensionnelles requises.",en:"Wire drawing is a cold forming process that consists of drawing wire through a conical opening called a die (polycrystalline diamond or tungsten carbide). Each pass progressively reduces the diameter. Wire rod (copper rod) is thus transformed into fine wire with the required mechanical and dimensional properties."},
-    steps:{fr:['Déroulage et préparation du fil machine','Nettoyage pour éliminer la rouille et les impuretés','Dépôt d\'une couche de lubrifiant (phosphate/chaux) pour réduire la friction','Tréfilage : réduction progressive du diamètre à chaque passage en filière','Recuit pour rétablir la microstructure et les propriétés du matériau','Enroulement et bobinage'],en:['Wire rod unwinding and preparation','Cleaning to remove rust and impurities','Lubricant coating (phosphate/lime) to reduce friction','Wire drawing: progressive diameter reduction at each die pass','Annealing to restore microstructure and material properties','Coiling and spooling']},
-    img:'images/process/trefilage.png'
-  },
+  
   emaillage: {
     icon:'🎨',
     name:{fr:'Émaillage (isolation)',en:'Enamelling (insulation)'},
     desc:{fr:"L'émaillage consiste à déposer une couche d'isolant polymère (polyuréthane, polyester, polyimide…) sur le fil de cuivre par immersion dans un bain de vernis puis cuisson dans un four vertical à haute température (300–500°C). Plusieurs couches successives garantissent l'isolation électrique requise.",en:"Enamelling deposits a polymer insulating layer (polyurethane, polyester, polyimide…) on the copper wire by immersion in a varnish bath then baking in a vertical oven at high temperature (300–500°C). Several successive layers ensure the required electrical insulation."},
-    steps:{fr:['Nettoyage et préparation du fil','Immersion dans le bain de vernis','Cuisson au four vertical (300–500°C)','Contrôle de l\'isolation (tension de claquage)'],en:['Wire cleaning and preparation','Immersion in varnish bath','Baking in vertical oven (300–500°C)','Insulation testing (breakdown voltage)']},
-    img:'images/process/emaillage.png'
+    steps:{fr:['Nettoyage et préparation du fil','Immersion dans le bain de vernis','Cuisson au four (300–500°C)','Contrôle de l\'isolation (tension de claquage)'],en:['Wire cleaning and preparation','Immersion in varnish bath','Baking in oven (300–500°C)','Insulation testing (breakdown voltage)']},
+    img:'images/process/emaillage2.png'
   },
   bobinage: {
     icon:'🌀',
     name:{fr:'Bobinage',en:'Winding'},
     desc:{fr:"Le bobinage consiste à enrouler le fil émaillé en spirales régulières pour former une bobine (inducteur, transformateur, moteur). La forme du bobinage (galette, couche, toroïde) dépend de l'application. Des caractéristiques clés comme le nombre de spires, le pas et le remplissage de cuivre (fill factor) sont contrôlés précisément.",en:"Winding consists of coiling the enamelled wire in regular spirals to form a coil (inductor, transformer, motor). The winding shape (pancake, layer, toroidal) depends on the application. Key parameters like number of turns, pitch and copper fill factor are precisely controlled."},
     steps:{fr:['Positionnement du gabarit/bobine','Enroulement automatique ou manuel','Imprégnation résine (si requis)','Contrôle dimensionnel et électrique'],en:['Jig/former positioning','Automatic or manual winding','Resin impregnation (if required)','Dimensional and electrical testing']},
-    img:'images/process/bobinage.png'
+    img:'images/process/bobinage.jpg'
   },
+  bobinageMoteur: {
+    icon:'⚙️',
+    name:{fr:'Bobinage de moteurs électriques',en:'Electric Motor Winding'},
+    desc:{fr:"Le bobinage de moteurs électriques consiste à insérer et enrouler du fil de cuivre émaillé dans les encoches du stator afin de créer les circuits électromagnétiques responsables de la génération du champ tournant. Selon le type de moteur (asynchrone, synchrone), la configuration des bobines, le nombre de spires, le schéma de connexion et le facteur de remplissage sont optimisés pour atteindre les performances électriques, thermiques et mécaniques requises.", en:"Electric motor winding consists of inserting and winding enamelled copper wire into stator slots to create the electromagnetic circuits responsible for generating the rotating magnetic field. Depending on the motor type (induction, synchronous), coil arrangement, number of turns, connection scheme and copper fill factor are optimized to achieve the required electrical, thermal and mechanical performance." },
+    steps:{fr:['Préparation et isolation des encoches du stator','Insertion ou enroulement du fil de cuivre émaillé','Formation et ligaturage des têtes de bobines','Raccordement et soudage des connexions','Imprégnation sous vernis ou résine isolante','Polymérisation / cuisson','Contrôles électriques et dimensionnels finaux' ],
+           en:['Stator slot preparation and insulation', 'Insertion or winding of enamelled copper wire', 'Coil end-turn forming and lacing', 'Connection and lead soldering/welding', 'Varnish or resin impregnation', 'Curing / baking process', 'Final electrical and dimensional testing']    },
+    img:'images/process/bobinageMoteurs.jpg'
+},
   enroulement: {
     icon:'🔃',
     name:{fr:'Enroulement',en:'Coiling'},
-    desc:{fr:"L'enroulement désigne la mise en forme hélicoïdale du fil ou de la bande pour constituer les enroulements d'un générateur, alternateur ou moteur électrique. Pour les grandes machines, le fil est formé en barres statoriques (barres de Roebel) avant d'être inséré dans les encoches du stator.",en:"Coiling refers to the helical forming of wire or strip to constitute the windings of a generator, alternator or electric motor. For large machines, the wire is formed into stator bars (Roebel bars) before being inserted into the stator slots."},
-    steps:{fr:['Mise en forme des barres ou spires','Insertion dans les encoches stator/rotor','Interconnexion et brasage','Tests électriques haute tension'],en:['Bar or coil forming','Insertion into stator/rotor slots','Interconnection and brazing','High voltage electrical testing']},
+    desc:{fr:"L'enroulement est l'opération finale de production consistant à enrouler le fil ou le méplat sur une bobine ou un touret. Il permet de conditionner le produit pour le stockage, le transport et les opérations de transformation ultérieures, tout en préservant son intégrité géométrique et son état de surface.",en:"Coiling is the final production step in which the wire or flat wire is wound onto a spool or reel. This operation prepares the product for storage, transportation, and subsequent processing while preserving its dimensional accuracy and surface quality."},
+    steps:{fr:["Contrôle de la vitesse et du couple d'enroulement",'Synchronisation avec la ligne de production','Répartition uniforme des spires','Gestion automatique du changement de bobine'],en:['Winding speed and torque control','Synchronization with de production line','Uniform turn distribution','Automatic reel change management']},
     img:'images/process/enroulement.png'
   },
   revetement: {
@@ -596,73 +703,177 @@ const nextStepsData = {
     steps:{fr:['Préparation et préchauffage du fil','Extrusion du polymère','Refroidissement et calibrage','Contrôle d\'épaisseur et d\'adhérence'],en:['Wire preparation and preheating','Polymer extrusion','Cooling and calibration','Thickness and adhesion testing']},
     img:'images/process/revetement.png'
   },
+
+papier: {
+  icon:'📄',
+  name:{fr:'Isolation papier Kraft / Nomex®',en:'Kraft paper / Nomex® insulation'},
+  desc:{
+    fr:"L'isolation en papier Kraft ou en Nomex® consiste à enrouler une ou plusieurs couches de matériau isolant autour du conducteur en cuivre, principalement pour les transformateurs de puissance. Cette isolation assure une excellente rigidité diélectrique, une bonne tenue thermique et une compatibilité avec les huiles isolantes ou les transformateurs secs.",
+    en:"Kraft paper or Nomex® insulation consists of wrapping one or more layers of insulating material around the copper conductor, mainly for power transformers. This insulation provides excellent dielectric strength, high thermal performance, and compatibility with insulating oils or dry-type transformers."
+  },
+  steps:{
+    fr:['Préparation et nettoyage du conducteur','Enrubannage du papier ou du Nomex®','Contrôle du recouvrement et de la tension','Bobinage et contrôle final'], en:['Conductor preparation and cleaning','Paper or Nomex® wrapping','Overlap and tension control','Coiling and final inspection']
+  },
+  img:'images/process/papier_nomex.webp'
+},
+
   decoupage: {
     icon:'✂️',
     name:{fr:'Découpage & Perçage',en:'Cutting & Drilling'},
     desc:{fr:"Le découpage et perçage des bandes ou plaques de cuivre s'effectue par poinçonnage (stamping), découpe laser ou usinage. Ces opérations permettent d'obtenir les formes finales des busbars, contacts, dissipateurs ou pièces de connectique avec les tolérances requises (±0,05 mm typiquement).",en:"Cutting and drilling of copper strips or plates is performed by stamping, laser cutting or machining. These operations produce the final shapes of busbars, contacts, heat sinks or connector parts with required tolerances (typically ±0.05 mm)."},
     steps:{fr:['Mise en longueur / déroulage','Poinçonnage ou découpe laser','Perçage et taraudage','Ébavurage et contrôle dimensionnel'],en:['Length cutting / uncoiling','Stamping or laser cutting','Drilling and tapping','Deburring and dimensional inspection']},
-    img:'images/process/decoupage.png'
+    img:'images/process/decoupage.jpg'
   },
-  soudage: {
+  brasage: {
     icon:'🔥',
-    name:{fr:'Soudage / Brasage',en:'Welding / Brazing'},
+    name:{fr:'Brasage',en:'Brazing'},
     desc:{fr:"L'assemblage des pièces en cuivre se fait par brasage (alliage Ag-Cu-P ou Cu-P à 650–800°C) ou par soudage TIG/MIG pour les pièces épaisses. Le brasage garantit une résistance de contact minimale. Pour les câbles, le soudage par ultrasons ou par résistance est utilisé pour les connexions.",en:"Copper part assembly is done by brazing (Ag-Cu-P or Cu-P alloy at 650–800°C) or TIG/MIG welding for thick parts. Brazing ensures minimal contact resistance. For cables, ultrasonic or resistance welding is used for connections."},
     steps:{fr:['Préparation et dégraissage des surfaces','Positionnement et maintien en position','Brasage ou soudage','Contrôle visuel et test de résistance'],en:['Surface preparation and degreasing','Positioning and fixturing','Brazing or welding','Visual inspection and resistance testing']},
-    img:'images/process/soudage.png'
+    img:'images/process/brasage.jpg'
   },
   etamage: {
     icon:'✨',
     name:{fr:'Étamage / Argentage',en:'Tinning / Silver plating'},
     desc:{fr:"L'étamage (dépôt d'étain) ou l'argentage sont des traitements de surface appliqués sur le cuivre pour améliorer la soudabilité, la résistance à la corrosion et les propriétés de contact électrique. Le dépôt se fait par électrolyse ou par immersion dans un bain fondu (étamage à chaud).",en:"Tinning (tin coating) or silver plating are surface treatments applied to copper to improve solderability, corrosion resistance and electrical contact properties. Coating is applied by electrolysis or hot-dip immersion."},
     steps:{fr:['Décapage et activation de surface','Électrodépôt ou immersion bain fondu','Rinçage et passivation','Contrôle épaisseur et adhérence'],en:['Surface pickling and activation','Electrodeposition or hot-dip immersion','Rinsing and passivation','Thickness and adhesion testing']},
-    img:'images/process/etamage.png'
-  }
+    img:'images/process/etamage.jfif'
+  },
+  PEEK: { 
+    icon:'♨️', 
+    name:{fr:'Revêtement avec du PEEK',en:'PEEK isolation'}, 
+    desc:{fr:"Le PEEK (polyétheréthercétone) est un polymère de haute performance utilisé comme revêtement de fils soumis à des températures importantes et des efforts mécaniques considerables. Ses propriétés le plus remarquables sont: "}, 
+    steps:{fr:['Haute résistance thermique (jusqu\'à environ 260 °C en continu)','Résistance chimique','Faible absorption d\'humidité','Excellentes propriétés diélectriques', 'Retardant de flammes', 'Excellentes propriétés mécaniques', 'Legèrété'],en:['High temperature resistance (up to 260 °C for long periods of time)', 'Chemical resistance', 'Low water absorption', 'Excellent dieletrics properties', 'Flame retardant', 'Excellent mechanical properties', 'Lightweight']}, 
+    img:'images/process/PEEK.jpg' 
+  },
+  transposition : {
+    icon:'🔀',
+    name:{fr:'Transposition des fils',en:'Wires transposition'},
+   desc:{
+        fr:"La transposition continue des conducteurs (CTC) consiste à assembler plusieurs fils émaillés en les croisant périodiquement selon un schéma précis. Cette technologie est largement utilisée dans les transformateurs de puissance afin de réduire les pertes électriques et d'améliorer la répartition du courant.",
+        en:"Continuously Transposed Conductor (CTC) technology consists of assembling multiple enamelled conductors and continuously transposing their positions according to a predefined pattern. It is widely used in power transformers to reduce electrical losses and improve current distribution."
+        },
+    steps:{fr:['Haute résistance thermique (jusqu\'à environ 260 °C en continu)','Résistance chimique','Faible absorption d\'humidité','Excellentes propriétés diélectriques', 'Retardant de flammes', 'Excellentes propriétés mécaniques', 'Legèrété'],en:['High temperature resistance (up to 260 °C for long periods of time)', 'Chemical resistance', 'Low water absorption', 'Excellent dieletrics properties', 'Flame retardant', 'Excellent mechanical properties', 'Lightweight']},
+    img:'images/process/transposition.jpg'
+  },
+
+  formage : {
+    icon:'📐',
+    name:{fr:'Formage des conducteurs',en:'Conductor forming'},
+    desc:{ fr:"Le formage consiste à donner au fil ou au conducteur en cuivre une géométrie spécifique par pliage, cintrage ou mise en forme. Cette opération est essentielle pour les applications nécessitant des formes précises, comme les moteurs Hairpin, les busbars ou certains enroulements complexes.",
+        en:"Forming consists of shaping copper wires or conductors through bending, profiling or other deformation processes. This operation is essential for applications requiring precise geometries, such as Hairpin motors, busbars and complex winding assemblies."
+        },
+    steps:{fr:['Obtention de géométries complexes et précises','Adapté aux conducteurs ronds et rectangulaires','Optimisation de l\'utilisation de l\'espace disponible','Haute répétabilité dimensionnelle','Préparation des conducteurs pour l\'assemblage','Compatible avec les moteurs Hairpin et les busbars','Réduction des opérations de montage'],en:['Creation of complex and precise geometries','Suitable for round and rectangular conductors', 'Optimized use of available space', 'High dimensional repeatability', 'Preparation of conductors for assembly','Compatible with Hairpin motors and busbars','Reduced assembly operations' ]},
+    img:'images/process/formage.webp'
+},
+
+  formageBusbar : {
+      icon:'📐',
+      name:{fr:'Formage des conducteurs',en:'Conductor forming'},
+      desc:{ fr:"Le formage consiste à donner au fil ou au conducteur en cuivre une géométrie spécifique par pliage, cintrage ou mise en forme. Cette opération est essentielle pour les applications nécessitant des formes précises, comme les moteurs Hairpin, les busbars ou certains enroulements complexes.",
+          en:"Forming consists of shaping copper wires or conductors through bending, profiling or other deformation processes. This operation is essential for applications requiring precise geometries, such as Hairpin motors, busbars and complex winding assemblies."
+          },
+      steps:{fr:['Obtention de géométries complexes et précises','Adapté aux conducteurs ronds et rectangulaires','Optimisation de l\'utilisation de l\'espace disponible','Haute répétabilité dimensionnelle','Préparation des conducteurs pour l\'assemblage','Compatible avec les moteurs Hairpin et les busbars','Réduction des opérations de montage'],en:['Creation of complex and precise geometries','Suitable for round and rectangular conductors', 'Optimized use of available space', 'High dimensional repeatability', 'Preparation of conductors for assembly','Compatible with Hairpin motors and busbars','Reduced assembly operations' ]},
+      img:'images/process/formagebusbar.jpg'
+  },
+
+assemblageHairpin: {
+    icon:'🔗',
+    name:{fr:'Assemblage Hairpin',en:'Hairpin Assembly'},
+    desc:{fr:"L’assemblage Hairpin consiste à insérer les conducteurs préformés en cuivre dans les encoches du stator, puis à les orienter, les torsader et les connecter afin de constituer les circuits électriques du moteur. Cette étape comprend également le soudage des extrémités des hairpins et la réalisation des connexions de phase, garantissant les performances électriques et la fiabilité du stator.",
+          en:"Hairpin assembly consists of inserting preformed copper conductors into the stator slots, then orienting, twisting and connecting them to form the motor's electrical circuits. This stage also includes welding the hairpin ends and creating phase connections, ensuring electrical performance and stator reliability."},
+    steps:{fr:['Insertion des hairpins dans les encoches du stator', 'Mise en position et alignement des conducteurs','Torsadage des extrémités selon le schéma de connexion','Soudage laser ou TIG des hairpins','Réalisation des connexions de phase','Contrôle de la qualité des soudures','Tests électriques préliminaires'],
+           en:['Insertion of hairpins into stator slots', 'Conductor positioning and alignment', 'End twisting according to the winding scheme', 'Laser or TIG welding of hairpins', 'Phase connection assembly', 'Weld quality inspection','Preliminary electrical testing']
+    },
+    img:'images/process/enroulementHairpin.png'
+  },
+
+fibremica: {
+  icon:'🧵',
+  name:{fr:'Isolation fibre de verre + mica',en:'Glass fiber + mica insulation'},
+  desc:{fr:"L'isolation par fibre de verre et mica est utilisée pour les conducteurs destinés aux moteurs, alternateurs et générateurs de forte puissance. Les rubans de mica assurent une excellente isolation électrique, tandis que la fibre de verre apporte une résistance mécanique et thermique élevée, adaptée aux environnements sévères.",
+    en:"Glass fiber and mica insulation is used for conductors intended for high-power motors, alternators, and generators. Mica tapes provide excellent electrical insulation, while glass fiber offers high mechanical and thermal resistance for demanding operating conditions."},
+  steps:{fr:['Application du ruban de mica','Enrubannage de la fibre de verre','Imprégnation ou fixation thermique','Contrôle de l\'épaisseur et de l\'adhérence'],en:['Mica tape application','Glass fiber wrapping','Impregnation or thermal curing','Thickness and adhesion inspection']},
+  img:'images/process/fibre_mica.png'
+},
+
 };
 
 // Maps each product (by name key) to its next steps
 const productNextSteps = {
-  'Transformateur':         ['emaillage'],
-  'Transformer':            ['emaillage','bobinage'],
-  'Conducteur électrique':  ['revetement'],
-  'Electrical conductor':   ['revetement'],
-  'Générateur — Stator':    ['emaillage','enroulement'],
-  'Generator — Stator':     ['emaillage','enroulement'],
-  'Générateur — Roteur':    ['decoupage','soudage'],
-  'Generator — Rotor':      ['decoupage','soudage'],
-  'Générateur — CTC':       ['emaillage','enroulement'],
-  'Generator — CTC':        ['emaillage','enroulement'],
-  'CTC (câbles)':           ['emaillage','enroulement'],
-  'CTC (cables)':           ['emaillage','enroulement'],
-  'Câbles pour voiture':    ['revetement'],
-  'Automotive cables':      ['revetement'],
-  'Composants EV':          ['emaillage','bobinage'],
-  'EV components':          ['emaillage','bobinage'],
+  //Energie
+  'Transformateur de Haute Puissance': ['papier', 'PEEK','enroulement','bobinage'],
+  'High-Power Transformer': ['papier', 'PEEK','enroulement','bobinage'],
+  'Transformateur de Faible Puissance': ['emaillage', 'enroulement','bobinage'],
+  'Low-Power Transformer': ['emaillage', 'enroulement','bobinage'],
+  'Transformateur de Distribution' : ['papier', 'enroulement','bobinage'],
+  'Distribution Transformer': ['papier', 'enroulement','bobinage'],
+  'Câble électrique' :  ['emaillage','revetement','enroulement'],
+  'Electrical cable':   ['emaillage','revetement','enroulement'],
+  'Générateur de Puissance Moyenne' : [ 'emaillage','fibremica', 'enroulement','bobinage'],
+  'Medium-Power Generator' : [ 'emaillage','fibremica', 'enroulement','bobinage'],
+  'Générateur de Haute Puissance': ['emaillage', 'fibremica','enroulement','bobinage'],
+  'High-Power Generator':  ['emaillage', 'fibremica','enroulement','bobinage'],
+  'CTC (Continuously Transposed Conductor)' : ['papier','transposition'],
+  'CTC (Continuously Transposed Conductor)' : ['papier','transposition'],
+
+  //Transport
+  'Câbles pour voiture':    ['emaillage','revetement','enroulement'],
+  'Automotive cables':      ['emaillage','revetement','enroulement'],
+  'Composants EV':          ['PEEK' ,'bobinage'],
+  'EV components':          ['PEEK' ,'bobinage'],
   'Fils caténaires':        ['etamage'],
   'Catenary wires':         ['etamage'],
+
+  //Electronic
   'Inducteur':              ['emaillage','bobinage'],
   'Inductor':               ['emaillage','bobinage'],
   'Plaque de circuit':      ['decoupage','etamage'],
   'Circuit board':          ['decoupage','etamage'],
-  'Busbars':                ['decoupage','soudage'],
+  'Busbars':                ['decoupage', 'formageBusbar', 'brasage'],
   'Puces électroniques':    ['decoupage'],
   'Electronic chips':       ['decoupage'],
-  'Dissipateur thermique':  ['decoupage','soudage'],
-  'Heat sink':              ['decoupage','soudage'],
+  'Dissipateur thermique':  ['decoupage','brasage'],
+  'Heat sink':              ['decoupage','brasage'],
   'Rubans PV':              ['etamage'],
   'PV ribbons':             ['etamage'],
   'HFI Speaker Cable':      ['revetement'],
+  'HFI Speaker Cable':      ['revetement'],
+
+  //Automobile et E-mobilité
   'Faisceau électrique':    ['revetement'],
   'Wiring harness':         ['revetement'],
-  'Busbar batterie EV':     ['decoupage','soudage'],
-  'EV battery busbar':      ['decoupage','soudage'],
-  'Alternateur':            ['emaillage','enroulement'],
-  'Alternator':             ['emaillage','enroulement'],
+  'Busbar batterie EV':     ['decoupage','brasage'],
+  'EV battery busbar':      ['decoupage','brasage'],
+  'Alternateur':            ['emaillage','bobinage'],
+  'Alternator':             ['emaillage','bobinage'],
   'Bobine électromagnétique':['emaillage','bobinage'],
   'Electromagnetic coil':   ['emaillage','bobinage'],
-  'Colliers ronds':         ['etamage'],
-  'Round necklaces':        ['etamage'],
-  'Colliers plats':         ['decoupage','etamage'],
-  'Flat necklaces':         ['decoupage','etamage'],
+  'Borne de recharge d’EV' : ['emaillage','enroulement'],
+  'EV Charging station': ['emaillage','enroulement'],
+  'Pompe à carburant électrique' : ['emaillage','enroulement'],
+  'Fuel pumps' : ['emaillage','enroulement'],
+
+  //Moteurs électriques
+  'Moteurs CC' : ['emaillage','bobinageMoteur'],
+  'DC motors': ['emaillage','bobinageMoteur'],
+  'Moteur Induction': ['emaillage','bobinageMoteur'],
+  'Induction motor': ['emaillage','bobinageMoteur'],
+  'Moteur Synchrone - PMSM' : ['emaillage','bobinageMoteur'],
+  'PMSM Synchronous motor' : ['emaillage','bobinageMoteur'],
+  'Moteur Hairpin (Fil isolé avec PEEK)': ['emaillage', 'PEEK', 'formage', 'assemblageHairpin'],
+  'Hairpin motor (PEEK-insulated wire)' :  ['emaillage', 'PEEK', 'formage', 'assemblageHairpin'],
+  'Moteur synchrone à rotor bobiné' : ['emaillage','bobinageMoteur'],
+  'Wound-field synchronous motor': ['emaillage','bobinageMoteur'],
+  'Moteur de basse tension' : ['emaillage','bobinageMoteur'],
+  'Low-voltage motor': ['emaillage','bobinageMoteur'],
+
+  //Appareils électromenagers
+  'Compresseur de climatisateurs' : ['emaillage','bobinage'],
+  'Air conditioner compressor' : ['emaillage','bobinage'],
+  'Moteur d\'aspirateur' : ['emaillage','bobinage'],
+  'Vaccum cleaner motor' : ['emaillage','bobinage'],
+  'Moteur de lave-linge' : ['emaillage','bobinage'],
+
 };
 
 const sectorsData = [
@@ -670,52 +881,429 @@ const sectorsData = [
     name: { fr: 'Énergie', en: 'Energy' }, icon: '⚡',
     tags: { fr: ['Transformateurs','Générateurs','CTC'], en: ['Transformers','Generators','CTC'] },
     products: [
-      { name:{fr:'Transformateur',en:'Transformer'}, semi:{fr:'Enroulement (bobine)',en:'Winding (coil)'}, grade:'Cu-ETP', machine:'RM', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil rond',en:'Round wire'}, img:'images/transformateur.png' },
-      { name:{fr:'Conducteur électrique',en:'Electrical conductor'}, semi:{fr:'Câble électrique',en:'Electrical cable'}, grade:'Cu-ETP', machine:'RM', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil rond',en:'Round wire'}, img:'images/conducteurelectrique.png' },
-      { name:{fr:'Générateur — Stator',en:'Generator — Stator'}, semi:{fr:'Enroulement stator',en:'Stator winding'}, grade:'Cu-OF', machine:'RM', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil rond',en:'Round wire'}, img:'images/stator_generateur.jpg' },
-      { name:{fr:'Générateur — Roteur',en:'Generator — Rotor'}, semi:{fr:'Barres de cuivre du roteur',en:'Rotor copper bars'}, grade:'Cu-OF', machine:'FRM', entree:{fr:'Barre coulée',en:'Cast bar'}, sortie:{fr:'Bande',en:'Strip'}, img:'images/rotor_generateur.jpg' },
-      { name:{fr:'Générateur — CTC',en:'Generator — CTC'}, semi:{fr:'Conducteur transposé continu',en:'Continuously transposed conductor'}, grade:'Cu-OF', machine:'RMW', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil plat',en:'Flat wire'}, img:'images/ctc_generateur.png' },
-      { name:{fr:'CTC (câbles)',en:'CTC (cables)'}, semi:{fr:'Bande conductrice',en:'Conductive strip'}, grade:'Cu-OF', machine:'FRM', entree:{fr:'Barre coulée',en:'Cast bar'}, sortie:{fr:'Bande',en:'Strip'}, img:'images/CTC_cables.png' }
+        { name:{fr:'CTC (Continuously Transposed Conductor)',en:'CTC (Continuously Transposed Conductor)'}, 
+              semi:{fr:'Fil rectangulaire émaillé',en:'Enameled rectangular wire'}, 
+              grade:['Cu-ETP'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RMW', sortie:{fr:'Fil méplat',en:'Flat wire'}}],
+              //machine:'Laminoir RMW', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil méplat',en:'Flat wire'}, 
+              desc:{fr:'Conducteur composé de plusieurs fils de cuivre isolés, assemblés et transposés en continu le long du câble. Cela signifie que les fils changent régulièrement de position afin de répartir uniformément le courant électrique.',en:'Conductor composed of several insulated copper wires, assembled and continuously transposed along the cable. This means that the wires regularly change position in order to evenly distribute the electrical current.'},
+              propreq:{fr: ['Conducitivité électrique maximale (pertes réduites)', 'Bonne isolation et resistance thermique', 'Flexibilité', 'Resistance à la corrosion'], en:['Maximum electrical conductivity (losses reduced)', 'Good isolation and thermal resistance', 'Flexibility', 'Corrosion resistance']}, 
+              formeFil:{fr: ['Fil rectangulaire émaillé'],en:['Enameled rectangular wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP'],en:['Cu-ETP']},
+              img:'images/CTC_cables.png' },
+
+        { name:{fr:'Câble électrique',en:'Electrical cable'}, 
+              semi:{fr:'Fil conducteur',en:'Conductor wire'}, 
+              grade:['Cu-ETP','Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{fr:'Fil métallique utilisé pour transporter le courant électrique dans les installations, équipemments et les systèmes d’énergie.',en:'Metal wire used to carry electrical current in electrical installations, equipment, and power systems.'},
+              propreq:{fr: ['Conducitivité électrique maximale (pertes réduites)', 'Bonne resistance mécanique', 'Flexibilité', 'Resistance à la corrosion'], en:['Maximum electrical conductivity (reduced losses)', 'Good mechanical strength', 'Flexibility', 'Corrosion resistance']}, 
+              formeFil:{fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP' ,'Cu-OF'],en:['Cu-ETP','Cu-OF']}, 
+              img:'images/conducteurelectrique.png' },
+
+      { name:{fr:'Transformateur de Haute Puissance',en:'High-Power Transformer'}, 
+              semi:{fr:'Enroulement',en:'Winding' }, 
+              grade:['Cu-ETP'],  
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RMW', sortie:{fr:'Fil méplat',en:'Flat wire'}}],
+             // machine:'Laminoir RMW', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil méplat',en:'Flat wire'}, 
+              desc:{fr:'Equipement dont la finalité est le transfert d’énergie électrique entre deux circuits.',en:'Equipment whose purpose is to transfer electrical energy between two circuits.'},
+              propreq:{fr: ['Conducitivité électrique maximale (pertes réduites)', 'Bonne aptitude au formage'],en:['Maximum electrical conductivity (reduced losses)', 'Good formability']}, 
+              formeFil:{fr: ['Fil rectangulaire émaillé', 'CTC'],en:['Enameled rectangulaire wire', 'CTC']}, 
+              gradesPossibles:{fr: ['Cu-ETP'],en:['Cu-ETP']}, 
+              img:'images/transformateur_hautepuissance.webp' },
+
+      { name:{fr:'Transformateur de Faible Puissance',en:'Low-Power Transformer'}, 
+              semi:{fr:'Enroulement',en:'Winding' }, 
+              grade:['Cu-ETP'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'},
+              desc:{fr:'Equipement dont la finalité est le transfert d’énergie électrique entre deux circuits.',en:'Equipment whose purpose is to transfer electrical energy between two circuits.'},
+              propreq:{fr: ['Conducitivité électrique maximale (pertes réduites)', 'Bonne aptitude au formage'],en:['Maximum electrical conductivity (reduced losses)', 'Good formability']}, 
+              formeFil:{fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP'],en:['Cu-ETP']}, 
+              img:'images/transformateur_faiblepuissance.png' },
+
+      { name:{fr:'Transformateur de Distribution',en:'Distribution Transformer'}, 
+              semi:{fr:'Enroulement avec CTC',en:'CTC Winding' }, 
+              grade:['Cu-ETP'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RMW', sortie:{fr:'Fil méplat',en:'Flat wire'}}],
+              //machine:'Laminoir RMW', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil méplat',en:'Flat wire'}, 
+              desc:{fr:'Equipement dont la finalité est le transfert d’énergie électrique entre deux circuits.',en:'Equipment whose purpose is to transfer electrical energy between two circuits.'},
+              propreq:{fr: ['Conducitivité électrique maximale (pertes réduites)', 'Bonne aptitude au formage'],en:['Maximum electrical conductivity (reduced losses)', 'Good formability']}, 
+              formeFil:{fr: ['Fil rectangulaire émaillé', 'CTC'],en:['Enameled rectangulaire wire', 'CTC']},
+              gradesPossibles:{fr: ['Cu-ETP'],en:['Cu-ETP']}, 
+              img:'images/transformateur_distribution.webp' },
+
+       { name:{fr:'Générateur de Puissance Moyenne',en:'Medium-Power Generator'}, 
+              semi:{fr:'Enroulement stator',en:'Stator winding'}, 
+              grade:['Cu-ETP'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{fr:'Appareil qui transforme énergie mécanique en électrique afin d’alimenter des équipements et des circuits.', en:'Equipement that converts mechanical energy into electrical energy in order to supply power to equipment and electrical circuits.'},
+              propreq:{fr: ['Conducitivité électrique maximale (pertes réduites)', 'Bonne isolation et resistance thermique', 'Flexibilité', 'Resistance à la corrosion'], en:['Maximum electrical conductivity (losses reduced)', 'Good isolation and thermal resistance', 'Flexibility', 'Corrosion resistance']}, 
+              formeFil:{fr: ['Fil rond'],en:['Round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP'],en:['Cu-ETP']}, 
+              img:'images/stator_generateur.jpg' },
+
+      { name:{fr:'Générateur de Haute Puissance',en:'High-Power Generator'}, 
+              semi:{fr:'Enroulement stator',en:'Stator winding'}, 
+              grade:['Cu-ETP'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RMW', sortie:{fr:'Fil méplat',en:'Flat wire'}}],
+              //machine:'Laminoir RMW', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil méplat',en:'Flat wire'}, 
+              desc:{fr:'Appareil qui transforme énergie mécanique en électrique afin d’alimenter des équipements et des circuits.', en:'Equipement that converts mechanical energy into electrical energy in order to supply power to equipment and electrical circuits.'} , propreq:{fr: ['Conducitivité électrique maximale (pertes réduites)', 'Bonne isolation et resistance thermique', 'Flexibilité', 'Resistance à la corrosion'],
+              en:['Maximum electrical conductivity (losses reduced)', 'Good isolation and thermal resistance', 'Flexibility', 'Corrosion resistance']}, 
+              formeFil:{fr: ['Fil rectangulaire émaillé', 'CTC'],en:['Enameled rectangular wire', 'CTC']}, 
+              gradesPossibles:{fr: ['Cu-ETP'],en:['Cu-ETP']},
+              img:'images/generateur_hautepuissance.webp' }      
     ]
-  },
-  { id: 'transport',
+    },
+    { id: 'transport',
     name: { fr: 'Transport', en: 'Transport' }, icon: '🚗',
     tags: { fr: ['Câbles auto','EV','Ferroviaire'], en: ['Auto cables','EV','Railway'] },
     products: [
-      { name:{fr:'Câbles pour voiture',en:'Automotive cables'}, semi:{fr:'Fil cuivre',en:'Copper wire'}, grade:'Cu-ETP', machine:'RM', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil rond',en:'Round wire'}, img:'images/cables_voiture.png' },
-      { name:{fr:'Composants EV',en:'EV components'}, semi:{fr:'Magnet wires',en:'Magnet wires'}, grade:'Cu-OF', machine:'RMW', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil plat',en:'Flat wire'}, img:'images/composants_EV.png' },
-      { name:{fr:'Fils caténaires',en:'Catenary wires'}, semi:{fr:'Câble de contact',en:'Contact cable'}, grade:'Cu-ETP', machine:'RM', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Profil extrudé',en:'Extruded profile'}, img:'images/fils_catenaires.png' }
+      { name:{fr:'Câbles pour voiture',en:'Automotive cables'}, 
+              semi:{fr:'Fil en cuivre',en:'Copper wire'}, 
+              grade:['Cu-ETP','Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{fr:'Les câbles électriques automobiles sont des conducteurs utilisés pour transporter l’énergie électrique et les signaux dans les différents systèmes du véhicule : démarrage, éclairage, batterie,, climatisation, systèmes électroniques, etc.', en:'Automotive electrical cables are conductors used to carry electrical power and signals throughout the vehicle’s various systems, including starting, lighting, battery, air conditioning, electronic systems, and more.'}, 
+              propreq:{fr:  ['Conducitivité electrique maximale (pertes réduites)','Bonne resistance mécanique','Flexibilité','Resistance à la corrosion'], en: ['Maximum electrical conductivity (reduced losses)', 'Good mechanical strength', 'Flexibility', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP', 'Cu-OF'],en:['Cu-ETP', 'Cu-OF']}, 
+              img:'images/cables_voiture.png' },
+
+      { name:{fr:'Composants EV',en:'EV components'}, 
+              semi:{fr:'Magnet wires',en:'Magnet wires'}, 
+              grade:['Cu-OF'],  
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RMW', sortie:{fr:'Fil méplat',en:'Flat wire'}}],
+              //machine:'Laminoir RMW', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil méplat',en:'Flat wire'}, 
+              desc:{fr:'Composants en cuivre tels que les enroulements du moteur électrique, les câbles haute tension, les connexions de batterie, les busbars, les systèmes de recharge et l’électronique de puissance.', en:'Copper components such as electric motor windings, high-voltage cables, battery connections, busbars, charging systems, and power electronics.'}, 
+              propreq:{fr: ['Conducitivité électrique maximale (pertes réduites)', 'Bonne isolation et resistance thermique', 'Flexibilité', 'Resistance à la corrosion'], en:['Maximum electrical conductivity (losses reduced)', 'Good isolation and thermal resistance', 'Flexibility', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Fil rectangulaire émaillé'],en:['Enameled flat wire']}, 
+              gradesPossibles:{fr: ['Cu-OF'],en:['Cu-OF']}, 
+              img:'images/composants_EV.png' },
+
+      { name:{fr:'Fils caténaires',en:'Catenary wires'}, 
+              semi:{fr:'Fil en cuivre',en:'Copper wire'}, 
+              grade:['Cu-ETP','Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RM', sortie:{fr:'Profil extrudé',en:'Extruded profile'}},
+                      {entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RMW', sortie:{fr:'Fil rectangulaire',en:'Rectangular wire'}}],
+              //machine:'Laminoir RM', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Profil extrudé',en:'Extruded profile'},               
+              desc:{fr:'Les fils caténaires en cuivre sont utilisés dans les systèmes de transport ferroviaire pour alimenter en énergie électrique les trains, les tramways et les métros.', en:'Copper catenary wires are used in railway transport systems to supply electrical power to trains, trams, and subways.'}, 
+              propreq:{fr:  ['Conducitivité electrique maximale (pertes réduites)','Bonne resistance mécanique','Resistance à l’usure','Resistance à la corrosion'], en: ['Maximum electrical conductivity (reduced losses)', 'Good mechanical strength', 'Wear restistance', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Fil profilé','Fil rectangulaire émaillé'],en:['Profiled wire','Enameled flat wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP', 'Cu-OF'],en:['Cu-ETP', 'Cu-OF']}, 
+             img:'images/fils_catenaires_2.png' }
     ]
   },
   { id: 'electronique',
     name: { fr: 'Électronique', en: 'Electronics' }, icon: '💻',
     tags: { fr: ['PCB','Busbars','Semi-conducteurs'], en: ['PCB','Busbars','Semiconductors'] },
     products: [
-      { name:{fr:'Inducteur',en:'Inductor'}, semi:{fr:'Enroulement',en:'Winding'}, grade:'Cu-ETP', machine:'RM', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil rond',en:'Round wire'}, img:'images/inducteur.png' },
-      { name:{fr:'Plaque de circuit',en:'Circuit board'}, semi:{fr:'Plaque / Bande',en:'Plate / Strip'}, grade:'Cu-ETP', machine:'FRM', entree:{fr:'Barre coulée',en:'Cast bar'}, sortie:{fr:'Bande',en:'Strip'}, img:'images/plaques_ckts.png' },
-      { name:{fr:'Busbars',en:'Busbars'}, semi:{fr:'Barre rectangulaire',en:'Rectangular bar'}, grade:'Cu-ETP', machine:'FRM', entree:{fr:'Barre coulée',en:'Cast bar'}, sortie:{fr:'Bande',en:'Strip'}, img:'images/busbars.png' },
-      { name:{fr:'Puces électroniques',en:'Electronic chips'}, semi:{fr:'Plaque semiconducteur',en:'Semiconductor plate'}, grade:'Cu-OF', machine:'FRM', entree:{fr:'Barre coulée',en:'Cast bar'}, sortie:{fr:'Bande',en:'Strip'}, img:'images/puces_electroniques.png' },
-      { name:{fr:'Dissipateur thermique',en:'Heat sink'}, semi:{fr:'Bande',en:'Strip'}, grade:'Cu-OF', machine:'FRM', entree:{fr:'Barre coulée',en:'Cast bar'}, sortie:{fr:'Bande',en:'Strip'}, img:'images/dissipateur_thermique_electronic.png' },
-      { name:{fr:'Rubans PV',en:'PV ribbons'}, semi:{fr:'Fil plat photovoltaïque',en:'Photovoltaic flat wire'}, grade:'Cu-OF', machine:'RMW', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil plat',en:'Flat wire'}, img:'images/ruban_interconnexionPV.png' },
-      { name:{fr:'HFI Speaker Cable',en:'HFI Speaker Cable'}, semi:{fr:'Câble audio Hi-Fi',en:'Hi-Fi audio cable'}, grade:'Cu-OF', machine:'RM', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil rond',en:'Round wire'}, img:'images/HFI_speaker_cable.png' }
+      { name:{fr:'Inducteur',en:'Inductor'}, 
+              semi:{fr:'Enroulement',en:'Winding'}, 
+              grade:['Cu-ETP','Cu-OF'],  
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{fr:'Un inducteur électronique est un composant électrique constitué d’une bobine conductrice utilisée pour créer un champ magnétique lorsqu’un courant électrique le traverse. Il est utilisé dans les transformateurs, moteurs, alimentations électroniques et circuits de filtrage.', en:'An electronic inductor is an electrical component consisting of a conductive coil used to create a magnetic field when an electric current passes through it. It is used in transformers, motors, electronic power supplies, and filtering circuits.'}, 
+              propreq:{fr:  ['Conducitivité electrique maximale (pertes réduites)','Bonne resistance mécanique','Resistance à l’usure et aux vibrations','Resistance à la corrosion'], 
+                        en: ['Maximum electrical conductivity (reduced losses)', 'Good mechanical strength', 'Wear and vibration resistance', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP', 'Cu-OF'],en:['Cu-ETP', 'Cu-OF']}, 
+              img:'images/inducteur.png' ,
+              
+            },
+
+      { name:{fr:'Plaque de circuit',en:'Circuit board'}, 
+              semi:{fr:'Plaque',en:'Plate'}, 
+              grade:['Cu-ETP','Cu-OF'],  
+              flows: [ { entree:{fr:'Barre coulée',en:'Cast bar'}, machine:'FRM', sortie:{fr:'Bande',en:'Strip'}}],
+              //machine:'Laminoir FRM', entree:{fr:'Barre coulée',en:'Cast bar'}, sortie:{fr:'Bande',en:'Strip'}, 
+              desc:{fr:'Les plaques de cuivre sont la base conductrice des circuits imprimés (PCB — Printed Circuit Boards). Une fine couche de cuivre est déposée sur une plaque isolante afin de former les pistes électriques qui relient les composants électroniques. Elles permettent la transmission du courant et des signaux électriques dans les appareils électroniques.', en:'Copper plates form the conductive base of Printed Circuit Boards (PCBs). A thin layer of copper is deposited onto an insulating board to create the electrical traces that connect electronic components. They enable the transmission of electrical current and signals in electronic devices.'}, 
+              propreq:{fr:  ['Bonne conducitivité electrique','Bonne conductivité thermique','Bonne resistance mécanique','Resistance à la corrosion'], en: ['Good electrical conductivity', 'Good thermal conductivity', 'Good mechanical resistance', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Bandes'],en:['Strips']}, 
+              gradesPossibles:{fr: ['Cu-ETP', 'Cu-OF'],en:['Cu-ETP', 'Cu-OF']}, 
+              img:'images/plaques_ckts.png' },
+
+      { name:{fr:'Busbars',en:'Busbars'}, 
+              semi:{fr:'Barre rectangulaire',en:'Rectangular bar'}, 
+              grade:['Cu-ETP','Cu-OF'], 
+              flows: [ { entree: {fr: 'Barre coulée', en: 'Cast bar' }, machine: 'FRM', sortie: {fr: 'Bandes', en: 'Strips' } },
+                       { entree: {fr: 'Fil machine', en: 'Copper rod wire' }, machine: "RMW", sortie: {fr: 'Fil rectangulaire', en: 'Rectangular wire'}}], 
+             // machine:'Laminoir FRM', entree:{fr:'Barre coulée',en:'Cast bar'}, sortie:{fr:'Bande',en:'Strip'}, 
+              desc:{fr:'Les busbars sont des bandes métalliques utilisés pour distribuer de fortes intensités de courant dans les systèmes électriques et électroniques. Ils assurent la connexion et la distribution de l’énergie entre les batteries, convertisseurs, armoires électriques, transformateurs et équipements de puissance.', 
+                    en:'Busbars are metallic bars used to distribute high electrical currents in electrical and electronic systems. They ensure the connection and distribution of power between batteries, converters, electrical cabinets, transformers, and power equipment.'}, 
+              propreq:{fr:  ['Haute conducitivité electrique (pertes réduites)','Bonne conductivité thermique','Bonne resistance mécanique','Resistance à la corrosion'], 
+                        en: ['High electrical conductivity (losses reduced)', 'Good thermal conductivity', 'Good mechanical resistance', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Bandes', 'Fil rectangulaire'],en:['Strips', 'Rectangular wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP', 'Cu-OF'],en:['Cu-ETP', 'Cu-OF']}, 
+              img:'images/busbars.png'              
+            },
+
+      { name:{fr:'Puces électroniques',en:'Electronic chips'}, 
+              semi:{fr:'Plaque semiconducteur',en:'Semiconductor plate'}, 
+              grade:['Cu-OF'],   
+              flows: [ { entree:{fr:'Barre coulée',en:'Cast bar'}, machine:'FRM', sortie:{fr:'Bande',en:'Strip'}}],
+              //machine:'Laminoir FRM', entree:{fr:'Barre coulée',en:'Cast bar'}, sortie:{fr:'Bande',en:'Strip'}, 
+              desc:{fr:'Les puces électroniques (circuits intégrés) utilisent le cuivre pour réaliser les interconnexions conductrices entre les transistors et les différents composants microscopiques de la puce. Le cuivre permet le transport rapide des signaux électriques et de l’énergie dans les dispositifs électroniques modernes.', 
+                    en:'Electronic chips (integrated circuits) use copper to create conductive interconnections between transistors and the various microscopic components of the chip. Copper enables the fast transmission of electrical signals and power in modern electronic devices.'}, 
+              propreq:{fr:  ['Conducitivité electrique maximale (pertes réduites)','Bonne isolation et resistance thermique','Bonne resistance mécanique','Resistance à la corrosion'], 
+                        en: ['Maximum electrical conductivity (losses reduced)', 'Good isolation and thermal reistance', 'Good mechanical resistance', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Bandes'],en:['Strips']}, 
+              gradesPossibles:{fr: ['Cu-OF'],en:['Cu-OF']}, 
+              img:'images/puces_electroniques.png' },
+
+      { name:{fr:'Dissipateur thermique',en:'Heat sink'}, 
+              semi:{fr:'Bande',en:'Strip'}, 
+              grade:['Cu-OF'],  
+              flows: [ { entree:{fr:'Barre coulée',en:'Cast bar'}, machine:'FRM', sortie:{fr:'Bande',en:'Strip'}}],
+              //machine:'Laminoir FRM', entree:{fr:'Barre coulée',en:'Cast bar'}, sortie:{fr:'Bande',en:'Strip'}, 
+              desc:{fr:'Les dissipateurs thermiques en cuivre sont des composants utilisés dans les circuits électroniques pour absorber et évacuer la chaleur produite par les composants électroniques, tels que les processeurs, transistors et modules de puissance. Ils permettent de maintenir une température de fonctionnement sûre et d’améliorer la fiabilité des systèmes électroniques.', 
+                    en:'Copper heat sinks are components used in electronic circuits to absorb and dissipate the heat generated by electronic components such as processors, transistors, and power modules. They help maintain a safe operating temperature and improve the reliability of electronic systems.'}, 
+              propreq:{fr:  ['Bonne conducitivité electrique','Haute conductivité thermique','Bonne resistance mécanique','Resistance à la corrosion'], 
+                        en: ['Good electrical conductivity', 'High thermal conductivity', 'Good mechanical resistance', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Bandes'],en:['Strips']}, 
+              gradesPossibles:{fr: ['Cu-OF'],en:['Cu-OF']}, 
+              img:'images/dissipateur_thermique_electronic.png' },
+
+      { name:{fr:'Rubans PV',en:'PV ribbons'}, 
+              semi:{fr:'Fil plat photovoltaïque',en:'Photovoltaic flat wire'}, 
+              grade:['Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RMW', sortie:{fr:'Fil méplat',en:'Flat wire'}}],
+              //machine:'Laminoir RMW', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil plat',en:'Flat wire'}, 
+              desc:{fr:'Les rubans d’interconnexion en cuivre pour panneaux photovoltaïques (PV) sont de fines bandes conductrices utilisées pour relier les cellules solaires entre elles dans les modules photovoltaïques. Ils assurent le transport du courant électrique produit par les cellules vers les circuits de collecte d’énergie.', 
+                    en:'Copper interconnection ribbons for photovoltaic (PV) panels are thin conductive strips used to connect solar cells together within photovoltaic modules. They ensure the transmission of the electrical current generated by the cells to the power collection circuits.'}, 
+              propreq:{fr:  ['Bonne conducitivité electrique','Bonne conductivité thermique','Bonne resistance mécanique','Resistance à la corrosion'], 
+                        en: ['Good electrical conductivity', 'Good thermal conductivity', 'Good mechanical resistance', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Fil plat émaillé'],en:['Enameled flat wire']}, 
+              gradesPossibles:{fr: ['Cu-OF'],en:['Cu-OF']},               
+              img:'images/ruban_interconnexionPV.png' },
+
+      { name:{fr:'HFI Speaker Cable',en:'HFI Speaker Cable'}, 
+              semi:{fr:'Câble audio Hi-Fi',en:'Hi-Fi audio cable'}, 
+              grade:['Cu-OF'],  
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{fr:'Les câbles audio HFI (High Fidelity) utilisent des conducteurs en cuivre pour transmettre les signaux audio entre les amplificateurs, haut-parleurs et équipements sonores avec une faible perte de signal et une haute qualité sonore.', 
+                    en:'High-Fidelity (Hi-Fi) audio cables use copper conductors to transmit audio signals between amplifiers, speakers, and audio equipment with minimal signal loss and high sound quality.'}, 
+               propreq:{fr:  ['Conducitivité electrique maximale (pertes réduites)','Bonne flexibilité','Bonne resistance mécanique','Resistance à la corrosion'], 
+                        en: ['Maximum electrical conductivity (losses reduced)', 'Good flexibility', 'Good mechanical resistance', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-OF'],en:['Cu-OF']}, 
+              img:'images/HFI_speaker_cable.png' }
     ]
   },
   { id: 'automobile',
-    name: { fr: 'Automobile', en: 'Automotive' }, icon: '🏎️',
+    name: { fr: 'Automobile et E-mobilité', en: 'Automotive and E-mobility' }, icon: '🏎️',
     tags: { fr: ['Faisceau','Alternateur','Batterie EV'], en: ['Wiring harness','Alternator','EV Battery'] },
     products: [
-      { name:{fr:'Faisceau électrique',en:'Wiring harness'}, semi:{fr:'Câble',en:'Cable'}, grade:'Cu-ETP', machine:'RM', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil rond',en:'Round wire'}, img:'images/faisceu_voiture.png' },
-      { name:{fr:'Busbar batterie EV',en:'EV battery busbar'}, semi:{fr:'Barre rectangulaire',en:'Rectangular bar'}, grade:'Cu-ETP', machine:'FRM', entree:{fr:'Barre coulée',en:'Cast bar'}, sortie:{fr:'Bande',en:'Strip'}, img:'images/busbar_batterieEV.png' },
-      { name:{fr:'Alternateur',en:'Alternator'}, semi:{fr:'Enroulement roteur',en:'Rotor winding'}, grade:'Cu-ETP', machine:'RM', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil rond',en:'Round wire'}, img:'images/alternateur_vehicule.png' },
-      { name:{fr:'Bobine électromagnétique',en:'Electromagnetic coil'}, semi:{fr:'Fil rond émaillé',en:'Enamelled round wire'}, grade:'Cu-ETP', machine:'RM', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil rond',en:'Round wire'}, img:'images/bobine_electromag_voiture.png' }
+      { name:{fr:'Faisceau électrique',en:'Wiring harness'}, 
+              semi:{fr:'Câble',en:'Cable'}, 
+              grade:['Cu-ETP','Cu-OF'],  
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine', en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{fr:'Le faisceau électrique automobile est un ensemble organisé de câbles et de connecteurs permettant de distribuer l’énergie électrique et les signaux électroniques entre les différents composants du véhicule (batterie, moteur, éclairage, capteurs, systèmes électroniques, etc).', 
+                    en: 'An automotive wiring harness is an organized assembly of cables and connectors used to distribute electrical power and electronic signals between the various components of a vehicle (battery, engine, lighting, sensors, electronic systems, etc.'}, 
+               propreq:{fr:  ['Conducitivité electrique maximale (pertes réduites)','Bonne flexibilité','Bonne resistance mécanique','Resistance à la corrosion'], 
+                        en: ['Maximum electrical conductivity (losses reduced)', 'Good flexibility', 'Good mechanical resistance', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP','Cu-OF'],en:['Cu-ETP','Cu-OF']}, 
+              img:'images/faisceu_voiture.png' },
+
+      { name:{fr:'Busbar batterie EV',en:'EV battery busbar'}, 
+              semi:{fr:'Barre rectangulaire',en:'Rectangular bar'}, 
+              grade:['Cu-OF'], 
+              flows: [ { entree: {fr: 'Barre coulée', en: 'Cast bar' }, machine: 'FRM', sortie: {fr: 'Bandes', en: 'Strips' } },
+                       { entree: {fr: 'Fil machine', en: 'Copper rod wire' }, machine: "RMW", sortie: {fr: 'Fil rectangulaire', en: 'Rectangular wire'}}], 
+              //machine:'Laminoir FRM', entree:{fr:'Barre coulée',en:'Cast bar'}, sortie:{fr:'Bande',en:'Strip'}, 
+              desc:{fr:'Les busbars en cuivre pour batteries de véhicules électriques (EV) sont des conducteurs rigides utilisés pour connecter les cellules, modules et systèmes de puissance de la batterie. Ils assurent la distribution du courant électrique à forte intensité entre la batterie et le moteur électrique.', 
+                    en: 'Copper busbars for electric vehicle (EV) batteries are rigid conductors used to connect battery cells, modules, and power systems. They ensure the distribution of high-current electrical power between the battery and electric motor.'}, 
+               propreq:{fr:  ['Conducitivité electrique maximale (pertes réduites)','Bonne flexibilité','Bonne resistance mécanique','Resistance à la corrosion'], 
+                        en: ['Maximum electrical conductivity (losses reduced)', 'Good flexibility', 'Good mechanical resistance', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Bandes','Fil rectangualire émaillé'],en:['Strips','Enameled flat wire']}, 
+              gradesPossibles:{fr: ['Cu-OF'],en:['Cu-OF']}, 
+              img:'images/busbar_batterieEV.png' },
+
+      { name:{fr:'Alternateur',en:'Alternator'}, 
+              semi:{fr:'Enroulement roteur',en:'Rotor winding'}, 
+              grade:['Cu-ETP','Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine: 'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'} },
+                       { entree: {fr: 'Fil machine', en: 'Copper rod wire' }, machine: 'RMW', sortie: {fr: 'Fil rectangulaire', en: 'Rectangular wire'}}], 
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{fr:'L’alternateur de véhicule est un générateur électrique entraîné par le moteur du véhicule. Il produit l’électricité nécessaire pour alimenter les équipements électriques et recharger la batterie pendant le fonctionnement du véhicule.', 
+                    en: 'A vehicle alternator is an electrical generator driven by the vehicle’s engine. It produces the electricity needed to power the vehicle’s electrical systems and recharge the battery while the vehicle is in operation.'}, 
+               propreq:{fr:  ['Conducitivité electrique maximale (pertes réduites)','Bonne conductivité thermique','Bonne resistance mécanique','Resistance à la corrosion'], 
+                        en: ['Maximum electrical conductivity (losses reduced)', 'Good thermal conductivity', 'Good mechanical resistance', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Fil rond émaillé', 'Fil plat émaillé'],en:['Enameled round wire', 'Enameled flat wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP','Cu-OF'],en:['Cu-ETP','Cu-OF']}, 
+              img:'images/alternateur_vehicule.png' },
+
+      { name:{fr:'Bobine électromagnétique',en:'Electromagnetic coil'}, 
+              semi:{fr:'Fil rond émaillé',en:'Enamelled round wire'}, 
+              grade:['Cu-ETP','Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{fr:'Une bobine électromagnétique automobile est un composant utilisé pour générer un champ magnétique lorsqu’elle est alimentée par un courant électrique. Elle équipe de nombreux systèmes du véhicule, tels que les injecteurs, électrovannes, relais, actionneurs et systèmes de commande électronique, permettant le contrôle et le fonctionnement précis des différents équipements du véhicule.', 
+                    en: 'An automotive electromagnetic coil is a component used to generate a magnetic field when energized by an electric current. It is found in various vehicle systems, such as fuel injectors, solenoid valves, relays, actuators, and electronic control systems, enabling the precise operation and control of vehicle equipment.'}, 
+               propreq:{fr: ['Haute conductivité électrique', 'Résistance à la chaleur', 'Bonne ductilité', 'Résistance à la corrosion'], 
+                        en: ['High electrical conductivity', 'Thermal resistance', 'Good ductility', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP','Cu-OF'],en:['Cu-ETP','Cu-OF']}, 
+              img:'images/bobine_electromag_voiture.png' },
+
+     { name:{fr:'Borne de recharge d’EV',en:'EV Charging station'}, 
+              semi:{fr:'Câble électrique',en:'Eletric cable'}, 
+              grade:['Cu-ETP','Cu-OF'],  
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{fr: 'Les bornes de recharge pour véhicules électriques utilisent le cuivre dans les câbles de puissance, les connecteurs de charge, les busbars, les transformateurs et les systèmes électroniques de puissance. Le cuivre assure le transport efficace de l’énergie électrique entre le réseau, la borne de recharge et le véhicule.',
+                    en:'Electric vehicle charging stations use copper in power cables, charging connectors, busbars, transformers, and power electronics systems. Copper ensures the efficient transfer of electrical energy between the grid, the charging station, and the vehicle.'}, 
+               propreq:{fr: ['Haute conductivité électrique', 'Résistance à la chaleur', 'Bonne ductilité', 'Résistance à la corrosion'], 
+                        en: ['High electrical conductivity', 'Thermal resistance', 'Good ductility', 'Corrosion resistance']}, 
+              formeFil: {fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP','Cu-OF'],en:['Cu-ETP','Cu-OF']}, 
+              img:'images/borne-recharge-3.jpg' },
+
+      { name:{fr:'Pompe à carburant électrique',en:'Fuel pumps'}, 
+              semi:{fr:'Câble électrique',en:'Eletric cable'}, 
+              grade:['Cu-ETP','Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{fr:'La pompe à carburant électrique utilise des composants en cuivre dans son moteur électrique, ses enroulements et ses connexions électriques. Le cuivre permet d’alimenter efficacement la pompe et d’assurer le transfert du carburant du réservoir vers le moteur.',
+                    en:'An electric fuel pump uses copper components in its electric motor, windings, and electrical connections. Copper enables efficient power delivery to the pump and ensures the transfer of fuel from the tank to the engine.'},
+               propreq:{fr: ['Excellente conductivité électrique', 'Résistance à la corrosion', 'Bonne ductilité', 'Résistance à la chaleur'],
+                       en:['Excellent electrical conductivity', 'Corrosion resistance', 'Good ductility', 'Heat resistance']},
+              formeFil: {fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP','Cu-OF'],en:['Cu-ETP','Cu-OF']}, 
+              img:'images/fuel_pump.png' },
     ]
   },
-  { id: 'bijoux',
-    name: { fr: 'Bijoux & Montres', en: 'Jewellery & Watches' }, icon: '💍',
-    tags: { fr: ['Colliers','Montres','Décoration'], en: ['Necklaces','Watches','Decoration'] },
+  { id: 'moteurs_electriques',
+    name: { fr: 'Moteurs électriques', en: 'Electrical motors' }, icon: '⚙️',
+    tags: { fr: ['Moteurs CC','Induction','Synchrones'], en: ['DC motors','Induction','Synchronous'] },
     products: [
-      { name:{fr:'Colliers ronds',en:'Round necklaces'}, semi:{fr:'Fil rond bijouterie',en:'Round jewellery wire'}, grade:'Cu-ETP', machine:'RM', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil rond',en:'Round wire'}, img:'images/coliers_rond.png' },
-      { name:{fr:'Colliers plats',en:'Flat necklaces'}, semi:{fr:'Fil plat bijouterie',en:'Flat jewellery wire'}, grade:'Cu-ETP', machine:'RMW', entree:{fr:'Copper rod',en:'Copper rod'}, sortie:{fr:'Fil plat',en:'Flat wire'}, img:'images/coliers_plats.png' }
+    { name:{fr:'Moteur Hairpin (Fil isolé avec PEEK)',en:'Hairpin motor (PEEK-insulated wire)'}, 
+              semi:{fr:'Enroulement stator',en:'Stator winding'}, 
+              grade:['Cu-ETP','Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RMW', sortie:{fr:'Fil méplat',en:'Flat wire'}}],
+              //machine:'Laminoir RMW', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil méplat',en:'Flat wire'}, 
+              desc:{ fr:'Le moteur Hairpin utilise des conducteurs en cuivre rectangulaires pliés en forme d’épingle (« hairpin ») pour constituer les enroulements du stator. Cette technologie permet d’augmenter la densité de cuivre, d’améliorer l’efficacité énergétique et d’optimiser les performances des moteurs électriques, notamment dans les véhicules électriques.',
+                    en:'A Hairpin motor uses rectangular copper conductors bent into a hairpin shape to form the stator windings. This technology increases copper fill factor, improves energy efficiency, and enhances the performance of electric motors, particularly in electric vehicles.'},
+              propreq:{fr:['Excellente conductivité électrique', 'Haute résistance thermique', 'Bonne formabilité', 'Résistance à la fatigue'],
+                        en:['Excellent electrical conductivity', 'High thermal resistance', 'Good formability', 'Fatigue resistance']},
+              formeFil: {fr: ['Fil plat émaillé'],en:['Enameled flat wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP','Cu-OF'],en:['Cu-ETP','Cu-OF']},  
+              img:'images/hairpin_motor.webp' },
+
+      { name:{fr:'Moteurs CC',en:'DC motors'}, 
+              semi:{fr:'Enroulements du Stator et/ou Rotor',en:'Stator and/or Rotor Windings'}, 
+              grade:['Cu-ETP','Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Laminoir RMW', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rectangulaire',en:'Rectangular wire'}, 
+              desc:{fr: 'Le moteur à courant continu (CC) utilise des enroulements en cuivre afin de convertir l’énergie électrique en énergie mécanique.',
+                    en:'The direct current motor (DC) uses copper windings to convert electrical energy into mechanical energy. '},
+               propreq:{fr: ['Excellente conductivité électrique', 'Résistance à la corrosion', 'Bonne ductilité', 'Résistance à la chaleur'],
+                       en:['Excellent electrical conductivity', 'Corrosion resistance', 'Good ductility', 'Heat resistance']},
+              formeFil: {fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP','Cu-OF'],en:['Cu-ETP','Cu-OF']}, 
+              img:'images/motorCC.jpg' },
+
+      { name:{fr:'Moteur Induction',en:'Induction motor'}, 
+              semi:{fr:'Enroulement du stator',en:'Stator winding'}, 
+              grade:['Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RMW', sortie:{fr:'Fil méplat',en:'Flat wire'}}],
+              //machine:'Laminoir RMW', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil méplat',en:'Flat wire'}, 
+              desc:{fr:'Le moteur d’induction utilise des enroulements en cuivre dans le stator pour générer un champ magnétique tournant qui entraîne le rotor. Il est utilisé dans les applications industrielles et automobiles.',
+                    en:'An induction motor uses copper windings in the stator to generate a rotating magnetic field that drives the rotor. It is used in industrial and automotive applications.'},
+              propreq:{fr: ['Excellente conductivité électrique', 'Résistance à la chaleur', 'Bonne ductilité', 'Résistance à la fatigue'], en: ['Excellent electrical conductivity', 'Heat resistance', 'Good ductility', 'Fatigue resistance']},
+              formeFil: {fr: ['Fil rectangulaire émaillé'],en:['Enameled rectangular wire']}, 
+              gradesPossibles:{fr: ['Cu-OF'],en:['Cu-OF']}, 
+              img:'images/motorinduction.png' },
+
+      { name:{fr:'Moteur Synchrone - PMSM',en:'PMSM Synchronous motor'}, 
+              semi:{fr:'Enroulement du stator',en:'Stator winding'}, 
+              grade:['Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RMW', sortie:{fr:'Fil méplat',en:'Flat wire'}}],
+              //machine:'Laminoir RMW', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil méplat',en:'Flat wire'}, 
+              desc:{fr:'Le moteur synchrone à aimants permanents (PMSM) utilise des enroulements en cuivre dans le stator pour créer le champ magnétique qui interagit avec les aimants permanents du rotor. Ce type de moteur est beaucoup utilisé dans les véhicules électriques.',
+                     en:'A Permanent Magnet Synchronous Motor (PMSM) uses copper windings in the stator to create the magnetic field that interacts with the rotor’s permanent magnets. This type of motor is very used in electric vehicles.'},
+              propreq:{fr: ['Excellente conductivité électrique', 'Haute résistance thermique', 'Bonne formabilité', 'Résistance à la fatigue'],
+                      en: ['Excellent electrical conductivity', 'High thermal resistance', 'Good formability', 'Fatigue resistance']},
+              formeFil: {fr: ['Fil rectangulaire émaillé'],en:['Enameled flat wire']}, 
+              gradesPossibles:{fr: ['Cu-OF'],en:['Cu-OF']}, 
+              img:'images/motorsync.png' },
+
+      { name:{fr:'Moteur synchrone à rotor bobiné',en:'Wound-field synchronous motor'}, 
+              semi:{fr:'Enroulement du rotor',en:'Rotor winding'}, 
+              grade:['Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RMW', sortie:{fr:'Fil méplat',en:'Flat wire'}}],
+              //machine:'Laminoir RMW', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil méplat',en:'Flat wire'}, 
+              desc:{ fr:'Le moteur synchrone à rotor bobiné (Wound-Field Synchronous Motor) utilise des enroulements en cuivre dans le stator et le rotor pour générer les champs magnétiques nécessaires à son fonctionnement. Il permet un contrôle précis du flux magnétique et de l’efficacité énergétique.',
+                    en:'A Wound-Field Synchronous Motor uses copper windings in both the stator and rotor to generate the magnetic fields required for operation. It enables precise magnetic flux control and high energy efficiency.'},
+              propreq:{fr:['Excellente conductivité électrique', 'Haute résistance thermique', 'Bonne formabilité', 'Résistance à la fatigue'],
+                        en:['Excellent electrical conductivity', 'High thermal resistance', 'Good formability', 'Fatigue resistance']},
+              formeFil: {fr: ['Fil plat émaillé'],en:['Enameled flat wire']}, 
+              gradesPossibles:{fr: ['Cu-OF'],en:['Cu-OF']},  
+              img:'images/rotor_bobine.png' },
+
+      { name:{fr:'Moteur de basse tension',en:'Low-voltage motor'}, 
+              semi:{fr:'Enroulement du stator',en:'Stator winding'}, 
+              grade:['Cu-OF'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'RMW', sortie:{fr:'Fil méplat',en:'Flat wire'}}],
+              //machine:'Laminoir RMW', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil méplat',en:'Flat wire'}, 
+              desc:{ fr:'Le moteur basse tension utilise des enroulements et connexions en cuivre pour convertir l’énergie électrique en énergie mécanique. Il est employé dans de nombreux équipements automobiles et industriels nécessitant une alimentation basse tension.',
+                    en:'A low-voltage motor uses copper windings and connections to convert electrical energy into mechanical energy. It is used in many automotive and industrial applications requiring a low-voltage power supply.'},
+              propreq:{fr:['Excellente conductivité électrique', 'Haute résistance thermique', 'Bonne formabilité', 'Résistance à la fatigue'],
+                        en:['Excellent electrical conductivity', 'High thermal resistance', 'Good formability', 'Fatigue resistance']},
+              formeFil: {fr: ['Fil plat émaillé'],en:['Enameled flat wire']}, 
+              gradesPossibles:{fr: ['Cu-OF'],en:['Cu-OF']},  
+              img:'images/moteur_bassetension.jpg' },
+    ]
+  },
+ { id: 'appareils_electromenagers',
+    name: { fr: 'Appareils électromenagers', en: 'Home appliances' }, icon: '🏡',
+    tags: { fr: ['Compresseur de climatisateurs','Moteurs d’aspirateurs','Moteurs de lave-linge'], en: ['Air conditioner compressors','Vaccum cleaner motors','Washing machine motors'] },
+    products: [
+      { name:{fr:'Compresseur de climatisateurs',en:'Air conditioner compressors'}, 
+              semi:{fr:'Enroulements du Stator et/ou Rotor',en:'Stator and/or Rotor Windings'}, 
+              grade:['Cu-ETP'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{fr:'Le compresseur de climatiseur utilise des enroulements en cuivre dans son moteur électrique, notamment dans les bobinages du moteur et les connexions électriques, assurant le fonctionnement efficace du système de refroidissement des réfrigérateurs, congélateurs et climatiseurs domestiques.',
+                    en:'An air conditioner compressor uses copper windings in its electric motor specially in the motor windings and electrical connections, ensuring the efficient operation of cooling systems in refrigerators, freezers, and household air conditioners.'},
+               propreq:{fr: ['Excellente conductivité électrique', 'Résistance à la corrosion', 'Bonne ductilité', 'Résistance à la chaleur'],
+                       en:['Excellent electrical conductivity', 'Corrosion resistance', 'Good ductility', 'Heat resistance']},
+              formeFil: {fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP'],en:['Cu-ETP']}, 
+              img:'images/compresseur.png' },
+
+      { name:{fr:'Moteurs d’aspirateurs',en:'Vaccum cleaner motors'}, 
+              semi:{fr:'Enroulement du stator',en:'Stator windings'}, 
+              grade:['Cu-ETP'], 
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{fr:'Le moteur d’aspirateur utilise des enroulements en cuivre dans le stator et le rotor pour générer le mouvement de la turbine d’aspiration. Le cuivre est essentiel pour assurer une puissance élevée, une bonne efficacité énergétique et une longue durée de vie du moteur.',
+                     en:'A vacuum cleaner motor uses copper windings in the stator and rotor to generate the motion required to drive the suction turbine. Copper is essential for providing high power, good energy efficiency, and long motor life.'},
+               propreq:{fr: ['Excellente conductivité électrique', 'Résistance à la corrosion', 'Bonne ductilité', 'Résistance à la chaleur'],
+                       en:['Excellent electrical conductivity', 'Corrosion resistance', 'Good ductility', 'Heat resistance']},
+              formeFil: {fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP'],en:['Cu-ETP']}, 
+              img:'images/moteur_aspirateur.webp' },
+
+      { name:{fr:'Moteurs de lave-linge',en:'Washing machine motors'}, 
+              semi:{fr:'Enroulement du stator',en:'Stator windings'}, 
+              grade:['Cu-ETP'],
+              flows: [ { entree:{fr:'Fil machine',en:'Copper rod wire'}, machine:'Trefiloir', sortie:{fr:'Fil rond',en:'Round wire'}}],
+              //machine:'Trefiloir', entree:{fr:'Fil machine',en:'Copper rod wire'}, sortie:{fr:'Fil rond',en:'Round wire'}, 
+              desc:{ fr:'Le moteur de lave-linge utilise des enroulements en cuivre pour produire le couple nécessaire à la rotation du tambour. Le cuivre est présent dans les bobinages du moteur et les connexions électriques qui assurent l’alimentation et le contrôle des cycles de lavage et d’essorage.',
+                    en:'A washing machine motor uses copper windings to generate the torque required to rotate the drum. Copper is found in the motor windings and electrical connections that provide power and control for the washing and spinning cycles.'},
+              propreq:{fr: ['Excellente conductivité électrique', 'Résistance à la corrosion', 'Bonne ductilité', 'Résistance à la chaleur'],
+                       en:['Excellent electrical conductivity', 'Corrosion resistance', 'Good ductility', 'Heat resistance']},
+              formeFil: {fr: ['Fil rond émaillé'],en:['Enameled round wire']}, 
+              gradesPossibles:{fr: ['Cu-ETP'],en:['Cu-ETP']}, 
+              img:'images/moteur_lavelinge.webp' }
     ]
   }
 ];
@@ -757,15 +1345,19 @@ function renderProducts(sector) {
     <div class="product-card" onclick="selectProduct(${i})">
       <div class="product-img-wrap">
         ${mkImg(p.img,'width:100%;height:100%;object-fit:cover;transition:transform .4s','🔩')}
-        <div class="product-img-grade">${p.grade}</div>
+        <div class="product-img-grade">${Array.isArray(p.grade) ? p.grade.join(' | ') : p.grade}</div>
       </div>
       <div class="product-body">
         <div class="product-name">${pn(p,'name')}</div>
         <div class="product-semi">${pn(p,'semi')}</div>
         <div class="product-badges">
-          <span class="badge badge-machine">${p.machine}</span>
-          <span class="badge badge-in">↳ ${pn(p,'entree')}</span>
-          <span class="badge badge-out">→ ${pn(p,'sortie')}</span>
+            <span class="badge badge-in">
+                ↳ ${p.entree ? pn(p,'entree'): p.flows?.[0]?.entree?.[lang] || '' } </span>
+
+            <span class="badge badge-machine">
+              ${p.machine || p.flows?.[0]?.machine || ''} </span>
+
+            <span class="badge badge-out"> → ${ p.sortie ? pn(p,'sortie'): p.flows?.[0]?.sortie?.[lang] || ''} </span>
         </div>
       </div>
     </div>`).join('');
@@ -786,46 +1378,149 @@ function selectProduct(idx) {
 function renderDetail(p) {
   document.getElementById('detail-sector-label').textContent = currentSector.name[lang] + ' · ' + pn(p,'semi');
   document.getElementById('detail-product-title').textContent = pn(p,'name');
-  const g = gradeData[p.grade];
-  const m = machineData[p.machine];
-  const similar = getSimilarApps(p.grade, p.machine);
+  const primaryGrade = Array.isArray(p.grade) ? p.grade[0] : p.grade;
+  const g = gradeData[primaryGrade];
+  const machineKey = p.machine || p.flows?.[0]?.machine;
+  const m = machineData[machineKey];
+  const similar = getSimilarApps(primaryGrade, p.machine);
 
   document.getElementById('detail-content').innerHTML = `
     <div class="detail-top">
+
       <div class="detail-img-card">
-        <div class="detail-img-wrap">${mkImg(p.img,'width:100%;height:100%;object-fit:cover;','🔩')}</div>
+        <div class="detail-img-wrap">
+          ${mkImg(p.img,'width:100%;height:100%;object-fit:cover;','🔩')}
+        </div>
+
         <div class="detail-img-caption">
           <div class="detail-img-name">${pn(p,'name')}</div>
           <div class="detail-img-semi">${pn(p,'semi')}</div>
+
+          <div class="product-section-title">${t('description')}</div>
+          <div class="product-description">
+            ${p.desc?.[lang] || ''}
+          </div>
+
+          <div class="product-section-title">${t('requiredProperties')}</div>
+          <div class="product-properties">
+            <ul>
+              ${
+                Array.isArray(p.propreq?.[lang])
+                  ? p.propreq[lang].map(prop => `<li>${prop}</li>`).join('')
+                  : (p.propreq?.[lang] ? `<li>${p.propreq[lang]}</li>` : '')
+              }
+            </ul>
         </div>
-      </div>
+
+          <div class="product-section-title">${t('copperForm')}</div>
+          <div class="product-formeFil">
+            <ul>
+              ${
+                Array.isArray(p.formeFil?.[lang])
+                  ? p.formeFil[lang].map(prop => `<li>${prop}</li>`).join('')
+                  : (p.formeFil?.[lang] ? `<li>${p.formeFil[lang]}</li>` : '')
+              }
+            </ul>
+          </div>
+
+          <div class="product-section-title">${t('possibleGrades')}</div>
+          <div class="product-gradesPossibles">
+            <ul>
+              ${
+                Array.isArray(p.gradesPossibles?.[lang])
+                  ? p.gradesPossibles[lang].map(prop => `<li>${prop}</li>`).join('')
+                  : (p.gradesPossibles?.[lang] ? `<li>${p.gradesPossibles[lang]}</li>` : '')
+              }
+            </ul>
+          </div>
+
+        </div>
+    </div>
+
       <div class="detail-cards-col">
+
         <div class="detail-card" style="padding:1.3rem;">
           <div class="detail-card-title">${t('transformFlow')}</div>
 
           <!-- Matière première -->
           <div style="font-size:.63rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;">${lang==='fr'?'Matière première':'Raw material'}</div>
-          <div style="font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:.9rem;">${pn(p,'entree')}</div>
+          <div style="font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:.9rem;">
+              ${
+                p.flows?.length
+                  ? (typeof p.flows[0].entree === 'object'
+                      ? p.flows[0].entree[lang]
+                      : p.flows[0].entree)
+                  : pn(p,'entree')
+              }
+            </div>
 
           <!-- Flux Entrée → Machine → Sortie -->
           <div style="font-size:.63rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">${lang==='fr'?'Mise en forme':'Forming'}</div>
-          <div class="process-flow" style="margin-bottom:.9rem;">
-            <div class="process-box"><div class="process-box-label">${t('input')}</div><div class="process-box-val">${pn(p,'entree')}</div></div>
-            <div class="process-arrow"></div>
-            <div class="process-box" style="background:var(--hero-bg);border-color:var(--cu);cursor:${(()=>{const e=pn(p,'entree').toLowerCase(),s=pn(p,'sortie').toLowerCase();return((e.includes('rod')||e.includes('rond'))&&s.includes('rond'))?'pointer':'default';})()};"
-              onclick="${(()=>{const e=pn(p,'entree').toLowerCase(),s=pn(p,'sortie').toLowerCase();return((e.includes('rod')||e.includes('rond'))&&s.includes('rond'))?"openModal('trefilage')":'';})()}">
-              <div class="process-box-label" style="color:rgba(255,255,255,0.5);">${t('machine')}</div>
-              <div class="process-box-val" style="color:var(--cu);">${p.machine}</div>
-              ${(()=>{const e=pn(p,'entree').toLowerCase(),s=pn(p,'sortie').toLowerCase();return((e.includes('rod')||e.includes('rond'))&&s.includes('rond'))?`<div style="font-size:.58rem;color:rgba(200,121,65,0.7);margin-top:3px;letter-spacing:.04em;">+ ${nextStepsData['trefilage'].name[lang]}</div>`:'';})()}
-            </div>
-            <div class="process-arrow"></div>
-            <div class="process-box" style="background:rgba(26,107,53,0.08);border-color:rgba(26,107,53,0.35);">
-              <div class="process-box-label" style="color:rgba(26,107,53,0.7);">${t('output')}</div>
-              <div class="process-box-val" style="color:#4CAF70;">${pn(p,'sortie')}</div>
-            </div>
-          </div>
+             ${(p.flows || [{
+                  entree: p.entree,
+                  machine: p.machine,
+                  sortie: p.sortie
+                }]).map((flow,idx)=>`
 
+                  ${idx>0 ? `
+                    <div style="
+                      margin:.8rem 0;
+                      border-top:1px solid rgba(200,121,65,.15);
+                      padding-top:.8rem;
+                    "></div>
+                  ` : ''}
 
+                  <div class="process-flow" style="margin-bottom:.9rem;">
+
+                    <div class="process-box">
+                      <div class="process-box-label">${t('input')}</div>
+                      <div class="process-box-val">
+                        ${typeof flow.entree === 'object'
+                          ? flow.entree[lang]
+                          : flow.entree}
+                      </div>
+                    </div>
+
+                    <div class="process-arrow"></div>
+
+                    <div class="process-box"
+                        style="background:var(--hero-bg);border-color:var(--cu);">
+
+                      <div class="process-box-label"
+                          style="color:rgba(255,255,255,0.5);">
+                        ${t('machine')}
+                      </div>
+
+                   <div class="process-box-val"
+                        style="color:var(--cu);">
+                      ${machineData[flow.machine]?.name?.[lang] || flow.machine}
+                    </div>
+                      </div>
+
+                    <div class="process-arrow"></div>
+
+                    <div class="process-box"
+                        style="background:rgba(26,107,53,0.08);
+                                border-color:rgba(26,107,53,0.35);">
+
+                      <div class="process-box-label"
+                          style="color:rgba(26,107,53,0.7);">
+                        ${t('output')}
+                      </div>
+
+                      <div class="process-box-val"
+                          style="color:#4CAF70;">
+                        ${typeof flow.sortie === 'object'
+                          ? flow.sortie[lang]
+                          : flow.sortie}
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                `).join('')}
+          
           <!-- Prochaines étapes -->
           ${(()=>{
             const pname = pn(p,'name');
@@ -839,73 +1534,149 @@ function renderDetail(p) {
             }).join('');
             return `<div class="next-steps-section"><div class="next-steps-label">${label}</div><div class="next-steps-row">${btns}</div></div>`;
           })()}
-        </div>
+        </div> <! --FECHA TRANSFORM FLOW-->
+
         <div class="detail-card" style="padding:1.3rem;">
           <div class="detail-card-title">${t('cuGrade')}</div>
-          <div class="grade-hero" style="margin-bottom:0.9rem;display:flex;align-items:flex-start;justify-content:space-between;">
-            <div>
-              <div class="grade-symbol">${p.grade}</div>
-              <div class="grade-full-name">${g.name}</div>
-              <div class="grade-nfa">≡ ${g.nfa} (NFA 51-050)</div>
-            </div>
-            ${['Cu-ETP','Cu-OF'].includes(p.grade) ? `
-            <a href="grade_${p.grade}.html" title="${lang==='fr'?'Voir la fiche complète':'View full datasheet'}"
-              style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(200,121,65,0.18);border:1px solid rgba(200,121,65,0.4);color:var(--cu);text-decoration:none;transition:all .2s;flex-shrink:0;"
-              onmouseover="this.style.background='var(--cu)';this.style.color='#fff';"
-              onmouseout="this.style.background='rgba(200,121,65,0.18)';this.style.color='var(--cu)';">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-            </a>` : ''}
-          </div>
-          <div class="stat-grid">
-            <div class="stat-cell"><div class="stat-cell-label">${t('elCond')}</div><div class="stat-cell-val">${g.conductEl}</div></div>
-            <div class="stat-cell"><div class="stat-cell-label">${t('thCond')}</div><div class="stat-cell-val">${g.conductTh}</div></div>
-            <div class="stat-cell"><div class="stat-cell-label">${t('purity')}</div><div class="stat-cell-val">${g.purity}</div></div>
-            <div class="stat-cell"><div class="stat-cell-label">${t('weldability')}</div><div class="stat-cell-val" style="font-size:0.67rem;">${g.weldability[lang]}</div></div>
-          </div>
+          ${(()=>{
+            // Get grades list from product or fallback to single grade
+            const grades = (p.gradesPossibles && p.gradesPossibles[lang]) ? p.gradesPossibles[lang] : [p.grade];
+            const hasDedicatedPage = k => ['Cu-ETP','Cu-OF'].includes(k);
 
-        </div>
-      </div>
-    </div>
+            const linkIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
 
-    <div class="detail-layout">
-      <div class="detail-card">
-        <div class="detail-card-title">${t('cuProps')}${p.grade}</div>
-        <div class="gauge-row"><span class="gauge-label">${t('elCond')}</span><div class="gauge-track"><div class="gauge-fill" style="width:${Math.min(g.gauge.el,100)}%"></div></div><span class="gauge-val">${g.conductEl}</span></div>
-        <div class="gauge-row"><span class="gauge-label">${t('thCond')}</span><div class="gauge-track"><div class="gauge-fill" style="width:${g.gauge.th}%"></div></div><span class="gauge-val">${g.conductTh}</span></div>
-        <div class="gauge-row"><span class="gauge-label">${t('weldability')}</span><div class="gauge-track"><div class="gauge-fill" style="width:${g.gauge.soud}%"></div></div><span class="gauge-val" style="font-size:0.6rem;">${g.weldability[lang]}</span></div>
-        <table class="props-table" style="margin-top:0.5rem;">
-          <tr><td>${t('purity')}</td><td>${g.purity}</td></tr>
-          <tr><td>${t('nfa')}</td><td>${g.nfa}</td></tr>
-          <tr><td>${t('sensitivity')}</td><td>${g.sensitivity[lang]}</td></tr>
-        </table>
-        <div style="margin-top:1rem;"><div class="desc-label">${t('description')}</div><div class="desc-box">${g.description[lang]}</div></div>
-        ${similar.length?`<div style="margin-top:1rem;"><div class="desc-label">${t('similarApps')}</div><div>${similar.map(a=>`<span class="app-chip" onclick="findAndSelect('${a.sector}','${a.nameKey}')">↗ ${a.name}</span>`).join('')}</div></div>`:''}
-      </div>
+            if(grades.length === 1) {
+              const gk = grades[0];
+              const gi = gradeData[gk] || {};
+              return `
+              <div style="background:var(--hero-bg);border-radius:10px;padding:.9rem 1rem;display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.9rem;">
+                <div>
+                  <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--cu);">${gk}</div>
+                  <div style="font-size:.68rem;color:rgba(255,255,255,0.5);margin-top:2px;">${gi.name||''}</div>
+                  <div style="font-size:.6rem;background:rgba(200,121,65,0.2);color:var(--cu);border-radius:4px;padding:2px 7px;margin-top:4px;display:inline-block;">≡ ${gi.nfa||''} (NFA 51-050)</div>
+                </div>
+                ${hasDedicatedPage(gk)?`<a href="grade_${gk}.html" title="${lang==='fr'?'Voir la fiche':'View datasheet'}" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(200,121,65,0.18);border:1px solid rgba(200,121,65,0.4);color:var(--cu);text-decoration:none;flex-shrink:0;" onmouseover="this.style.background='var(--cu)';this.style.color='#fff';" onmouseout="this.style.background='rgba(200,121,65,0.18)';this.style.color='var(--cu)';">${linkIcon}</a>`:''}
+              </div>
+              <div class="stat-grid">
+                <div class="stat-cell"><div class="stat-cell-label">${t('elCond')}</div><div class="stat-cell-val">${gi.conductEl||'—'}</div></div>
+                <div class="stat-cell"><div class="stat-cell-label">${t('thCond')}</div><div class="stat-cell-val">${gi.conductTh||'—'}</div></div>
+                <div class="stat-cell"><div class="stat-cell-label">${t('purity')}</div><div class="stat-cell-val">${gi.purity||'—'}</div></div>
+                <div class="stat-cell"><div class="stat-cell-label">${t('weldability')}</div><div class="stat-cell-val" style="font-size:.67rem;">${gi.weldability?.[lang]||'—'}</div></div>
+              </div>`;
+            } else {
+              // Two grades side by side — just the hero blocks with link icons, no stat-grid
+              return `<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                ${grades.map(gk=>{
+                  const gi = gradeData[gk]||{};
+                  return `<div style="background:var(--hero-bg);border-radius:10px;padding:.85rem 1rem;">
+                    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.5rem;">
+                      <div>
+                        <div style="font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;color:var(--cu);">${gk}</div>
+                        <div style="font-size:.6rem;color:rgba(255,255,255,0.45);margin-top:2px;line-height:1.3;">${gi.name||''}</div>
+                        <div style="font-size:.58rem;background:rgba(200,121,65,0.18);color:var(--cu);border-radius:4px;padding:2px 6px;margin-top:4px;display:inline-block;">≡ ${gi.nfa||''}</div>
+                      </div>
+                      ${hasDedicatedPage(gk)?`<a href="grade_${gk}.html" title="${lang==='fr'?'Fiche complète':'Full datasheet'}" style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:7px;background:rgba(200,121,65,0.18);border:1px solid rgba(200,121,65,0.4);color:var(--cu);text-decoration:none;flex-shrink:0;" onmouseover="this.style.background='var(--cu)';this.style.color='#fff';" onmouseout="this.style.background='rgba(200,121,65,0.18)';this.style.color='var(--cu)';">${linkIcon}</a>`:''}
+                    </div>
 
-      <div class="detail-card">
-        <div class="detail-card-title">${t('machineRedex')}${p.machine}</div>
-        <div class="machine-top">
-          <div class="machine-icon-big">${m.icon}</div>
-          <div>
-            <div class="machine-name">${m.full[lang]}</div>
-            <div class="machine-sub">${m.sub[lang]}</div>
-            <div class="machine-desc">${m.desc[lang]}</div>
-          </div>
-        </div>
-        <div class="machine-img-wrap">
-          <img src="${m.img}" alt="Machine ${p.machine}" style="width:100%;height:100%;object-fit:cover;"
-            onerror="this.parentElement.innerHTML='<div class=\'machine-img-placeholder\'><div style=\'font-size:2.5rem;\'>🏭</div><div class=\'machine-img-placeholder-label\'><strong>${p.machine}</strong><br>${m.sub[lang]}</div><div class=\'machine-img-path\'>${m.img}</div></div>'">
-        </div>
-        <table class="props-table">
-          <tr><td>${t('matInput')}</td><td>${pn(p,'entree')}</td></tr>
-          <tr><td>${t('matOutput')}</td><td>${pn(p,'sortie')}</td></tr>
-        </table>
-      </div>
-    </div>`;
+                  </div>`;
+                }).join('')}
+              </div>`;
+            }
+          })()}
+        </div>  <! --FECHA GRADE CU-->
+
+                  ${(() => {
+
+              const machines = [...new Set(
+                (p.flows?.length
+                  ? p.flows.map(f => f.machine)
+                  : [p.machine]
+                ).filter(Boolean)
+              )];
+
+              return machines.map(machineKey => {
+
+                const m = machineData[machineKey];
+                if (!m) return '';
+
+                return `
+
+                  <div class="detail-card">
+
+                    <div class="detail-card-title">
+                      ${t('machineRedex')} ${m.name[lang]}
+                    </div>
+
+                    <div class="machine-top">
+
+                      <div class="machine-icon-big">
+                        ${m.icon || '🏭'}
+                      </div>
+
+                      <div>
+
+                        ${m.url ? `
+                          <a
+                            href="${m.url}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="machine-name"
+                          >
+                            ${m.full?.[lang] || machineKey}
+                          </a>
+                        ` : `
+                          <div class="machine-name">
+                            ${m.full?.[lang] || machineKey}
+                          </div>
+                        `}
+
+                        <div class="machine-sub">
+                          ${m.sub?.[lang] || ''}
+                        </div>
+
+                        <div class="machine-desc">
+                          ${m.desc?.[lang] || ''}
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="machine-images">
+
+                      <div class="machine-img-wrap">
+                        ${m.img ? `
+                          <img
+                            src="${m.img}"
+                            alt="${machineKey}"
+                           style="width:100%;height:100%;object-fit:cover;object-position:center;"
+                          >
+                        ` : ''}
+                      </div>
+
+                      <div class="machine-img-wrap">
+                        ${m.img2 ? `
+                          <img
+                            src="${m.img2}"
+                            alt="${machineKey}"
+                            style="width:100%;height:100%;object-fit:cover;object-position:center;"
+                          >
+                        ` : ''}
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                `;
+
+              }).join('');
+
+            })()}
+      </div> <!-- FECHA detail-cards-col -->
+
+    </div> <!-- FECHA detail-top -->
+  `;
 }
 
 // ── HELPERS ──────────────────────────────────────────────────────
@@ -969,7 +1740,7 @@ function openModal(key) {
     ? (lang==='fr'?'Mise en forme — Fil rond → Fil rond':'Forming — Round wire → Round wire')
     : (lang==='fr'?'Procédé de mise en forme':'Forming process');
   document.getElementById('modal-desc').textContent = d.desc[lang];
-  document.getElementById('modal-steps-title').textContent = lang==='fr'?'Étapes clés':'Key steps';
+  document.getElementById('modal-steps-title').textContent = lang==='fr'?'Points clés':'Key points';
   // Steps
   const stepsEl = document.getElementById('modal-steps');
   stepsEl.innerHTML = d.steps[lang].map((s,i)=>`
@@ -977,7 +1748,7 @@ function openModal(key) {
       <div class="modal-step-num">${i+1}</div>
       <div class="modal-step-text">${s}</div>
     </div>`).join('');
-  document.getElementById('modal-steps-title').textContent = lang==='fr'?'Étapes clés':'Key steps';
+  document.getElementById('modal-steps-title').textContent = lang==='fr'?'Points clés':'Key points';
   // Images
   const dblWrap = document.getElementById('modal-imgs-double');
   const singleImg = document.getElementById('modal-img-single');
@@ -1024,7 +1795,9 @@ function closeModalIfOverlay(e) {
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
 
 // ── INIT ─────────────────────────────────────────────────────────
+applyLang();
 renderSectors();
+
 </script>
 
 <!-- MODAL OVERLAY -->
@@ -1049,7 +1822,7 @@ renderSectors();
       <!-- Contenu -->
       <div class="modal-content">
         <div class="modal-desc" id="modal-desc"></div>
-        <div class="modal-steps-title" id="modal-steps-title">Étapes clés</div>
+        <div class="modal-steps-title" id="modal-steps-title">Points clés</div>
         <div class="modal-steps" id="modal-steps"></div>
       </div>
     </div>
