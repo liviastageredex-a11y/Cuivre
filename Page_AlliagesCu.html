@@ -727,6 +727,26 @@ function goBack() {
   history.back();
 }
 const alloys = {
+  bronze: {
+    title: "Bronze",
+    subtitle: "Cu + Sn",
+    icon: "⚡",
+    process: "Alliage cuivre-argent pour applications electriques haute performance.",
+    description: "Tres haute conductivite electrique avec une meilleure resistance mecanique que le cuivre pur. Convient aux composants conducteurs soumis a des contraintes thermiques et mecaniques.",
+    points: [
+      "Excellente conductivite electrique",
+      "Bonne tenue mecanique",
+      "Bon comportement a temperature elevee",
+      "Adapte aux connecteurs et busbars"
+    ],
+    applications: [
+      "Connecteurs",
+      "Busbars",
+      "Bornes",
+      "Contacts electriques"
+    ]
+  },
+  
   cuag: {
     title: "CuAg",
     subtitle: "Cuivre-Argent",
@@ -877,27 +897,10 @@ applyLang();
 </script>
 
 <div id="alloy-modal" class="modal">
-  <div id="alloy-modal" class="modal">
   <div class="modal-content">
     <div id="alloy-modal-body"></div>
   </div>
 </div>
-
-<script>
-function closeAlloyModal() {
-    const modal = document.getElementById('alloy-modal');
-    modal.style.display = 'none';
-}
-
-const modal = document.getElementById('alloy-modal');
-
-if (modal) {
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeAlloyModal();
-        }
-    });
-}
-</script>
+<script src="seu-script.js"></script>
 </body>
 </html>
