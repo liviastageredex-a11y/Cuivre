@@ -54,7 +54,7 @@ main{max-width:1100px;margin:0 auto;padding:2.5rem 2rem;}
 .sec-title::before{content:'';width:4px;height:18px;background:var(--cu);border-radius:2px;flex-shrink:0;}
 
 /* PROPS GRID */
-.props-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem;}
+.props-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
 .prop-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.1rem;}
 .prop-label{ font-family:'Syne',sans-serif; font-size:.62rem;font-weight:700; color:var(--cu); text-transform:uppercase; letter-spacing:.12em; margin-bottom:.5rem;}
 .prop-val{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);}
@@ -207,6 +207,54 @@ footer{background:var(--footer-bg);color:rgba(255,255,255,0.3);text-align:center
     color: #ee6001;
 }
 
+/* Card Explication Alliage */
+.prop-card{
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip{
+    position: absolute;
+    bottom: 105%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 220px;
+    padding: 10px;
+
+    background: #fc9919;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    text-align: center;
+
+    opacity: 1;
+    visibility: hidden;
+    transition: opacity .2s ease;
+
+    z-index: 100;
+}
+
+.prop-card:hover .tooltip{
+    opacity: 0.5;
+    visibility: visible;
+}
+
+
+.info-icon{
+    position:absolute;
+    top:10px;
+    right:10px;
+    font-size:18px;
+    color:#f28c28;
+    cursor:help;
+}
+
+.info-icon:hover .tooltip{
+    opacity:1;
+    visibility:visible;
+}
+
 
 @media(max-width:800px){.two-col{grid-template-columns:1fr;}.props-grid{grid-template-columns:1fr 1fr;}.micro-grid{grid-template-columns:1fr;}}
 @media(max-width:500px){main{padding:1.5rem 1rem;}.hero{padding:2rem 1.2rem;}.props-grid{grid-template-columns:1fr 1fr;}}
@@ -255,29 +303,88 @@ footer{background:var(--footer-bg);color:rgba(255,255,255,0.3);text-align:center
               </p>
           </div>
 
-
+  <!-- FAMILLE D'ALLIAGES -->
         <div class="sec-title" id="famille-alliages"> Principales familles d'alliages </div>
           <div class="props-grid">
 
-              <div class="prop-card alloy-card">
+            <!-- Cu+Ag -->
+             <div class="prop-card alloy-card">
+                  <div class="prop-label" id="card-cuag">  Cuivre-Argent </div>
+                  <div class="prop-sub">Cu + Ag </div>
+
+                    <div class="info-icon">
+                                              ⓘ
+                      <div class="tooltip" id="desc-card-cuag">
+                          Alliage à très haute conductivité électrique et thermique, offrant également une excellente résistance au ramollissement à haute température. Utilisé pour les fils de contact ferroviaires, les connecteurs de puissance et les busbars.
+                      </div>
+                    </div>
+              </div>      
+            
+            <!-- Cu+Sn -->
+             <div class="prop-card alloy-card">
                   <div class="prop-label" id="card-bronze">  Bronze </div>
                   <div class="prop-sub">Cu + Sn </div>
-                </div>
 
-                <div class="prop-card alloy-card">
+                  <div class="info-icon">
+                                               ⓘ
+                    <div class="tooltip" id="desc-card-bronze">
+                      Alliage de cuivre et d'étain, reconnu pour sa résistance à l'usure, à la corrosion (en particulier dans les environnements marins) et ses bonnes propriétés mécaniques.
+                    </div>
+                  </div>
+              </div>
+
+            <!-- Cu+Zn -->
+             <div class="prop-card alloy-card">
                   <div class="prop-label" id="card-laiton">  Laiton </div>
                   <div class="prop-sub">Cu + Zn </div>
-                </div>
 
-                <div class="prop-card alloy-card">
+                  <div class="info-icon">
+                                               ⓘ
+                    <div class="tooltip" id="desc-card-laiton">
+                      Alliage de cuivre et de zinc, apprécié pour sa bonne usinabilité, sa résistance à la corrosion et son excellente aptitude au formage. Largement utilisé pour les raccords, les composants mécaniques et les éléments décoratifs.
+                    </div>
+                  </div>
+              </div>
+
+            <!-- Cu+Be -->
+             <div class="prop-card alloy-card">
                   <div class="prop-label" id="card-cube">  Cuivre-Béryllium </div>
                   <div class="prop-sub">Cu + Be  </div>
-                </div>
 
+                  <div class="info-icon">
+                                             ⓘ
+                    <div class="tooltip" id="desc-card-cube">
+                        Alliage combinant une très haute résistance mécanique, une bonne conductivité électrique et une excellente résistance à la fatigue. Utilisé pour les contacts électriques, les ressorts de précision et les connecteurs.
+                    </div>
+                  </div>
+              </div>
+
+            <!-- Cu+Cr+Zr-->
                 <div class="prop-card alloy-card">
                   <div class="prop-label" id="card-cucrzr">  Cuivre-Chrome-Zircone </div>
                   <div class="prop-sub">Cu + Cr + Zr </div>
-                </div>        
+
+                  <div class="info-icon">
+                                             ⓘ
+                    <div class="tooltip" id="desc-card-cucrzr">
+                        Alliage à haute conductivité et excellente résistance mécanique à chaud. Il est particulièrement utilisé pour les électrodes de soudage par résistance, les composants de forte intensité et les applications thermiques.
+                    </div>
+                  </div>
+                </div>
+               
+
+                <!-- Cu+Ni+Si-->
+                <div class="prop-card alloy-card">
+                  <div class="prop-label" id="card-cunisi">  Cuivre-Nickel-Silicium </div>
+                  <div class="prop-sub">Cu + Ni + Si </div>
+
+                  <div class="info-icon">
+                                             ⓘ
+                    <div class="tooltip" id="desc-card-cunisi">
+                      Alliage offrant un excellent compromis entre résistance mécanique, conductivité électrique et résistance à la relaxation des contraintes. Très utilisé pour les connecteurs automobiles, les bornes de batteries et les composants électroniques.
+                    </div>
+                  </div>
+              </div> 
          </div>
 
   <!-- Explorer par application -->
@@ -292,13 +399,13 @@ footer{background:var(--footer-bg);color:rgba(255,255,255,0.3);text-align:center
             <table class="fab-table">
               <td id="lbl-rec-alloys">Alliages recommandés</td>
                 <td>
-                    <button class="alloy-chip" onclick="showAlloy('cuag','alloy-details-electrique')"> CuAg </button>
-                    <button class="alloy-chip" onclick="showAlloy('cucrzr', 'alloy-details-automobile')">CuCrZr</button>
+                    <button class="alloy-chip"> CuAg </button>
+                    <button class="alloy-chip" >CuCrZr</button>
                 </td>
               </tr>
 
               <tr>
-                <td id="lbl-products">Produits typiques</td>
+                <td id="lbl-products">Produits </td>
                 <td>
                     <div class="product-images">
                         <div class="img-item">
@@ -333,18 +440,20 @@ footer{background:var(--footer-bg);color:rgba(255,255,255,0.3);text-align:center
               </tr>
 
                 <tr>
-                  <td id="lbl-properties">Propriétés clés</td>
+                  <td id="lbl-properties">Pourquoi ces alliages?</td>
                   <td id="prop-electronic"> 
-                        > Haute conductivité <br>
-                  <br>  > Résistance aux vibrations<br>
-                  <br>  > Tenue thermique
+                        ⚡ Haute conductivité <br>
+                  <br>  ⚙️ Résistance aux vibrations<br>
+                  <br>  🌡 Tenue thermique
                   </td>
                 </tr>
-          </table>
+          </table> 
+
+               
               
-          <div id="alloy-details-electrique"></div>
+            <div id="alloy-details-electrique"></div>
           
-      </div>
+         </div>
 
       <button class="accordion-btn" onclick="toggleAcc('app-automobile')">
           🚗 <span id="acc-auto">Automobile & E-Mobilité</span>
@@ -354,13 +463,13 @@ footer{background:var(--footer-bg);color:rgba(255,255,255,0.3);text-align:center
               <table class="fab-table"><tr>
                     <td id="lbl-rec-alloys2">Alliages recommandés</td>
                     <td>
-                      <button class="alloy-chip" onclick="showAlloy('cucrzr', 'alloy-details-automobile')">CuCrZr</button>
-                      <button class="alloy-chip" onclick="showAlloy('cunisi', 'alloy-details-automobile')">CuNiSi</button>
-                      <button class="alloy-chip" onclick="showAlloy('cuag', 'alloy-details-automobile')">CuAg</button>
+                      <button class="alloy-chip" >CuCrZr</button>
+                      <button class="alloy-chip" >CuNiSi</button>
+                      <button class="alloy-chip" >CuAg</button>
                     </td>
                     </tr>
 
-                    <td id="lbl-products2">Produits typiques</td>
+                    <td id="lbl-products2">Produits</td>
                     <td>
                       <div class="product-images">
                           <div class="img-item">
@@ -396,11 +505,11 @@ footer{background:var(--footer-bg);color:rgba(255,255,255,0.3);text-align:center
                   
                   </tr>
                     
-                    <tr> <td id="lbl-properties2">Propriétés clés</td>
+                    <tr> <td id="lbl-properties2">Pourquoi ces alliages?</td>
                     <td id="prop-automobile">
-                        > Haute conductivité <br>
-                    <br>> Résistance aux vibrations<br>
-                    <br>> Tenue thermique
+                        ⚡ Haute conductivité <br>
+                    <br>⚙️ Résistance aux vibrations<br>
+                    <br>🌡Tenue thermique
                     </td></tr>
                     
                     </table>
@@ -417,13 +526,13 @@ footer{background:var(--footer-bg);color:rgba(255,255,255,0.3);text-align:center
                   <table class="fab-table"><tr>
                     <td id="lbl-rec-alloys3">Alliages recommandés</td>
                     <td>
-                    <button class="alloy-chip" onclick="showAlloy('cube', 'alloy-details-industrial')">CuBe</button>
-                    <button class="alloy-chip" onclick="showAlloy('cunisi', 'alloy-details-industrial')">CuNiSi</button>
-                    <button class="alloy-chip" onclick="showAlloy('cucrzr', 'alloy-details-industrial')">CuCrZr</button>
+                    <button class="alloy-chip" >CuBe</button>
+                    <button class="alloy-chip" >CuNiSi</button>
+                    <button class="alloy-chip" >CuCrZr</button>
                   </td> </tr>
 
                     <tr>
-                    <td id="lbl-products3">Produits typiques</td>
+                    <td id="lbl-products3">Produits </td>
                     <td>
                       <div class="product-images">
 
@@ -459,11 +568,11 @@ footer{background:var(--footer-bg);color:rgba(255,255,255,0.3);text-align:center
                   </tr>
 
                     <tr>
-                    <td id="lbl-properties3">Propriétés clés</td>
+                    <td id="lbl-properties3">Pourquoi ces alliages?</td>
                     <td id="prop-industriel">
-                        > Résistance à la fatigue<br>
-                   <br> > Résistance à l'usure <br>
-                   <br> > Stabilité dimensionnelle 
+                        💪 Résistance à la fatigue<br>
+                   <br> 🛡️ Résistance à l'usure <br>
+                   <br> 📐 Stabilité dimensionnelle 
                     </td>
                     </tr>
 
@@ -502,6 +611,16 @@ const txt = {
     cardLaiton: "Laiton",
     cardCuBe: "Cuivre-Béryllium",
     cardCuCrZr: "Cuivre-Chrome-Zircone",
+    cardCuAg: "Cuivre-Argent",
+    cardCuNiSi: "Cuivre-Nickel-Silicium",
+    
+    //Description des cards
+    descCardCuAg: "Alliage à très haute conductivité électrique et thermique, offrant également une excellente résistance au ramollissement à haute température. Utilisé pour les fils de contact ferroviaires, les connecteurs de puissance et les busbars.",
+    descCardBronze: "Alliage de cuivre et d'étain, reconnu pour sa résistance à l'usure, à la corrosion (en particulier dans les environnements marins) et ses bonnes propriétés mécaniques.",
+    descCardLaiton: "Alliage de cuivre et de zinc, apprécié pour sa bonne usinabilité, sa résistance à la corrosion et son excellente aptitude au formage. Largement utilisé pour les raccords, les composants mécaniques et les éléments décoratifs.",
+    descCardCuBe: "Alliage combinant une très haute résistance mécanique, une bonne conductivité électrique et une excellente résistance à la fatigue. Utilisé pour les contacts électriques, les ressorts de précision et les connecteurs.",
+    descCardCuCrZr: "Alliage à haute conductivité et excellente résistance mécanique à chaud. Il est particulièrement utilisé pour les électrodes de soudage par résistance, les composants de forte intensité et les applications thermiques",
+    descCardCuNiSi: "Alliage offrant un excellent compromis entre résistance mécanique, conductivité électrique et résistance à la relaxation des contraintes. Très utilisé pour les connecteurs automobiles, les bornes de batteries et les composants électroniques.",
 
     //Titres sections et tables
     accElectronic: "Électrique / Électronique",
@@ -510,19 +629,19 @@ const txt = {
     secApplications: "Applications",
 
     lblRecAlloys: "Alliages recommandés",
-    lblProducts: "Produits typiques",
-    lblProperties: "Propriétés clés",
+    lblProducts: "Produits",
+    lblProperties: "Pourquoi ces alliages?",
     lblRecAlloys2: "Alliages recommandés",
-    lblProducts2: "Produits typiques",
-    lblProperties2: "Propriétés clés",
+    lblProducts2: "Produits",
+    lblProperties2: "Pourquoi ces alliages?",
     lblRecAlloys3: "Alliages recommandés",
-    lblProducts3: "Produits typiques",
-    lblProperties3: "Propriétés clés",
+    lblProducts3: "Produits ",
+    lblProperties3: "Pourquoi ces alliages?",
 
     //Produits
     prodLeadFrames: "Lead Frames",
     prodConnectors: "Connecteurs",
-    prodTerminals: "Termainals",
+    prodTerminals: "Terminals",
     prodRelays: "Relais",
     prodBusbars: "Bus bars",
     prodBatteries: "Batteries",
@@ -534,19 +653,19 @@ const txt = {
 
     //Propriétés
     propElectronic: `
-      > Haute conductivité<br><br>
-      > Résistance aux vibrations<br><br>
-      > Tenue thermique`,
+      ⚡ Haute conductivité<br><br>
+      ⚙️ Résistance aux vibrations<br><br>
+      🌡 Tenue thermique`,
 
     propAutomobile: `
-      > Haute conductivité <br><br>
-      > Résistance aux vibrations<br><br>
-      > Tenue thermique`,
+      ⚡ Haute conductivité <br><br>
+      ⚙️ Résistance aux vibrations<br><br>
+      🌡 Tenue thermique`,
 
     propIndustrie: `
-      > Résistance à la fatigue <br><br>
-      > Résistance à l'usure <br><br>
-      > Stabilité dimensionelle`,
+      💪 Résistance à la fatigue <br><br>
+      🛡️ Résistance à l'usure <br><br>
+      📐 Stabilité dimensionelle`,
         
   },
   en:{
@@ -570,8 +689,18 @@ const txt = {
     cardBronze: "Bronze",
     cardLaiton: "Brass",
     cardCuBe: "Copper-Beryllium",
-    cardCuCrZr: "Cuivre-Chromium-Zirconium",
+    cardCuCrZr: "Copper-Chromium-Zirconium",
+    cardCuAg: "Copper-Silver",
+    cardCuNiSi: "Copper-Nickel-Silicion",
 
+    // Card descriptions
+    descCardCuAg: "Alloy with very high electrical and thermal conductivity, also offering excellent resistance to softening at high temperatures. Used for railway contact wires, power connectors, and busbars.",
+    descCardBronze: "Copper-tin alloy known for its excellent wear resistance, corrosion resistance (especially in marine environments), and good mechanical properties.",
+    descCardLaiton: "Copper-zinc alloy valued for its good machinability, corrosion resistance, and excellent formability. Widely used for fittings, mechanical components, and decorative elements.",
+    descCardCuBe: "Alloy combining very high mechanical strength, good electrical conductivity, and excellent fatigue resistance. Used for electrical contacts, precision springs, and connectors.",
+    descCardCuCrZr: "High-conductivity alloy with excellent mechanical strength at elevated temperatures. Particularly used for resistance welding electrodes, high-current components, and thermal applications.",
+    descCardCuNiSi: "Alloy offering an excellent balance between mechanical strength, electrical conductivity, and stress relaxation resistance. Widely used for automotive connectors, battery terminals, and electronic components.",
+    
     //Sections and tables titles
     accElectronic: "Electrical / Electronics",
     accAuto: "Automotive & E-Mobility",
@@ -579,14 +708,14 @@ const txt = {
     secApplications: "Applications",
 
     lblRecAlloys: "Recommended alloys",
-    lblProducts: "Typical products",
-    lblProperties: "Key properties",
+    lblProducts: "Products",
+    lblProperties: "Why these alloys?",
     lblRecAlloys2: "Recommended alloys",
-    lblProducts2: "Typical products",
-    lblProperties2: "Key properties",
+    lblProducts2: "Products",
+    lblProperties2: "Why these alloys?",
     lblRecAlloys3: "Recommended alloys",
-    lblProducts3: "Typical products",
-    lblProperties3: "Key properties",
+    lblProducts3: "Products",
+    lblProperties3: "Why these alloys?",
 
     //Products
     prodLeadFrames: "Lead Frames",
@@ -603,20 +732,20 @@ const txt = {
 
     //Properties
     propElectronic: `
-      > High conductivity <br><br>
-      > Vibration resistance <br><br>
-      > Thermal stability`,
+      ⚡ High conductivity <br><br>
+      ⚙️ Vibration resistance <br><br>
+      🌡 Thermal stability`,
 
     propAutomobile: `
-      > High conductivity <br><br>
-      > Vibration resistance <br><br>
-      > Thermal stability`,
+      ⚡ High conductivity <br><br>
+      ⚙️ Vibration resistance <br><br>
+      🌡 Thermal stability`,
 
     propIndustrie: `
-      > Fatigue resistance<br><br>
-      > Wear resistance<br><br>
-      > Dimensional stability`,
-
+      💪 Fatigue resistance<br><br>
+      🛡️ Wear resistance<br><br>
+      📐 Dimensional stability`,
+      
   }
 };
 function applyLang(){
@@ -644,6 +773,16 @@ function applyLang(){
   document.getElementById("card-laiton").textContent = T.cardLaiton;
   document.getElementById("card-cube").textContent = T.cardCuBe;
   document.getElementById("card-cucrzr").textContent = T.cardCuCrZr;
+  document.getElementById("card-cuag").textContent = T.cardCuAg;
+  document.getElementById("card-cunisi").textContent = T.cardCuNiSi;
+
+  //description des cards alliages
+  document.getElementById("desc-card-cuag").textContent = T.descCardCuAg;
+  document.getElementById("desc-card-bronze").textContent = T.descCardBronze;
+  document.getElementById("desc-card-laiton").textContent = T.descCardLaiton;
+  document.getElementById("desc-card-cube").textContent = T.descCardCuBe;
+  document.getElementById("desc-card-cucrzr").textContent = T.descCardCuCrZr;
+  document.getElementById("desc-card-cunisi").textContent = T.descCardCuNiSi;
 
   document.getElementById("card-applications").textContent = T.secApplications;
 
@@ -726,172 +865,7 @@ document.querySelectorAll('.card-title').forEach(el=>{
 function goBack() {
   history.back();
 }
-const alloys = {
-  bronze: {
-    title: "Bronze",
-    subtitle: "Cu + Sn",
-    icon: "⚡",
-    process: "Alliage cuivre-argent pour applications electriques haute performance.",
-    description: "Tres haute conductivite electrique avec une meilleure resistance mecanique que le cuivre pur. Convient aux composants conducteurs soumis a des contraintes thermiques et mecaniques.",
-    points: [
-      "Excellente conductivite electrique",
-      "Bonne tenue mecanique",
-      "Bon comportement a temperature elevee",
-      "Adapte aux connecteurs et busbars"
-    ],
-    applications: [
-      "Connecteurs",
-      "Busbars",
-      "Bornes",
-      "Contacts electriques"
-    ]
-  },
-  
-  cuag: {
-    title: "CuAg",
-    subtitle: "Cuivre-Argent",
-    icon: "⚡",
-    process: "Alliage cuivre-argent pour applications electriques haute performance.",
-    description: "Tres haute conductivite electrique avec une meilleure resistance mecanique que le cuivre pur. Convient aux composants conducteurs soumis a des contraintes thermiques et mecaniques.",
-    points: [
-      "Excellente conductivite electrique",
-      "Bonne tenue mecanique",
-      "Bon comportement a temperature elevee",
-      "Adapte aux connecteurs et busbars"
-    ],
-    applications: [
-      "Connecteurs",
-      "Busbars",
-      "Bornes",
-      "Contacts electriques"
-    ]
-  },
-  cucrzr: {
-    title: "CuCrZr",
-    subtitle: "Cuivre-Chrome-Zirconium",
-    icon: "🔩",
-    process: "Alliage cuivreux combinant conductivite et haute resistance mecanique.",
-    description: "Excellente combinaison entre conductivite electrique, resistance mecanique et tenue thermique. Tres utilise dans l'automobile, l'e-mobilite et les composants de puissance.",
-    points: [
-      "Tres bon compromis conductivite / resistance",
-      "Bonne resistance au fluage",
-      "Bonne tenue a la fatigue",
-      "Adapte aux environnements severes"
-    ],
-    applications: [
-      "Busbars",
-      "Connecteurs HV",
-      "Batteries",
-      "E-Mobilite"
-    ]
-  },
-  cunisi: {
-    title: "CuNiSi",
-    subtitle: "Cuivre-Nickel-Silicium",
-    icon: "🚗",
-    process: "Alliage a durcissement structural pour connectique et systemes embarques.",
-    description: "Bonne resistance mecanique avec une conductivite correcte. Souvent choisi pour les connecteurs, ressorts conducteurs et applications automobiles.",
-    points: [
-      "Bonne resistance mecanique",
-      "Bonne resistance a la fatigue",
-      "Bonne stabilite dimensionnelle",
-      "Utilise pour connecteurs de precision"
-    ],
-    applications: [
-      "Connecteurs automobiles",
-      "Ressorts conducteurs",
-      "Composants de precision",
-      "E-Mobilite"
-    ]
-  },
-  cube: {
-    title: "CuBe",
-    subtitle: "Cuivre-Beryllium",
-    icon: "🏭",
-    process: "Alliage haute performance pour ressorts, contacts et pieces de precision.",
-    description: "Tres haute resistance mecanique et excellente resistance a la fatigue et a l'usure. Particulierement adapte aux capteurs, ressorts conducteurs et outillage de precision.",
-    points: [
-      "Tres haute resistance mecanique",
-      "Excellente resistance a la fatigue",
-      "Bonne resistance a l'usure",
-      "Ideal pour capteurs et ressorts"
-    ],
-    applications: [
-      "Capteurs",
-      "Connecteurs de precision",
-      "Ressorts conducteurs",
-      "Automatisation"
-    ]
-  }
-};
-function showAlloy(key, targetId){
-  const alloy = alloys[key];
-  if(!alloy) return;
-  const modal = document.getElementById('alloy-modal');
-if (modal) {
-  modal.addEventListener('click', function(e){
-    if(e.target.id === 'alloy-modal'){
-      closeAlloyModal();
-    }
-  });
-}
-  const body = document.getElementById('alloy-modal-body');
-  body.innerHTML = `
-    <div class="method-header" style="border-radius:16px 16px 0 0;">
-      <div style="display:flex;align-items:center;gap:14px;">
-        <div style="width:52px;height:52px;border-radius:12px;background:rgba(200,121,65,0.15);display:flex;align-items:center;justify-content:center;font-size:1.6rem;">
-          ${alloy.icon}
-        </div>
-        <div>
-          <div class="method-title">${alloy.title}</div>
-          <div class="method-sub">${alloy.subtitle}</div>
-        </div>
-      </div>
-    </div>
-    <div class="method-body">
-      <p class="method-desc">
-        ${alloy.description}
-      </p>
-      <div class="card-title">
-        <span>Points cles</span>
-      </div>
-      <div style="display:grid;gap:10px;margin-bottom:1.2rem;">
-        ${alloy.points.map((point, index) => `
-          <div style="display:flex;align-items:center;gap:12px;background:var(--cu-pale);border:1px solid var(--border-strong);border-radius:12px;padding:14px 16px;">
-            <div style="width:28px;height:28px;border-radius:50%;background:var(--cu);color:#fff;font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              ${index + 1}
-            </div>
-            <div style="font-size:.9rem;color:var(--text);">
-              ${point}
-            </div>
-          </div>
-        `).join('')}
-      </div>
-      <div class="card-title">
-        <span>Applications typiques</span>
-      </div>
-      <div style="margin-top:1rem;">
-        ${alloy.applications.map(app => `
-          <span class="method-tag">${app}</span>
-        `).join('')}
-      </div>
-    </div>
-  `;
-  modal.style.display = 'flex';
-}
-function closeAlloyModal(){
-  const modal = document.getElementById('alloy-modal');
-  modal.style.display = 'none';
-}
-document.getElementById('alloy-modal').addEventListener('click', function(e){
-  if(e.target.id === 'alloy-modal'){
-    closeAlloyModal();
-  }
-});
 
-
-window.showAlloy = showAlloy;
-window.closeAlloyModal = closeAlloyModal;
 
 applyLang();
 </script>

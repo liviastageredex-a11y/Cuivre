@@ -200,11 +200,11 @@ footer{background:var(--footer-bg);color:rgba(255,255,255,0.3);text-align:center
 <main>
 
   
-  <!--CARD PRINCIPAL -->
+  <!--VUE D'ENSEMBLE -->
 
         <div class="card">
-              <div class="card-title">  Vue d'ensemble  </div>
-              <p class="intro-text">
+              <div class="card-title" id="titre-card">  Vue d'ensemble  </div>
+              <p class="intro-text" id = "text-card1">
                   L'industrie électrique a connu des évolutions importantes en ce qui concerne les conducteurs électriques pour répondre aux demandes accrues. Les conducteurs bimétalliques CCA et CCS font partie de cette évolution et présentent un bon rapport coût-performance pour divers applications dans le secteur.  Bien que ces deux matériaux combinent les propriétés du cuivre à celles d'un autre métal pour offrir des avantages spécifiques, ils répondent à des besoins distincts en raison de leurs différences intrinsèques.
               </p>
         </div>
@@ -213,131 +213,178 @@ footer{background:var(--footer-bg);color:rgba(255,255,255,0.3);text-align:center
 
     <!-- CARD CCA -->
     <article class="material-card">
-        <h2>CCA (Copper Clad Aluminum)</h2>
-          <p class="material-subtitle">
-              Fil en aluminium recouvert de cuivre
-          </p>
 
-        <div class="card-image">
-            <img src="images/CCA.jpg" alt="CCA">
-        </div>
+    <h2 id="cca-title">CCA (Copper Clad Aluminum)</h2>
 
-        <div class="card-section">
-            <h3>Avantages</h3>
-            <ul>
-                <li>Plus léger que le cuivre pur</li>
-                <li>Bonne conductivité électrique</li>
-                <li>Excellent rapport coût-performance</li>
-            </ul>
-        </div>
-
-        <div class="card-section">
-            <h3>Limitations</h3>
-            <ul>
-                <li>Conductivité inférieure au cuivre</li>
-                <li>Moins résistant aux flexions répétées</li>
-                <li>Connexions plus sensibles</li>
-            </ul>
-        </div>
-
-        <div class="card-section fabrication">
-            <h3>Fabrication</h3>
-
-            <p>
-                Le CCA est obtenu grâce au procédé de plaquage (revêtement par enveloppement) d'une bande de cuivre
-                sur un noyau en aluminium. Le procédé assure une liaison métallurgique forte entre les deux métaux due à la diffusion entre 
-                les espéces et à l'application de chaleur et pression.</br></br>
-            </p>
-
-            <img src="images/cca_fabrication.jpg" alt="Fabrication CCA">
-        </div>
-
-        <div class="card-section">
-            <h3>Applications</h3>
-
-            <div class="applications-grid">
-                <div class="app-item">
-                    <img src="images/cables_data.webp" alt="">
-                    <span>Câbles data</span>
-                </div>
-
-                <div class="app-item">
-                    <img src="images/coaxial.jpg" alt="">
-                    <span>Fil coaxial</span>
-                </div>
-
-                <div class="app-item">
-                    <img src="images/cable_audio.jpg" alt="">
-                    <span>Audio</span>
-                </div>
-            </div>
-        </div>
-    </article>
+    <p class="material-subtitle" id="cca-subtitle">
+        Fil en aluminium recouvert de cuivre
+    </p>
 
 
-    <!-- CARD CCS -->
-    <article class="material-card">
-        <h2>CCS (Copper Clad Steel)</h2>
-        <p class="material-subtitle">
-            Fil en acier recouvert de cuivre
+    <div class="card-image">
+        <img src="images/CCA.jpg" alt="CCA">
+    </div>
+
+
+    <div class="card-section">
+
+        <h3 id="cca-advantages-title">Avantages</h3>
+
+        <ul>
+            <li id="cca-adv1">Plus léger que le cuivre pur</li>
+            <li id="cca-adv2">Bonne conductivité électrique</li>
+            <li id="cca-adv3">Excellent rapport coût-performance</li>
+        </ul>
+
+    </div>
+
+
+    <div class="card-section">
+
+        <h3 id="cca-limitations-title">Limitations</h3>
+
+        <ul>
+            <li id="cca-lim1">Conductivité inférieure au cuivre</li>
+            <li id="cca-lim2">Moins résistant aux flexions répétées</li>
+            <li id="cca-lim3">Connexions plus sensibles</li>
+        </ul>
+
+    </div>
+
+
+    <div class="card-section fabrication">
+
+        <h3 id="cca-fabrication-title">Fabrication</h3>
+
+        <p id="cca-fabrication-text">
+            Le CCA est obtenu grâce au procédé de plaquage (revêtement par enveloppement)
+            d'une bande de cuivre sur un noyau en aluminium. Le procédé assure une liaison
+            métallurgique forte entre les deux métaux due à la diffusion entre les espèces
+            et à l'application de chaleur et pression.
         </p>
 
-        <div class="card-image">
-            <img src="images/CCS commenté.png" alt="CCS">
-        </div>
+        <img src="images/cca_fabrication.jpg" alt="Fabrication CCA">
 
-        <div class="card-section">
-            <h3>Avantages</h3>
-            <ul>
-                <li>Très haute résistance mécanique</li>
-                <li>Bonne tenue à la traction</li>
-                <li>Durabilité élevée</li>
-            </ul>
-        </div>
+    </div>
 
-        <div class="card-section">
-            <h3>Limitations</h3>
-            <ul>
-                <li>Plus lourd que le CCA</li>
-                <li>Conductivité plus faible</li>
-                <li>Coût supérieur à l'aluminium</li>
-            </ul>
-        </div>
 
-        <div class="card-section fabrication">
-            <h3>Fabrication</h3>
+    <div class="card-section">
 
-            <p>
-                Le CCS est obtenu grâce au procédé de plaquage (revêtement par enveloppement) d'une bande de cuivre
-                sur un noyau en acier. Le procédé assure une liaison métallurgique forte entre les deux métaux due à la diffusion entre 
-                les espéces et à l'application de chaleur et pression.</br></br>
-            </p>
+        <h3 id="cca-applications-title">Applications</h3>
 
-            <img src="images/ccs_fabrication.png" alt="Fabrication CCS">
-        </div>
 
-        <div class="card-section">
-            <h3>Applications</h3>
+        <div class="applications-grid">
 
-            <div class="applications-grid">
-                <div class="app-item">
-                    <img src="images/telecom.avif" alt="">
-                    <span>Télécom</span>
-                </div>
-
-                <div class="app-item">
-                    <img src="images/ground.avif" alt="">
-                    <span>Mise à terre</span>
-                </div>
-
-                <div class="app-item">
-                    <img src="images/coaxial.jpg" alt="">
-                    <span>Fil Coaxial</span>
-                </div>
+            <div class="app-item">
+                <img src="images/cables_data.webp" alt="">
+                <span id="cca-app1">Câbles data</span>
             </div>
+
+
+            <div class="app-item">
+                <img src="images/coaxial.jpg" alt="">
+                <span id="cca-app2">Fil coaxial</span>
+            </div>
+
+
+            <div class="app-item">
+                <img src="images/cable_audio.jpg" alt="">
+                <span id="cca-app3">Audio</span>
+            </div>
+
         </div>
+
+    </div>
 
     </article>
+
+
+    
+    <!-- CARD CCS -->
+<article class="material-card">
+
+    <h2 id="ccs-title">CCS (Copper Clad Steel)</h2>
+
+    <p class="material-subtitle" id="ccs-subtitle">
+        Fil en acier recouvert de cuivre
+    </p>
+
+
+    <div class="card-image">
+        <img src="images/CCS commenté.png" alt="CCS">
+    </div>
+
+
+    <div class="card-section">
+
+        <h3 id="ccs-advantages-title">Avantages</h3>
+
+        <ul>
+            <li id="ccs-adv1">Très haute résistance mécanique</li>
+            <li id="ccs-adv2">Bonne tenue à la traction</li>
+            <li id="ccs-adv3">Durabilité élevée</li>
+        </ul>
+
+    </div>
+
+
+    <div class="card-section">
+
+        <h3 id="ccs-limitations-title">Limitations</h3>
+
+        <ul>
+            <li id="ccs-lim1">Plus lourd que le CCA</li>
+            <li id="ccs-lim2">Conductivité plus faible</li>
+            <li id="ccs-lim3">Coût supérieur à l'aluminium</li>
+        </ul>
+
+    </div>
+
+
+    <div class="card-section fabrication">
+
+        <h3 id="ccs-fabrication-title">Fabrication</h3>
+
+        <p id="ccs-fabrication-text">
+            Le CCS est obtenu grâce au procédé de plaquage (revêtement par enveloppement)
+            d'une bande de cuivre sur un noyau en acier. Le procédé assure une liaison
+            métallurgique forte entre les deux métaux due à la diffusion entre les espèces
+            et à l'application de chaleur et pression.
+        </p>
+
+        <img src="images/ccs_fabrication.png" alt="Fabrication CCS">
+
+    </div>
+
+
+    <div class="card-section">
+
+        <h3 id="ccs-applications">Applications</h3>
+
+        <div class="applications-grid">
+
+            <div class="app-item">
+                <img src="images/telecom.avif" alt="">
+                <span id="ccs-app1">Télécom</span>
+            </div>
+
+
+            <div class="app-item">
+                <img src="images/ground.avif" alt="">
+                <span id="ccs-app2">Mise à terre</span>
+            </div>
+
+
+            <div class="app-item">
+                <img src="images/coaxial.jpg" alt="">
+                <span id="ccs-app3">Fil Coaxial</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</article>
 
     </section>
 
@@ -361,19 +408,116 @@ const txt = {
     pillappli: 'Réduction de coûts',
     pillappli2: 'Idéal pour les câbles de données',
     pillstabilite: 'Rapport coût-performance élevé',
+
+    //Card principal
+    titreCardp: "Vue d'ensemble",
+    textCardp: "L'industrie électrique a connu des évolutions importantes en ce qui concerne les conducteurs électriques pour répondre aux demandes accrues. Les conducteurs bimétalliques CCA et CCS font partie de cette évolution et présentent un bon rapport coût-performance pour divers applications dans le secteur. Bien que ces deux matériaux combinent les propriétés du cuivre à celles d'un autre métal pour offrir des avantages spécifiques, ils répondent à des besoins distincts en raison de leurs différences intrinsèques.",
     
+    //CCA
+    ccaTitle: "CCA (Copper Clad Aluminum)",
+    ccaSubtitle: "Fil en aluminium recouvert de cuivre",
+
+    ccaAdvantages: "Avantages",
+    ccaAdv1: "Plus léger que le cuivre pur",
+    ccaAdv2: "Bonne conductivité électrique",
+    ccaAdv3: "Excellent rapport coût-performance",
+
+    ccaLimitations: "Limitations",
+    ccaLim1: "Conductivité inférieure au cuivre",
+    ccaLim2: "Moins résistant aux flexions répétées",
+    ccaLim3: "Connexions plus sensibles",
+
+    ccaFabrication: "Fabrication",
+    ccaFabText: "Le CCA est obtenu grâce au procédé de plaquage (revêtement par enveloppement) d'une bande de cuivre sur un noyau en aluminium. Le procédé assure une liaison métallurgique forte entre les deux métaux due à la diffusion entre les espèces et à l'application de chaleur et pression.",
+
+    ccaApplications: "Applications",
+    ccaApp1: "Câbles data",
+    ccaApp2: "Fil coaxial",
+    ccaApp3: "Audio",
+
+    //CCS
+    ccsTitle: "CCS (Copper Clad Steel)",
+    ccsSubtitle: "Fil en acier recouvert de cuivre",
+
+    ccsAdvantages: "Avantages",
+    ccsAdv1: "Très haute résistance mécanique",
+    ccsAdv2: "Bonne tenue à la traction",
+    ccsAdv3: "Durabilité élevée",
+
+    ccsLimitations: "Limitations",
+    ccsLim1: "Plus lourd que le CCA",
+    ccsLim2: "Conductivité plus faible",
+    ccsLim3: "Coût supérieur à l'aluminium",
+
+    ccsFabrication: "Fabrication",
+    ccsFabText: "Le CCS est obtenu grâce au procédé de plaquage (revêtement par enveloppement) d'une bande de cuivre sur un noyau en acier. Le procédé assure une liaison métallurgique forte entre les deux métaux due à la diffusion entre les espèces et à l'application de chaleur et pression.",
+
+    ccsApplications: "Applications",
+    ccsApp1: "Télécom",
+    ccsApp2: "Mise à terre",
+    ccsApp3: "Fil coaxial",
+
+
   },
   en:{
     back:'← Back', eyebrow:'Copper Grade', themeD:'Dark', themeL:'Light',
     //heroDesc:"Cu-OF is a high-purity copper (≥99.95%), completely oxygen-free. Obtained by remelting electrolytic cathodes under controlled atmosphere (vacuum or inert gas), it offers the highest electrical conductivity (102% IACS) and is fully insensitive to reducing atmospheres.",
     //herosymbol: "Copper Alloys",
   
-    heroTitle: 'Bimetallic wires CCA and CSS',
+    heroTitle: 'Bimetallic wires CCA and CCS',
     heroDesc: 'The bimetallic wires are a popular solution for reducing conductor wire production costs, combining the properties of different materials to achieve good electrical conductivity and strong mechanical performance. The most common bimetallic conductors are CCA (Copper Clad Aluminum) and CCS (Copper Clad Steel).',
     pillrm: 'High mechanical strength',
     pillappli: 'Cost reduction',
     pillappli2: 'Ideal for data cables',
     pillstabilite: 'High cost-performance ratio',
+
+    //Main card
+    titreCardp: "Overview",
+    textCardp: "The electrical industry has undergone significant developments regarding electrical conductors to meet increasing demands. CCA and CCS bimetallic conductors are part of this evolution and offer a good cost-performance ratio for various applications in the sector. Although these two materials combine the properties of copper with those of another metal to provide specific advantages, they meet distinct needs due to their intrinsic differences.",
+
+    // CCA Card
+    ccaTitle: "CCA (Copper Clad Aluminum)",
+    ccaSubtitle: "Copper coated aluminum wire",
+
+    ccaAdvantages: "Advantages",
+    ccaAdv1: "Lighter than pure copper",
+    ccaAdv2: "Good electrical conductivity",
+    ccaAdv3: "Excellent cost-performance ratio",
+
+    ccaLimitations: "Limitations",
+    ccaLim1: "Lower conductivity than copper",
+    ccaLim2: "Less resistant to repeated bending",
+    ccaLim3: "More sensitive connections",
+
+    ccaFabrication: "Manufacturing",
+    ccaFabText: "CCA is obtained through a cladding process, where a copper strip is bonded around an aluminum core. The process ensures a strong metallurgical bond between the two metals due to diffusion between the species and the application of heat and pressure.",
+
+    ccaApplications: "Applications",
+    ccaApp1: "Data cables",
+    ccaApp2: "Coaxial cable",
+    ccaApp3: "Audio",
+
+    // CCS Card
+    ccsTitle: "CCS (Copper Clad Steel)",
+    ccsSubtitle: "Copper coated steel wire",
+
+    ccsAdvantages: "Advantages",
+    ccsAdv1: "Very high mechanical strength",
+    ccsAdv2: "Good tensile strength",
+    ccsAdv3: "High durability",
+
+    ccsLimitations: "Limitations",
+    ccsLim1: "Heavier than CCA",
+    ccsLim2: "Lower conductivity",
+    ccsLim3: "Higher cost than aluminum",
+
+    ccsFabrication: "Manufacturing",
+    ccsFabText: "CCS is obtained through a cladding process, where a copper strip is bonded around a steel core. The process ensures a strong metallurgical bond between the two metals due to diffusion between the species and the application of heat and pressure.",
+
+    ccsApplications: "Applications",
+    ccsApp1: "Telecommunications",
+    ccsApp2: "Grounding",
+    ccsApp3: "Coaxial cable",
     
   }
 };
@@ -394,9 +538,56 @@ function applyLang(){
   document.getElementById('pill-appli2').textContent=T.pillappli2;
   document.getElementById('pill-stabilite').textContent=T.pillstabilite;
 
+  document.getElementById("titre-card").textContent = T.titreCardp;
+  document.getElementById("text-card1").textContent = T.textCardp;
+
+  //CCA
+  document.getElementById("cca-title").textContent = T.ccaTitle;
+  document.getElementById("cca-subtitle").textContent = T.ccaSubtitle;
+
+  document.getElementById("cca-advantages-title").textContent = T.ccaAdvantages;
+  document.getElementById("cca-adv1").textContent = T.ccaAdv1;
+  document.getElementById("cca-adv2").textContent = T.ccaAdv2;
+  document.getElementById("cca-adv3").textContent = T.ccaAdv3;
+
+  document.getElementById("cca-limitations-title").textContent = T.ccaLimitations;
+  document.getElementById("cca-lim1").textContent = T.ccaLim1;
+  document.getElementById("cca-lim2").textContent = T.ccaLim2;
+  document.getElementById("cca-lim3").textContent = T.ccaLim3;
+
+  document.getElementById("cca-fabrication-title").textContent = T.ccaFabrication;
+  document.getElementById("cca-fabrication-text").textContent = T.ccaFabText;
+
+  document.getElementById("cca-applications-title").textContent = T.ccaApplications;
+  document.getElementById("cca-app1").textContent = T.ccaApp1;
+  document.getElementById("cca-app2").textContent = T.ccaApp2;
+  document.getElementById("cca-app3").textContent = T.ccaApp3;
+
+  //CCS
+  document.getElementById("ccs-title").textContent = T.ccsTitle;
+  document.getElementById("ccs-subtitle").textContent = T.ccsSubtitle;
+
+  document.getElementById("ccs-advantages-title").textContent = T.ccsAdvantages;
+  document.getElementById("ccs-adv1").textContent = T.ccsAdv1;
+  document.getElementById("ccs-adv2").textContent = T.ccsAdv2;
+  document.getElementById("ccs-adv3").textContent = T.ccsAdv3;
+
+  document.getElementById("ccs-limitations-title").textContent = T.ccsLimitations;
+  document.getElementById("ccs-lim1").textContent = T.ccsLim1;
+  document.getElementById("ccs-lim2").textContent = T.ccsLim2;
+  document.getElementById("ccs-lim3").textContent = T.ccsLim3;
+
+  document.getElementById("ccs-fabrication-title").textContent = T.ccsFabrication;
+  document.getElementById("ccs-fabrication-text").textContent = T.ccsFabText;
+
+  document.getElementById("ccs-applications").textContent = T.ccsApplications;
+  document.getElementById("ccs-app1").textContent = T.ccsApp1;
+  document.getElementById("ccs-app2").textContent = T.ccsApp2;
+  document.getElementById("ccs-app3").textContent = T.ccsApp3;
+
   if(heroTitle) heroTitle.textContent = T.heroTitle;
   if(heroDesc) heroDesc.textContent = T.heroDesc;
-  if(pillSens) pillSens.textContent = T.pillSens;
+  //if(pillSens) pillSens.textContent = T.pillSens;
   if(backBtn) backBtn.textContent = T.back;
 
   if(themeLabel)
@@ -442,11 +633,6 @@ document.querySelectorAll('.card-title').forEach(el=>{
 function goBack() {
   history.back();
 }
-
-
-
-window.showAlloy = showAlloy;
-window.closeAlloyModal = closeAlloyModal;
 
 applyLang();
 </script>
